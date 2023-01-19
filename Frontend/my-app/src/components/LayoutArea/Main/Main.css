@@ -1,3 +1,27 @@
-.Main{
+.Main {
+    max-width: 100%;
+    min-height: 120%;
+    /* overflow-x: hidden; */
+
+    display: grid;
     
+    grid-template-rows: 1fr 50px;
+    grid-template-columns: 1fr;
+    /* padding: 1ex; */
+    box-sizing: border-box;
+    grid-template-areas: 
+      "outlet"
+      "footer";
+  }
+
+.Main > .Outlet {
+    grid-area: outlet; 
+    max-width: 100%;   
+    background-color:rgb(40, 125, 83)
+
+}
+.Main >footer {
+    grid-area: footer;    
+    background-color:brown
+
 }

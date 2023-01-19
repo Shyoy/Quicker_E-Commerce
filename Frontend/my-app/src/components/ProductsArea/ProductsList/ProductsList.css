@@ -1,0 +1,18 @@
+
+.ProductsList .card-group{
+    margin: 0.5%;
+    width: 80%;
+    max-height:400px;
+    justify-content: center;
+    overflow-x: scroll;
+    flex-flow:row;
+}
+.ProductsList .card{
+    /* flex-direction:none; */
+    margin: 0.5%;
+    max-height: 300px;
+    min-width:400px;
+}
+.ProductsList .card-img-top{
+    max-height: 70%;
+}

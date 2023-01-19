@@ -1,7 +1,10 @@
-body{
+html, body{
   margin: 0;
   text-align: center;
+  height: 100%;
+  overflow: hidden
 }
+
 
 :root{
   --bg: #242526;
@@ -34,15 +37,14 @@ a {
   font-weight: bold;
   font-size: 18px;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 1fr;
-  grid-template-rows: 3em var(--nav-size) 1fr 4em;
+  grid-template-columns: 16vw 1fr;
+  grid-template-rows: 3em var(--nav-size) 1fr;
   /* padding: 1ex; */
   box-sizing: border-box;
   grid-template-areas: 
-    "header header header header"
-    "menu nav nav nav"
-    "menu main main main"
-    "footer footer footer footer";
+    "header header"
+    "menu nav"
+    "menu main"
 }
 
 .Layout > header {
@@ -53,6 +55,7 @@ a {
 
 .Layout > nav {
   grid-area: nav;
+  max-width: 100%;
 
   background-color: rgb(202, 147, 28);
 }
@@ -65,12 +68,10 @@ a {
 
 .Layout > main {
   grid-area: main;
+  max-width: 100%;
+  max-height:100%;
+  overflow-y: scroll;
   background-color: yellow;
 
 }
 
-.Layout >footer {
-  grid-area: footer;
-  background-color:brown
-
-}

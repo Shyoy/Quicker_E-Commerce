@@ -18,7 +18,6 @@ const Layout = () => {
       <nav> <Nav/></nav>
       <aside><Menu/></aside>
       <main><Main/></main>
-      <footer><Footer/></footer>
     </div>
   );
 };

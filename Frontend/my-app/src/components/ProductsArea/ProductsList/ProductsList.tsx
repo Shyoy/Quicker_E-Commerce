@@ -11,6 +11,8 @@ import {
   selectLastUpdate,
 } from '../../../Redux/productsSlice';
 import config from '../../../Utils/Config';
+import './ProductsList.css'
+
 
 const ProductsList = () => {
   const products = useAppSelector(selectProducts);
@@ -24,35 +26,47 @@ const ProductsList = () => {
     dispatch(get_allAsync())
   },[]);
   return (
-    <div>
-      <h1>ProductsList Updated on -{date}</h1>
+    <div className='ProductsList'>
+      <h1>ProductsList Updated on -{products.length}</h1>
       <div>
         {products.length === 0? 
         <h2>There are no products</h2> 
         : 
-        <div>
+        <div className="card-group">
           {products.map(product =>
-          <ul key={product.id}>
-          <li>
-            {product.name}
-          </li>
-          <li>
-            <img width={150} src={config.productImagesUrl+product.image}></img>
-          </li>
-          <li>
-            Price - {product.price}
-          </li>
-          <li>
-            Amount - {product.amount}
-          </li>
-          <hr />
-          </ul>)}
+            <div className="card">
+              <img className="card-img-top" src={config.productImagesUrl+product.image} alt="Card image cap"/>
+              <div className="card-body">
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text">Price - {product.price}</p>
+                {/* <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> */}
+              </div>
+            </div>)}
           
         </div>}
         
       </div>
-    </div>
+    
+
+      
+</div>
   )
 }
 
 export default ProductsList
+
+
+
+// <li>
+//             {product.name}
+//           </li>
+//           <li>
+//             <img width={150} src={config.productImagesUrl+product.image}></img>
+//           </li>
+//           <li>
+//             Price - {product.price}
+//           </li>
+//           <li>
+//             Amount - {product.amount}
+//           </li>
+//           <hr />
