@@ -1,0 +1,76 @@
+body{
+  margin: 0;
+  text-align: center;
+}
+
+:root{
+  --bg: #242526;
+  --bg-accent: #484a4d;
+  --text-color: #dadce1;
+  --nav-size: 60px;
+  --border: 1px solid #474a4d;
+  --border-radius: 8px;
+  --speed: 500ms;
+}
+
+ul {
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+
+.Layout {
+  width: 100vw;
+  height: 100vh;
+
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  grid-template-rows: 3em var(--nav-size) 1fr 4em;
+  /* padding: 1ex; */
+  box-sizing: border-box;
+  grid-template-areas: 
+    "header header header header"
+    "menu nav nav nav"
+    "menu main main main"
+    "footer footer footer footer";
+}
+
+.Layout > header {
+  grid-area: header;
+
+  background-color: greenyellow;
+}
+
+.Layout > nav {
+  grid-area: nav;
+
+  background-color: rgb(202, 147, 28);
+}
+
+.Layout > aside {
+  grid-area: menu;
+  background-color: blue;
+
+}
+
+.Layout > main {
+  grid-area: main;
+  background-color: yellow;
+
+}
+
+.Layout >footer {
+  grid-area: footer;
+  background-color:brown
+
+}
