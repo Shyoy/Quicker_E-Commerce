@@ -1,0 +1,20 @@
+.ProductsCard{
+    /* flex-direction:none; */
+    margin: 0.5%;
+    max-height: 400px;
+    
+    /* max-width:500px; */
+    min-width:20vw;
+}
+.ProductsCard >.card-img-top{
+    height: 70%;
+    
+    border: 5px solid #555;
+    border-color: rgba(8, 122, 37, 0.233);
+}
+
+.ProductsCard > .card-body{
+    border: 5px solid #555;
+    border-color: rgba(8, 122, 37, 0.233);
+    
+}
