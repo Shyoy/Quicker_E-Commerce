@@ -13,11 +13,13 @@ export interface cartItem{
 
 export interface cartList {
   inCart: cartItem[];
+  sum: number;
   lastUpdate: Number;
 }
 
 const initialState: cartList = {
   inCart: [],
+  sum: 0,
   lastUpdate: new Date().getTime(),
 };
 
@@ -47,6 +49,7 @@ export const cartSlice = createSlice({
           return;
         }
         updateItem[0].amount += 1
+        state.sum += updateItem[0].product.price
         console.log('adding to ')
         // state.inCart[index] = updateItem[0]
         console.log(current(updateItem[0]))
@@ -57,6 +60,7 @@ export const cartSlice = createSlice({
       if (updateItem){
         let index = state.inCart.indexOf(updateItem[0]);
         updateItem[0].amount -= 1
+        state.sum -= updateItem[0].product.price
         if (updateItem[0].amount <= 0){
           state.inCart.splice(index, 1);
           return;
@@ -73,6 +77,8 @@ export const cartSlice = createSlice({
       if (oldItem.length < 1){
         console.log('Adding to cart');
         state.inCart.push(currentItem);
+        state.sum += currentItem.product.price
+        
         
       }
       // console.log(i);
@@ -103,7 +109,7 @@ export const { increment, decrement, addItem  } = cartSlice.actions;
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectInCart = (state: RootState) => state.cart.inCart;
 export const selectLastUpdate = (state: RootState) => state.cart.lastUpdate;
-
+export const selectSumCart = (state: RootState) => state.cart.sum
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 // export const incrementIfOdd =

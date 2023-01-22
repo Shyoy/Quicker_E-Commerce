@@ -1,3 +1,88 @@
+/* .CartItem {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 1%;
+    max-height: 14vh;
+}
+
+.CartItem > img{
+    margin: 3%;
+    width: 30%;
+}
+
+.CartItem > .cardBody {
+    padding: 1%;
+}
+.CartItem > .amount {
+    position: absolute;
+    left: 0%;
+    padding: 0.5%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    margin-top: 7.95vh;
+    background-color: grey;
+} */
+
+
 .CartItem {
-    
+    max-width: 100%;
+    min-height: 100%;
+    /* overflow-x: hidden; */
+
+    display: grid;
+    grid-template-rows:20% 1fr 20%;
+    grid-template-columns:25% 1fr 40%;
+    /* padding: 1ex; */
+    box-sizing: border-box;
+    grid-template-areas: 
+      "exit header img"
+      "main main img"
+      "amount footer img";
+      
+  }
+
+.CartItem > .exit{
+    grid-area: exit;
+    padding:10%;
+    /* justify-content: end; */
+    justify-self: start;
+    /* width: 30%; */
+}
+.CartItem > .card-img{
+    grid-area: img;
+    padding: 5%;
+    object-fit: cover;
+    max-width: 100%;
+    height: 100%;
+    /* width: 30%; */
+}
+
+.CartItem > .main {
+    grid-area: main;
+    padding-right: 5%;
+    transform: translate(60%, -10%);
+    margin: 0 auto;
+    justify-self: end;
+
+}
+.CartItem > .cardFooter {
+    grid-area: footer;
+    transform: translate(+50%, +20%);
+    margin: 0 auto;
+}
+.CartItem > .amount {
+    object-fit: cover;
+    max-width: 100%;
+    height: 100%;
+    border-top-right-radius:80% ;
+    background-color: grey;
+}
+.CartItem > .amount > p {
+    transform: translate(-10%, 50%);
+}
+
+.Cart > .Cart-Header {
+    grid-area: header;    
+    background-color:rgb(17, 152, 194)
+
 }
