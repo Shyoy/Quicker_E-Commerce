@@ -1,0 +1,36 @@
+.Cart {
+    max-width: 100%;
+    min-height: 100%;
+    /* overflow-x: hidden; */
+
+    display: grid;
+    grid-template-rows: var(--nav-size) 1fr 8vh;
+    grid-template-columns: 1fr;
+    /* padding: 1ex; */
+    box-sizing: border-box;
+    grid-template-areas: 
+      "header"
+      "outlet"
+      "footer";
+  }
+
+.Cart > .Cart-Header {
+    grid-area: header;    
+    background-color:rgb(17, 152, 194)
+
+}
+
+.Cart > .Cart-Content {
+
+    grid-area: outlet; 
+    overflow-y: scroll;
+    min-height: 150%;
+    max-width: 100%;   
+    background-color:rgb(187, 148, 22)
+
+}
+.Cart > .Cart-Footer {
+    grid-area: footer;    
+    background-color:brown
+
+}

@@ -46,15 +46,15 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addCase(get_allAsync.fulfilled, (state, action) => {
-      console.log('Success')
+      // console.log('Success')
       state.lastUpdate = new Date().getTime();
       state.productsList = action.payload;
     })
     .addCase(get_allAsync.pending, (state) => {
-      console.log('Waiting');
+      // console.log('Waiting');
     })
     .addCase(get_allAsync.rejected, (state) => {
-      console.log('Failed');
+      // console.log('Failed');
     });
   },
 });
