@@ -20,7 +20,7 @@ const Cart = () => {
                 <CartList/>
             </div>
             <div className='Cart-Footer'>
-                <footer>{sum_price}</footer>
+                <footer className='py-4'><span className='small'>₪</span>{sum_price}</footer>
             </div>
         </div>
     )

@@ -2,7 +2,7 @@
 .ProductsList .card-group{
     margin: 5%;
     max-height:400px;
-    max-width: 75vw;
+    max-width: 60vw;
     overflow-x: auto;
     flex-flow:row;
     border-radius: 4%;

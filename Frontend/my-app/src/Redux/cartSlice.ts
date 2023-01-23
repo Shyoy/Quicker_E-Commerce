@@ -78,13 +78,18 @@ export const cartSlice = createSlice({
         console.log('Adding to cart');
         state.inCart.push(currentItem);
         state.sum += currentItem.product.price
-        
-        
       }
-      // console.log(i);
       console.log(current(state.inCart));
     },
-  },
+
+    delItem: (state:cartList, action:PayloadAction<{id:Number}>) => {
+      let currentItem = state.inCart.filter((item) => item.id === action.payload.id)
+      if (currentItem){
+        let index = state.inCart.indexOf(currentItem[0]);
+        state.inCart.splice(index, 1);
+        console.log('delete item');
+      }
+    },}
   
   // extraReducers: (builder) => {
   //   builder
@@ -100,9 +105,10 @@ export const cartSlice = createSlice({
   //     console.log('Failed');
   //   });
   // },
-});
+    
+  });
 
-export const { increment, decrement, addItem  } = cartSlice.actions;
+export const { increment, decrement, addItem, delItem  } = cartSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
