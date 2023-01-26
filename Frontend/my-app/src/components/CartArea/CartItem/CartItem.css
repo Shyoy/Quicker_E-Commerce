@@ -71,11 +71,12 @@
     transform: translate(60%, -10%);
     margin: 0 auto;
     justify-self: end;
+    padding: 10px;
 
 }
 .CartItem > .cardFooter {
     grid-area: footer;
-    transform: translate(+50%, +20%);
+    transform: translate(+50%, +0%);
     margin: 0 auto;
 }
 .CartItem > .amount {
@@ -86,7 +87,8 @@
     background-color: grey;
 }
 .CartItem > .amount > p {
-    transform: translate(-10%, 50%);
+    transform: translate(-20%, 0%);
+    padding: 1%;
 }
 
 .Cart > .Cart-Header {

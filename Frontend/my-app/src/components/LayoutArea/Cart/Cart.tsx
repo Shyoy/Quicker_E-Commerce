@@ -2,6 +2,7 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { checkOut, selectSumCart } from '../../../Redux/cartSlice'
+import { get_allAsync } from '../../../Redux/productsSlice'
 import CartList from '../../CartArea/CartList/CartList'
 import './Cart.css'
 
@@ -14,7 +15,10 @@ const Cart = () => {
     const dispatch = useAppDispatch();
 
     const handleCheckOut  = async () => {
-       await dispatch(checkOut())
+       const result = await dispatch(checkOut())
+       if (result.meta.requestStatus == 'fulfilled'){
+            dispatch(get_allAsync())
+       }
     }
 
     return (

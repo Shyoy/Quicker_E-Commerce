@@ -39,6 +39,15 @@ export const productsSlice = createSlice({
     addProduct: (state, action: PayloadAction<ProductModel>) => {
       state.productsList.push(action.payload);
     },
+    updateProduct: (state, action: PayloadAction<ProductModel[]>) => {
+      action.payload.map((newProduct:ProductModel) => {
+        const oldProductList = state.productsList.filter((oldProduct) =>oldProduct.id === newProduct.id)
+        if (oldProductList){
+          const oldProduct:ProductModel = oldProductList[0]
+          oldProduct.amount = newProduct.amount
+        }
+      })
+    }
   },
   
   extraReducers: (builder) => {

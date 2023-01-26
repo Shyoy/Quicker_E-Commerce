@@ -1,5 +1,5 @@
 import { AsyncThunk, createAsyncThunk, createSlice, current, PayloadAction } from '@reduxjs/toolkit';
-import { RootState} from '../app/store';
+import { AppThunk, RootState, store, AppDispatch} from '../app/store';
 import cartAPI from '../API/CartAPI';
 import ProductModel from '../Models/Products';
 import { useSelector } from 'react-redux';
@@ -89,6 +89,8 @@ export const cartSlice = createSlice({
     builder
     .addCase(checkOut.fulfilled, (state, action) => {
       console.log('Success')
+      state.inCart = [];
+      state.sum = 0;
       state.lastUpdate = new Date().getTime();
     
     })
@@ -114,11 +116,11 @@ export const selectSumCart = (state: RootState) => state.cart.sum
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 // export const incrementIfOdd =
-//   async (): AppThunk =>
+//   (amount: number): AppThunk =>
 //   (dispatch, getState) => {
 //     const currentValue = selectCount(getState());
 //     if (currentValue % 2 === 1) {
-//       dispatch(addProduct(amount));
+//       dispatch(incrementByAmount(amount));
 //     }
 //   };
 

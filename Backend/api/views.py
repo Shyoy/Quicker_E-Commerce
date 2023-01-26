@@ -58,7 +58,9 @@ def checkout_list(request):
         # pprint(serializer.initial_data)
         if serializer.is_valid():
             serializer.save()
-            # pprint(serializer.data)
+            new_data = [Product.objects.filter(id=x['id']) for x in serializer.data['cart_items']]
+            pprint(new_data)
+            ProductSerializer(data=serializer.data, many=True)
             return Response(serializer.data)
         print('ERRORS: ', serializer.errors)
         return Response(messages=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
