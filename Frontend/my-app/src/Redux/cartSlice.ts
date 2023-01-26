@@ -1,12 +1,10 @@
-import { createAsyncThunk, createSlice, current, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../app/store';
-import { getProducts } from '../API/ProductsAPI';
+import { AsyncThunk, createAsyncThunk, createSlice, current, PayloadAction } from '@reduxjs/toolkit';
+import { RootState} from '../app/store';
+import cartAPI from '../API/CartAPI';
 import ProductModel from '../Models/Products';
-import axios from 'axios';
-import config from '../Utils/Config';
+import { useSelector } from 'react-redux';
 
 export interface cartItem{
-  id:number ,
   product:ProductModel,
   amount :number,
 }
@@ -24,14 +22,17 @@ const initialState: cartList = {
 };
 
 
-// export const get_allAsync = createAsyncThunk(
-//   'cart/getProducts',
-//   async () => {
-//     const response = await axios.get<ProductModel[]>(config.productsUrl);
-//     // The value we return becomes the `fulfilled` action payload
-//     return response.data;
-//   }
-// );
+export const checkOut = createAsyncThunk(
+  'cart/postCheckOut',
+  async (arg:void ,ThunkAPI) => {
+    const state:any = ThunkAPI.getState()
+    const cart:cartItem[] = state['cart']['inCart']
+    console.log(cart)
+    const response = await cartAPI.postCheckOut(cart);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -39,72 +40,66 @@ export const cartSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     increment: (state, action: PayloadAction<{id:Number}>) => {
-      let updateItem = state.inCart.filter((item) => item.id === action.payload.id)
+      let updateItem = state.inCart.filter((item) => item.product.id === action.payload.id)
       if (updateItem){
-        // let index = state.inCart.indexOf(updateItem[0]);
         if (updateItem[0].amount === updateItem[0].product.amount){
           console.log('amount not enough ')
-          // state.inCart.splice(index, 1);
-          console.log(current(updateItem[0]))
           return;
         }
         updateItem[0].amount += 1
         state.sum += updateItem[0].product.price
-        console.log('adding to ')
-        // state.inCart[index] = updateItem[0]
-        console.log(current(updateItem[0]))
+        console.log(`+1 to ${updateItem[0].product.name}`)
       }
     },
     decrement: (state, action: PayloadAction<{id:Number}>) => {
-      let updateItem = state.inCart.filter((item) => item.id === action.payload.id)
+      let updateItem = state.inCart.filter((item) => item.product.id === action.payload.id)
       if (updateItem){
         let index = state.inCart.indexOf(updateItem[0]);
-        updateItem[0].amount -= 1
         state.sum -= updateItem[0].product.price
-        if (updateItem[0].amount <= 0){
+        if (updateItem[0].amount <= 1){
           state.inCart.splice(index, 1);
+          console.log(`${updateItem[0].product.name} was removed from cart`)
           return;
         }
-        // state.inCart[index] = updateItem[0]
-        console.log(current(updateItem[0]))
+        updateItem[0].amount -= 1
+        console.log(`-1 to ${updateItem[0].product.name}`)
       }
     },
 
     addItem: (state:cartList, action: PayloadAction<ProductModel>) => {
-      // console.log('addItem', current(state.inCart), action.payload.id);
-      let currentItem: cartItem = {id:action.payload.id ,product:action.payload, amount:1}
-      let oldItem = state.inCart.filter((item) => item.id === currentItem.id);
+      let currentItem: cartItem = {product:action.payload, amount:1}
+      let oldItem = state.inCart.filter((item) => item.product.id === currentItem.product.id);
       if (oldItem.length < 1){
         console.log('Adding to cart');
         state.inCart.push(currentItem);
         state.sum += currentItem.product.price
       }
-      console.log(current(state.inCart));
     },
 
     delItem: (state:cartList, action:PayloadAction<{id:Number}>) => {
-      let currentItem = state.inCart.filter((item) => item.id === action.payload.id)
+      let currentItem = state.inCart.filter((item) => item.product.id === action.payload.id)
       if (currentItem){
         let index = state.inCart.indexOf(currentItem[0]);
         state.inCart.splice(index, 1);
         console.log('delete item');
       }
-    },}
-  
-  // extraReducers: (builder) => {
-  //   builder
-  //   .addCase(get_allAsync.fulfilled, (state, action) => {
-  //     console.log('Success')
-  //     state.lastUpdate = new Date().getTime();
-  //     state.productsList = action.payload;
-  //   })
-  //   .addCase(get_allAsync.pending, (state) => {
-  //     console.log('Waiting');
-  //   })
-  //   .addCase(get_allAsync.rejected, (state) => {
-  //     console.log('Failed');
-  //   });
-  // },
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+    .addCase(checkOut.fulfilled, (state, action) => {
+      console.log('Success')
+      state.lastUpdate = new Date().getTime();
+    
+    })
+    .addCase(checkOut.pending, (state) => {
+      console.log('Waiting');
+    })
+    .addCase(checkOut.rejected, (state, action) => {
+      console.log(action.error.message);
+      console.log('Failed');
+    });
+  },
     
   });
 
@@ -119,7 +114,7 @@ export const selectSumCart = (state: RootState) => state.cart.sum
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 // export const incrementIfOdd =
-//   (amount: number): AppThunk =>
+//   async (): AppThunk =>
 //   (dispatch, getState) => {
 //     const currentValue = selectCount(getState());
 //     if (currentValue % 2 === 1) {

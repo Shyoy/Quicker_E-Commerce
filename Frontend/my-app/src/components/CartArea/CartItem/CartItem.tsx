@@ -18,7 +18,7 @@ const CartItem = (props:CartItemProps) => {
 
   return (
     <li className='CartItem'>
-      <img className="card-img" src={config.productImagesUrl+props.product.image} alt="Card image cap"/>
+      <img className="card-img" src={config.productImagesUrl+props.product.image} alt={props.product.name +" image"}/>
       
       <div className="exit"><button onClick={()=> dispatch(delItem({id: props.product.id}))} >X</button></div>
       <h5 className="header">{props.product.name}</h5>

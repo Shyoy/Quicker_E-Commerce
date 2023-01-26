@@ -13,6 +13,7 @@ class DevelopmentConfig extends Config {
     public supportPage = "http://northwnd.com/it-support/";
 
     public productsUrl = "http://127.0.0.1:8000/api/products";
+    public checkOutUrl = "http://127.0.0.1:8000/api/products/check-out";
     public productImagesUrl = "http://127.0.0.1:8000/";
     public registerUrl = "http://127.0.0.1:8000/api/auth/register/";
     public loginUrl = "http://127.0.0.1:8000/api/auth/login/";

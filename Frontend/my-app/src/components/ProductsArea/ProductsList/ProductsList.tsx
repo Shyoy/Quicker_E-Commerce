@@ -1,16 +1,11 @@
 import React,{useState,useEffect} from 'react'
-import { useSelector } from 'react-redux';
 
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 import {
-  decrement,
-  increment,
-  addProduct,
   get_allAsync,
   selectProducts,
   selectLastUpdate,
 } from '../../../Redux/productsSlice';
-import config from '../../../Utils/Config';
 import ProductCard from '../ProductCard/ProductCard';
 import './ProductsList.css'
 
@@ -20,16 +15,18 @@ const ProductsList = () => {
   const lastUpdate = useAppSelector(selectLastUpdate);
   const dispatch = useAppDispatch();
   const [date, setDate] = useState<String>("")
-
-  useEffect(() => {
-    setDate(new Date(lastUpdate.valueOf()).toDateString())
-  },[lastUpdate])
+  
   useEffect(() => {
     dispatch(get_allAsync())
-  },[]);
+    console.log('dispatch')
+  },[dispatch]);
+  useEffect(() => {
+    setDate(new Date(lastUpdate.valueOf()).toLocaleTimeString(navigator.language,
+       {hour: '2-digit', minute:'2-digit',hour12:false}))
+  },[lastUpdate])
   return (
     <div className='ProductsList'>
-      <h1>ProductsList Updated on -{products.length}</h1>
+      <h1>ProductsList Updated on - {date}</h1>
         {products.length === 0? 
         <h2>There are no products</h2> 
         : 

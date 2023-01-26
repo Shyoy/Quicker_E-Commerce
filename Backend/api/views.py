@@ -2,9 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
-from apps.products.models import Product
-from apps.products.serializers import ProductSerializer
+from apps.products.models import Product, Cart
+from apps.products.serializers import ProductSerializer, CartSerializer,CartItemSerializer
 from rest_framework.parsers import FormParser ,MultiPartParser
+from pprint import pprint
 # from rest_framework.permissions  import IsAuthenticated
 
 @api_view(['GET', 'POST'])
@@ -47,3 +48,17 @@ def product_detail(request, code):
     elif request.method == 'DELETE':
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['POST'])
+def checkout_list(request):
+    if request.method == 'POST':
+        cart_data = {'cart_items':request.data,'user':'userName'}
+        serializer = CartSerializer(data=cart_data)
+        # pprint(serializer.initial_data)
+        if serializer.is_valid():
+            serializer.save()
+            # pprint(serializer.data)
+            return Response(serializer.data)
+        print('ERRORS: ', serializer.errors)
+        return Response(messages=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

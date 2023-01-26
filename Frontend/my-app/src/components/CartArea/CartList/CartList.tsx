@@ -14,7 +14,7 @@ const CartList = () => {
         {cart.length > 0 ? 
         <ul>
             {cart.map((item)=> 
-            <CartItem product={item.product} amount={item.amount}/>
+            <CartItem key={item.product.id} product={item.product} amount={item.amount}/>
             )}     
         </ul>
         :

@@ -1,9 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../app/store';
-import { getProducts } from '../API/ProductsAPI';
+import { RootState } from '../app/store';
 import ProductModel from '../Models/Products';
-import axios from 'axios';
-import config from '../Utils/Config';
+import productsAPI from '../API/ProductsAPI';
 
 export interface productsList {
   productsList: ProductModel[];
@@ -19,7 +17,7 @@ const initialState: productsList = {
 export const get_allAsync = createAsyncThunk(
   'products/getProducts',
   async () => {
-    const response = await axios.get<ProductModel[]>(config.productsUrl);
+    const response = await productsAPI.getProducts();
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -46,15 +44,16 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addCase(get_allAsync.fulfilled, (state, action) => {
-      // console.log('Success')
+      console.log('Success')
       state.lastUpdate = new Date().getTime();
       state.productsList = action.payload;
     })
     .addCase(get_allAsync.pending, (state) => {
       // console.log('Waiting');
     })
-    .addCase(get_allAsync.rejected, (state) => {
-      // console.log('Failed');
+    .addCase(get_allAsync.rejected, (state,action) => {
+      console.log(action.error?.message);
+      console.log('Failed');
     });
   },
 });
