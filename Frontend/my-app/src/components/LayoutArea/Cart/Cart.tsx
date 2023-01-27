@@ -2,7 +2,6 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { checkOut, selectSumCart } from '../../../Redux/cartSlice'
-import { get_allAsync } from '../../../Redux/productsSlice'
 import CartList from '../../CartArea/CartList/CartList'
 import './Cart.css'
 
@@ -15,10 +14,12 @@ const Cart = () => {
     const dispatch = useAppDispatch();
 
     const handleCheckOut  = async () => {
-       const result = await dispatch(checkOut())
-       if (result.meta.requestStatus == 'fulfilled'){
-            dispatch(get_allAsync())
-       }
+        await dispatch(checkOut())
+    //    if (result.meta.requestStatus === 'fulfilled'){
+    //         console.log(result.payload);
+    //         const products:any = result.payload
+    //         dispatch(updateProducts())
+    //    }
     }
 
     return (
@@ -32,7 +33,11 @@ const Cart = () => {
             <div className='Cart-Footer'>
                 
                     <div className='ms-5'><span className='small'>₪</span>{sum_price}</div>
-                    <div className='justify'><button className='btn btn-primary' onClick={handleCheckOut}>Check Out</button></div>
+                    {cartSum > 0 ?
+                    <div className='justify'><button className='btn btn-info' onClick={handleCheckOut}>Check Out</button></div>
+                    :
+                    <div className='justify'><button className='btn btn-info' disabled>Check Out</button></div>
+                    }
                 
             </div>
         </div>

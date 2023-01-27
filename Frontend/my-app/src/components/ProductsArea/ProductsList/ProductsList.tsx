@@ -18,7 +18,6 @@ const ProductsList = () => {
   
   useEffect(() => {
     dispatch(get_allAsync())
-    console.log('dispatch')
   },[dispatch]);
   useEffect(() => {
     setDate(new Date(lastUpdate.valueOf()).toLocaleTimeString(navigator.language,

@@ -39,13 +39,15 @@ export const productsSlice = createSlice({
     addProduct: (state, action: PayloadAction<ProductModel>) => {
       state.productsList.push(action.payload);
     },
-    updateProduct: (state, action: PayloadAction<ProductModel[]>) => {
+    updateProducts: (state, action: PayloadAction<ProductModel[]>) => {
+      console.log('updateProducts');
       action.payload.map((newProduct:ProductModel) => {
         const oldProductList = state.productsList.filter((oldProduct) =>oldProduct.id === newProduct.id)
         if (oldProductList){
           const oldProduct:ProductModel = oldProductList[0]
           oldProduct.amount = newProduct.amount
-        }
+        } 
+        return null;
       })
     }
   },
@@ -53,7 +55,7 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addCase(get_allAsync.fulfilled, (state, action) => {
-      console.log('Success')
+      // console.log('Success')
       state.lastUpdate = new Date().getTime();
       state.productsList = action.payload;
     })
@@ -67,23 +69,11 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { increment, decrement, addProduct } = productsSlice.actions;
+export const { increment, decrement, addProduct, updateProducts } = productsSlice.actions;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
+
 export const selectProducts = (state: RootState) => state.products.productsList;
 export const selectLastUpdate = (state: RootState) => state.products.lastUpdate;
 
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
-// export const incrementIfOdd =
-//   (amount: number): AppThunk =>
-//   (dispatch, getState) => {
-//     const currentValue = selectCount(getState());
-//     if (currentValue % 2 === 1) {
-//       dispatch(addProduct(amount));
-//     }
-//   };
 
 export default productsSlice.reducer;

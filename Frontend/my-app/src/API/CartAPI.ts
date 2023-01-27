@@ -11,14 +11,13 @@ class CartAPI{
     
 
     public async postCheckOut(fullCart:cartItem[]) {
-        return await new  Promise<{data: cartItem[]}>(async (resolve,reject) =>{
+        return await new  Promise<{data: ProductModel[]}>(async (resolve,reject) =>{
             console.log('Sending cart data')
             const fullCartAPI:cartItemAPI[] = []; 
             fullCart.map((item,i) => 
                 fullCartAPI.push(
                     {product: item.product.id,amount:item.amount}))
-            console.log(fullCartAPI)
-            await axios.post<cartItem[]>(config.checkOutUrl, fullCartAPI)
+            await axios.post<ProductModel[]>(config.checkOutUrl, fullCartAPI)
                 .then((response) =>  resolve({data: response.data}))
                 .catch((error) => reject(error))
           
