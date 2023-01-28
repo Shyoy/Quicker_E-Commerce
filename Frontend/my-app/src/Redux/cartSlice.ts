@@ -29,7 +29,7 @@ export const checkOut = createAsyncThunk(
   async (arg:void ,ThunkAPI) => {
     const state:any = ThunkAPI.getState()
     const cart:cartItem[] = state['cart']['inCart']
-    if (cart.length == 0){
+    if (cart.length === 0){
       return ThunkAPI.rejectWithValue({});
     }
     const response = await cartAPI.postCheckOut(cart);
@@ -116,7 +116,7 @@ export const { increment, decrement, addItem, delItem  } = cartSlice.actions;
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectInCart = (state: RootState) => state.cart.inCart;
 export const selectLastUpdate = (state: RootState) => state.cart.lastUpdate;
-export const selectSumCart = (state: RootState) => state.cart.sum
+export const selectSumCart = (state: RootState) => state.cart.sum;
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 

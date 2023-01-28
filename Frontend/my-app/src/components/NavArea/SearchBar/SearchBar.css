@@ -1,0 +1,68 @@
+.SearchBar{
+    padding: 5px;
+    
+    margin: 2px;
+    margin-right: 4%;
+    display: flex;
+    padding-top: 0;
+    margin-top: 0;
+    align-items: flex-start;
+    justify-content:flex-end;
+
+}
+
+.SearchBar > .Search-input button{
+    position: absolute;
+    --button-size: calc(var(--nav-size) * 0.23);
+    width: var(--button-size);
+    height: var(--button-size);
+    background-color: #f700001c;
+    border-radius: 50%;
+    border: none;
+    margin-top: 3px;
+    transform: translate(-20px);
+    font-size: 6px;
+    
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    transition: 300ms;
+    
+}
+
+/* .SearchBar > .contain {
+    position: absolute;
+    
+    justify-content:flex-start;
+    margin-top:15px ;
+    min-width: 200px;
+    min-height: 143px;
+} */
+
+.SearchBar > .Search-input > input{
+    background-color: rgb(250, 250, 250);
+    font-family:Arial, Helvetica, sans-serif;
+    width: 200px;
+    
+}
+.SearchBar > .Search-input > ul{
+    text-align: start;
+    margin-top: 3px;
+    padding-left: 5px;
+    position: absolute;
+    width: 200px;
+    background-color: rgba(250, 250, 250, 0.945);
+    font-family:Arial, Helvetica, sans-serif;
+    
+}
+.SearchBar > .Search-input > ul > li{
+   transition: 300ms;
+}
+.SearchBar > .Search-input > ul > li:hover{
+        -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; 
+    background-color: rgba(68, 164, 228, 0.452);
+    font-size: 20px;
+    font-style: oblique;
+}

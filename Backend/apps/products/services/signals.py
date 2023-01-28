@@ -22,6 +22,7 @@ def post_delete_image(sender, instance, *args, **kwargs):
         print(f"Error deleting: {e}")
 
 
+
 @receiver(pre_save, sender=prod_models.Product)
 def pre_save_image(sender, instance, *args, **kwargs):
     """ Clean Old Image file when updating """

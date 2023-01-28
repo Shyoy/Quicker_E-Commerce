@@ -76,4 +76,5 @@ export const selectProducts = (state: RootState) => state.products.productsList;
 export const selectLastUpdate = (state: RootState) => state.products.lastUpdate;
 
 
+
 export default productsSlice.reducer;

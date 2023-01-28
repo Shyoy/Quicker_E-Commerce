@@ -27,13 +27,13 @@ const ProductCard = (props:ProductProps):JSX.Element => {
                 <p className="card-text">Price - {props.product.price}</p>
                 <p className="card-text">Amount - {props.product.amount}</p>
                 {currentItemList.length === 1 ? 
-                <div>
+                <div className='cart-control'>
                 <button onClick={()=> dispatch(decrement({id:props.product.id}))} className='bg-primary bg-gradient text-danger px-3 rounded-pill'>-</button>
                 <span className='amount bg-primary bg-gradient '>{currentItem.amount}</span>
                 <button onClick={()=> dispatch(increment({id:props.product.id}))} style={{visibility: visible ? undefined:'hidden'}} className='bg-primary bg-gradient text-info px-3 rounded-pill'>+</button>
                 </div>
                 :
-                <div>
+                <div className='cart-control'>
                 <button onClick={()=> dispatch(addItem(props.product))} className='bg-primary bg-gradient rounded-pill px-4'>ADD</button>
                 </div>
                 }

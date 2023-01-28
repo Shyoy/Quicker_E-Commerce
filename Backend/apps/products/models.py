@@ -29,7 +29,7 @@ class Product(models.Model):
 
 
 class CartItem(models.Model):
-    product  = models.ForeignKey('products.Product',related_name='cart_items',on_delete=models.DO_NOTHING)
+    product  = models.ForeignKey('products.Product',related_name='cart_items',on_delete=models.PROTECT)
     amount = models.IntegerField(default=1)
     cart = models.ForeignKey('products.Cart',related_name='cart_items',on_delete=models.CASCADE)
 

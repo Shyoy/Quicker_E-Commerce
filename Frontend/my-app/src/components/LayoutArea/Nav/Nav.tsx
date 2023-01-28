@@ -1,11 +1,14 @@
 import React from 'react'
 import './Nav.css'
-import NavItem from './NavItem/NavItem'
+import NavItem from '../../NavArea/NavItem/NavItem'
+import SearchBar from '../../NavArea/SearchBar/SearchBar'
+
 
 const Nav = () => {
   return (
     <div className='Nav  navbar-expand-lg'>
         <ul className='navbar-nav'>
+          <SearchBar/>
           <NavItem/>
           <NavItem/>
           <NavItem/>

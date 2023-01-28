@@ -16,6 +16,18 @@
 .ProductsCard > .card-body{
     border: 5px solid #555;
     border-color: rgba(8, 122, 37, 0.233);
+}
+
+.ProductsCard .cart-control > button {
+    border: none;
+    transform: scale(0.95);
+    transition: 250ms;
+
+}
+.ProductsCard .cart-control > button:hover {
+    transform: scale(1.04);
+    filter:contrast(1.5);
+    filter:brightness(1.1);
     
 }
 

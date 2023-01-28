@@ -54,13 +54,14 @@ def product_detail(request, code):
 def checkout_list(request):
     if request.method == 'POST':
         cart_data = {'cart_items':request.data,'user':'userName'}
+        
         serializer = CartSerializer(data=cart_data)
-        # pprint(serializer.initial_data)
+        # pprint(request.data)
         if serializer.is_valid():
             serializer.save()
             changed_products = [Product.objects.get(id=x['product']) for x in serializer.data['cart_items']]
             serialized_products = ProductSerializer(changed_products, many=True).data
-            print(serialized_products)
+            # print(serialized_products)
             return Response(serialized_products)
-        print('ERRORS: ', serializer.errors)
+        # print('ERRORS: ', serializer.errors)
         return Response(messages=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
