@@ -10,8 +10,34 @@
     justify-content:flex-end;
 
 }
+.SearchBar  .smart-input{
+    display: flex;
+    flex-direction: column;
+    justify-items: start;
+    align-items: baseline;
+    
+}
+.SearchBar  .Search-input{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
-.SearchBar > .Search-input button{
+.SearchBar  .Search-input > .search-icon{
+    margin-right: 5px;
+    color: rgb(99, 186, 189) ;
+    border: none;
+    width: 40px;
+    height: 38px;
+    border-radius: 20%;
+    background-color: rgba(83, 83, 83, 0.459);
+    transition: 300ms;
+}
+.SearchBar  .Search-input > .search-icon:hover{
+    color: rgb(115, 214, 218) ;
+    transform: scale(1.1);
+}
+.SearchBar  .Search-input > .clear{
     position: absolute;
     --button-size: calc(var(--nav-size) * 0.23);
     width: var(--button-size);
@@ -20,7 +46,7 @@
     border-radius: 50%;
     border: none;
     margin-top: 3px;
-    transform: translate(-20px);
+    transform: translate(500%,-90%);
     font-size: 6px;
     
     /* display: flex;
@@ -39,13 +65,14 @@
     min-height: 143px;
 } */
 
-.SearchBar > .Search-input > input{
+.SearchBar  .Search-input > input{
     background-color: rgb(250, 250, 250);
     font-family:Arial, Helvetica, sans-serif;
     width: 200px;
     
 }
-.SearchBar > .Search-input > ul{
+
+.SearchBar  .search-output > ul{
     text-align: start;
     margin-top: 3px;
     position: absolute;
@@ -59,7 +86,7 @@
 
     
 }
-.SearchBar > .Search-input > ul > li{
+.SearchBar  .search-output > ul > li{
    transition: 300ms;
    box-shadow:  -5px 3px 10px rgba(0, 0, 0, 0.13) inset;
    border: 0.005% thin solid transparent;
@@ -73,20 +100,20 @@
 
 }
 
-.SearchBar > .Search-input > ul > li > img{
+.SearchBar  .search-output > ul > li > img{
     max-width: 80px;
     padding-right: 5px;
     transition: 400ms;
     border-radius: 15%;
  }
 
-.SearchBar > .Search-input > ul > li:hover > img{
+.SearchBar  .search-output> ul > li:hover > img{
     /* max-width: 80px;
     padding-right: 5px; */
     transform: scale(1.15);
 }
  
-.SearchBar > .Search-input > ul > li:hover{
+.SearchBar  .search-output> ul > li:hover{
         -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; 
