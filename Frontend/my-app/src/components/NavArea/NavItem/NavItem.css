@@ -6,12 +6,13 @@
 }
 
 
-.icon-button {
+.nav-item > .icon-button {
 
     --button-size: calc(var(--nav-size) * 0.6);
     width: var(--button-size);
     height: var(--button-size);
-    background-color: #4a484d;
+    background-color: #4a484d3a;
+    color: #2eb11d;
     border-radius: 50%;
     border: none;
     padding: 5px;
@@ -22,14 +23,23 @@
     transition: 300ms;
 }
 
-.icon-button:hover{
+.nav-item > .material-symbols-outlined {
+
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.nav-item > .icon-button:hover{
     transform: scale(1.2);
     filter:brightness(1.2);
     
 
 }
 
-.icon-button svg {
+.nav-item > .icon-button svg {
     fill: var(--text-color);
     width: 20px;
     height: 20px;

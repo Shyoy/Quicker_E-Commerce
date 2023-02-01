@@ -4,7 +4,7 @@
     /* overflow-x: hidden; */
 
     display: grid;
-    grid-template-rows: var(--nav-size) 1fr 8vh;
+    grid-template-rows: calc(3em + var(--nav-size)) 1fr 8vh;
     grid-template-columns: 1fr;
     /* padding: 1ex; */
     box-sizing: border-box;
@@ -16,27 +16,23 @@
 
 .Cart > .Cart-Header {
     grid-area: header;    
-    background-color:rgb(17, 152, 194)
 
+    background-color:rgb(17, 152, 194);
+ 
 }
 
 .Cart > .Cart-Content {
+    box-shadow:  5px -3px 8px 3px rgba(0, 0, 0, 0.164)  inset;
 
     grid-area: outlet; 
     overflow-y: scroll;
-    min-height: 150%;
+    min-height: 100%;
     max-width: 100%;   
-    background-color:rgb(187, 148, 22)
+    /* background-color:rgb(187, 148, 22) */
 
 }
 .Cart > .Cart-Footer {
     grid-area: footer; 
-    display: flex;
-    justify-content:space-between;
-    flex-direction: row;
-    padding: 5%;
-    max-width: 100%;
-    max-height: 100%;   
-    background-color:rgb(214, 175, 45)
 
+   
 }

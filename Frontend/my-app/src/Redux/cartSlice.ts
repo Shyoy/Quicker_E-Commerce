@@ -85,6 +85,8 @@ export const cartSlice = createSlice({
       let currentItem = state.inCart.filter((item) => item.product.id === action.payload.id)
       if (currentItem){
         let index = state.inCart.indexOf(currentItem[0]);
+
+        state.sum -= state.inCart[index].amount * state.inCart[index].product.price;
         state.inCart.splice(index, 1);
         console.log('delete item');
       }

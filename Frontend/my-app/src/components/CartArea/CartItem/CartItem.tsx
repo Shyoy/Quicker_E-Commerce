@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAppDispatch } from '../../../app/hooks'
 import ProductModel from '../../../Models/Products'
 import { delItem } from '../../../Redux/cartSlice'
@@ -20,7 +19,7 @@ const CartItem = (props:CartItemProps) => {
     <li className='CartItem'>
       <img className="card-img" src={config.productImagesUrl+props.product.image} alt={props.product.name +" image"}/>
       
-      <div className="exit"><button onClick={()=> dispatch(delItem({id: props.product.id}))} >X</button></div>
+      <div className="exit"><button onClick={()=> dispatch(delItem({id: props.product.id}))}/></div>
       <h5 className="header">{props.product.name}</h5>
       <p className="main"><span className='small'>₪</span>{sum_price}</p>
       <p className="cardFooter small text-black-50"><span className='small'>₪</span> {props.product.price}</p>

@@ -42,14 +42,14 @@ a {
   /* padding: 1ex; */
   box-sizing: border-box;
   grid-template-areas: 
-    "header header"
+    "menu header"
     "menu nav"
     "menu main"
 }
 
 .Layout > header {
   grid-area: header;
-
+  box-shadow:  -10px 10px 8px 1px rgba(0, 0, 0, 0.253)  inset;
   background-color: greenyellow;
 }
 
@@ -62,7 +62,8 @@ a {
 
 .Layout > aside {
   grid-area: menu;
-  background-color: blue;
+
+  /* background-color: blue; */
 
 }
 
@@ -70,9 +71,9 @@ a {
   grid-area: main;
   max-width: 100%;
   max-height:100%;
-  
+
   overflow-y: scroll;
-  background-color: yellow;
+  /* background-color: yellow; */
 
 }
 

@@ -48,14 +48,20 @@
 }
 .CartItem > .exit > button{
     grid-area: exit;
-    padding:0%;
-    background-color: rgba(128, 128, 128, 0.712);
+    background-color: rgba(128, 128, 128, 0);
+    color: rgb(0, 0, 0);
     border: none;
     padding-right: 5px;
     padding-left: 5px;
-    
+    font-size: 100%;   
 
 }
+.CartItem > .exit > button::after{
+    font-family: 'Material Icons';
+    content: 'backspace';
+    font-size: 120%;
+}
+
 .CartItem > .card-img{
     grid-area: img;
     padding: 5%;

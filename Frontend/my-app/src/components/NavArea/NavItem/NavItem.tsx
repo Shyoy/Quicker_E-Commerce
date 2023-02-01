@@ -1,13 +1,20 @@
 import React from 'react'
 import './NavItem.css'
 
+export interface NavItemProp {
+  type: string;
+  title: string;
+}
 
-const NavItem = () => {
+
+const NavItem = (props:NavItemProp) => {
   return (
     <li className='nav-item'>
-        <button className='icon-button'>
-            😎
-        </button>
+       
+        <span title={props.title} className="icon-button material-symbols-outlined">
+        {props.type}
+        </span>
+
         
     </li>
   )

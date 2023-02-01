@@ -9,9 +9,9 @@ const Nav = () => {
     <div className='Nav  navbar-expand-lg'>
         <ul className='navbar-nav'>
           <SearchBar/>
-          <NavItem/>
-          <NavItem/>
-          <NavItem/>
+          <NavItem title={'Bookmarks'} type={"bookmarks"}/>
+          <NavItem title={'Featured'} type={"new_releases"}/>
+          <NavItem title={'Filter'} type={"filter_alt"}/>
 
         </ul>
 

@@ -1,4 +1,3 @@
-import React, { } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import ProductModel from '../../../Models/Products'
 import { addItem, decrement, increment, selectInCart} from '../../../Redux/cartSlice'
@@ -28,13 +27,13 @@ const ProductCard = (props:ProductProps):JSX.Element => {
                 <p className="card-text">Amount - {props.product.amount}</p>
                 {currentItemList.length === 1 ? 
                 <div className='cart-control'>
-                <button onClick={()=> dispatch(decrement({id:props.product.id}))} className='bg-primary bg-gradient text-danger px-3 rounded-pill'>-</button>
-                <span className='amount bg-primary bg-gradient '>{currentItem.amount}</span>
-                <button onClick={()=> dispatch(increment({id:props.product.id}))} style={{visibility: visible ? undefined:'hidden'}} className='bg-primary bg-gradient text-info px-3 rounded-pill'>+</button>
+                <button onClick={()=> dispatch(decrement({id:props.product.id}))} className='text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
+                <span className='amount '>{currentItem.amount}</span>
+                <button onClick={()=> dispatch(increment({id:props.product.id}))} style={{visibility: visible ? undefined:'hidden'}} className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
                 </div>
                 :
                 <div className='cart-control'>
-                <button onClick={()=> dispatch(addItem(props.product))} className='bg-primary bg-gradient rounded-pill px-4'>ADD</button>
+                <button onClick={()=> dispatch(addItem(props.product))} className='rounded-pill px-4 material-symbols-outlined'>add_shopping_cart</button>
                 </div>
                 }
                 

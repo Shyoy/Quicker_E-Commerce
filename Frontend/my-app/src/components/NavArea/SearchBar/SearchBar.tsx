@@ -1,6 +1,7 @@
 import {useState}from 'react'
 import { useAppSelector } from '../../../app/hooks'
 import { selectProducts } from '../../../Redux/productsSlice'
+import config from '../../../Utils/Config'
 import './SearchBar.css'
 
 const SearchBar = () => {
@@ -18,18 +19,18 @@ const SearchBar = () => {
       console.log('HandleInput-Blur')
       
     }}
-  console.log(isHidden);
   
   return (
     <div className='SearchBar'  >
       <div className='Search-input mt-3'>
-        <input  type="text" placeholder=' Search' onBlur={handleInput} onFocus={handleInput}  value={query} onChange={(e)=>{setQuery(e.target.value)}} />
+        <input  type="text" placeholder=' Search' onBlur={()=>setIsHidden(true)} onFocus={()=>setIsHidden(false)}  value={query} onChange={(e)=>{setQuery(e.target.value)}} />
         <button onClick={()=> setQuery('')}>X</button>
         <ul hidden={isHidden} >
           <>
           {products.filter((product)=>product.name.includes(query)).slice(0,4).map((prod, i)=>
           <li key={i}  onMouseDown={()=> {setQuery(prod.name);console.log(prod.name +" "+ prod.id);}}>
-            {prod.name}
+            <span>{prod.name}</span>
+            <img className="card-img" src={config.productImagesUrl+prod.image} alt={prod.name +" image"}/>
           </li>)}</>
           
         </ul>
