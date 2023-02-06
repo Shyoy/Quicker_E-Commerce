@@ -24,7 +24,8 @@
 }
 
 .SearchBar  .Search-input > .search-icon{
-    margin-right: 5px;
+    margin-left: 3px;
+
     color: rgb(99, 186, 189) ;
     border: none;
     width: 40px;
@@ -36,6 +37,8 @@
 .SearchBar  .Search-input > .search-icon:hover{
     color: rgb(115, 214, 218) ;
     transform: scale(1.1);
+    margin-left: 5px;
+
 }
 .SearchBar  .Search-input > .clear{
     position: absolute;
@@ -114,9 +117,11 @@
 }
  
 .SearchBar  .search-output> ul > li:hover{
-        -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
+    /* Cursor selector */
+    -webkit-user-select: none; 
+    -ms-user-select: none;
     user-select: none; 
+
     background-color: rgba(68, 164, 228, 0.452);
     font-size: 18px;
     font-style: oblique;

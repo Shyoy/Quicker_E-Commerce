@@ -7,7 +7,11 @@
 
 
 .nav-item > .icon-button {
-
+    /* Cursor selector */
+    -webkit-user-select: none; 
+    -ms-user-select: none;
+    user-select: none; 
+    
     --button-size: calc(var(--nav-size) * 0.6);
     width: var(--button-size);
     height: var(--button-size);
