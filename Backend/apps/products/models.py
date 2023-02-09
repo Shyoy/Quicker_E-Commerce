@@ -1,4 +1,3 @@
-from sre_parse import CATEGORIES
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
@@ -16,7 +15,7 @@ class Category(models.Model):
 
     class Meta:
         ordering = ['created']
-        
+
     def __str__(self):
         return self.name
 
