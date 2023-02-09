@@ -7,4 +7,5 @@ from apps.accounts import models as acc_models
 admin.site.register(prod_models.Product)
 admin.site.register(prod_models.CartItem)
 admin.site.register(prod_models.Cart)
+admin.site.register(prod_models.Category)
 # admin.site.register(acc_models.admin)

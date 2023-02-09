@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
-from apps.products.models import Product, Cart
-from apps.products.serializers import ProductSerializer, CartSerializer,CartItemSerializer
+from apps.products.models import Product, Cart, Category
+from apps.products.serializers import ProductSerializer, CartSerializer,CartItemSerializer,CategorySerializer
 from rest_framework.parsers import FormParser ,MultiPartParser
 from pprint import pprint
 # from rest_framework.permissions  import IsAuthenticated
@@ -48,6 +48,24 @@ def product_detail(request, code):
     elif request.method == 'DELETE':
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def categories_list(request):
+    """
+    List all categories, or create a new category.
+    """
+    if request.method == 'GET':
+        categories = Category.objects.all()
+        serializer = CategorySerializer(categories, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = CategorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])

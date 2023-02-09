@@ -1,3 +1,4 @@
+from sre_parse import CATEGORIES
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
@@ -9,6 +10,16 @@ from .services.utils import ImageHandler
 
 # Create your models here.
 
+class Category(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created']
+        
+    def __str__(self):
+        return self.name
+
 class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=120)
@@ -16,6 +27,7 @@ class Product(models.Model):
     price = models.FloatField(validators=[MinValueValidator(0.5)])
     amount = models.IntegerField(default=1)
     image = models.ImageField(upload_to=ImageHandler.path,validators=[ImageValidator(3),validate_image_file_extension])
+    categories = models.ManyToManyField(Category,related_name='products')
 
     class Meta:
         ordering = ['created']
