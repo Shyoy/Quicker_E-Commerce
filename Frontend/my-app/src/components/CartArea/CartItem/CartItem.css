@@ -1,38 +1,14 @@
-/* .CartItem {
-    display: flex;
-    flex-direction: row-reverse;
-    padding: 1%;
-    max-height: 14vh;
-}
-
-.CartItem > img{
-    margin: 3%;
-    width: 30%;
-}
-
-.CartItem > .cardBody {
-    padding: 1%;
-}
-.CartItem > .amount {
-    position: absolute;
-    left: 0%;
-    padding: 0.5%;
-    padding-left: 1.5%;
-    padding-right: 1.5%;
-    margin-top: 7.95vh;
-    background-color: grey;
-} */
-
 
 .CartItem {
     max-width: 100%;
     min-height: 100%;
     /* overflow-x: hidden; */
-
+    background-color: rgb(40, 117, 40);
     display: grid;
     grid-template-rows:20% 1fr 20%;
     grid-template-columns:25% 1fr 40%;
     /* padding: 1ex; */
+    z-index: 1;
     box-sizing: border-box;
     grid-template-areas: 
       "exit header img"
@@ -74,7 +50,7 @@
 .CartItem > .main {
     grid-area: main;
     padding-right: 5%;
-    transform: translate(60%, -10%);
+    transform: translate(30%, -10%);
     margin: 0 auto;
     justify-self: end;
     padding: 10px;
@@ -82,7 +58,7 @@
 }
 .CartItem > .cardFooter {
     grid-area: footer;
-    transform: translate(+50%, +0%);
+    transform: translate(+20%, +0%);
     margin: 0 auto;
 }
 .CartItem > .amount {
@@ -93,7 +69,7 @@
     background-color: grey;
 }
 .CartItem > .amount > p {
-    transform: translate(-20%, 0%);
+    transform: translate(-10%, 0%);
     padding: 1%;
 }
 

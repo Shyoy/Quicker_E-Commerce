@@ -1,8 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import {useState,useEffect} from 'react'
 
-import { useAppSelector, useAppDispatch } from '../../../app/hooks';
+
+import { useAppSelector} from '../../../app/hooks';
 import {
-  get_allAsync,
   selectProducts,
   selectLastUpdate,
 } from '../../../Redux/productsSlice';
@@ -13,12 +13,9 @@ import './ProductsList.css'
 const ProductsList = () => {
   const products = useAppSelector(selectProducts);
   const lastUpdate = useAppSelector(selectLastUpdate);
-  const dispatch = useAppDispatch();
   const [date, setDate] = useState<String>("")
   
-  useEffect(() => {
-    dispatch(get_allAsync())
-  },[dispatch]);
+ 
   useEffect(() => {
     setDate(new Date(lastUpdate.valueOf()).toLocaleTimeString(navigator.language,
        {hour: '2-digit', minute:'2-digit',hour12:false}))
@@ -32,7 +29,6 @@ const ProductsList = () => {
         <div className="card-group">
           {products.map(product =>
             <ProductCard key={product.id} product={product} />)}
-          
         </div>}
         
     

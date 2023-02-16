@@ -18,8 +18,8 @@ const CartList = () => {
             )}     
         </ul>
         :
-        <div className='py-5 bg-secondary'>
-            there are no products in cart yet
+        <div className='py-5'>
+            <p>There are no products <br/> in cart yet</p>
         </div>}
         
         

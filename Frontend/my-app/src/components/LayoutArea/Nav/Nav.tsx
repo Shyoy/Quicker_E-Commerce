@@ -2,6 +2,7 @@ import React from 'react'
 import './Nav.css'
 import NavItem from '../../NavArea/NavItem/NavItem'
 import SearchBar from '../../NavArea/SearchBar/SearchBar'
+import Filter from '../../NavArea/Filter/Filter'
 
 
 const Nav = () => {
@@ -11,7 +12,7 @@ const Nav = () => {
           <SearchBar/>
           <NavItem title={'Bookmarks'} type={"bookmarks"}/>
           <NavItem title={'Featured'} type={"new_releases"}/>
-          <NavItem title={'Filter'} type={"filter_alt"}/>
+          <Filter/>
 
         </ul>
 

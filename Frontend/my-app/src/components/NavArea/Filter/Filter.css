@@ -1,0 +1,102 @@
+.Filter{
+    width: calc(var(--nav-size) * 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.Filter > .icon-button {
+    /* Cursor selector */
+    -webkit-user-select: none; 
+    -ms-user-select: none;
+    user-select: none; 
+    cursor: pointer;
+    
+    --button-size: calc(var(--nav-size) * 0.6);
+    width: var(--button-size);
+    height: var(--button-size);
+    background-color: #4a484d3a;
+    color: #2eb11d;
+    border-radius: 50%;
+    border: none;
+    padding: 5px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 300ms;
+}
+
+.Filter > .material-symbols-outlined {
+
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.Filter > .icon-button:hover{
+    transform: scale(1.2);
+    filter:brightness(1.2);
+    
+
+}
+.Filter > .icon-button:active{
+    transform: scale(1.3);
+    /* filter:brightness(0.8); */
+    
+
+}
+
+.Filter .popup{
+    /* margin-top: 140px; */
+    box-shadow: -10px 10px 15px 1px rgba(0, 0, 0, 0.253) inset;
+
+    position: absolute;
+    top:14.8%;
+    right: 1px;
+    padding: 0px;
+    border: 1px solid rgba(0, 0, 0, 0.555);
+    z-index: 5;
+    width: 200px;
+    background-color: rgba(250, 250, 250, 0.979);
+    font-family:Arial, Helvetica, sans-serif;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    font-size: 24px;
+}
+.Filter .popup .Header{
+    background-color: #8fd328;
+    box-shadow: -10px 10px 8px 1px rgba(0, 0, 0, 0.253) inset;
+}
+
+.Filter > .popup .link {
+    text-decoration: none;
+
+    background-color: #242526;
+    color: #159c27;
+    text-transform: capitalize;
+    transition: 300ms;
+    box-shadow:  -5px 3px 10px rgba(0, 0, 0, 0.13) inset;
+    border: 0.005% thin solid transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+.Filter > .popup .link:hover{
+    -webkit-user-select: none; 
+    -ms-user-select: none;
+    user-select: none; 
+    filter: brightness(1.5),drop-shadow(1.5);
+    background-color: rgba(68, 164, 228, 0.452);
+    font-size: 22px;
+    font-style: oblique;
+    padding-left: 30px;
+}

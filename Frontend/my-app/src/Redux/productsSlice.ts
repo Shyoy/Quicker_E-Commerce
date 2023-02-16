@@ -1,15 +1,17 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import ProductModel from '../Models/Products';
-import productsAPI from '../API/ProductsAPI';
+import productsAPI, { CategoriesModel } from '../API/ProductsAPI';
 
 export interface productsList {
   productsList: ProductModel[];
+  categoriesList: CategoriesModel[];
   lastUpdate: Number;
 }
 
 const initialState: productsList = {
   productsList: [],
+  categoriesList: [],
   lastUpdate: new Date().getTime(),
 };
 
@@ -18,6 +20,15 @@ export const get_allAsync = createAsyncThunk(
   'products/getProducts',
   async () => {
     const response = await productsAPI.getProducts();
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+export const getCategoriesAsync = createAsyncThunk(
+  'products/getCategories',
+  async () => {
+    const response = await productsAPI.getCategories();
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -65,6 +76,18 @@ export const productsSlice = createSlice({
     .addCase(get_allAsync.rejected, (state,action) => {
       console.log(action.error?.message);
       console.log('Failed');
+    })
+
+    .addCase(getCategoriesAsync.fulfilled, (state, action) => {
+      state.lastUpdate = new Date().getTime();
+      state.categoriesList = action.payload;
+    })
+    .addCase(getCategoriesAsync.pending, (state) => {
+      // console.log('Waiting');
+    })
+    .addCase(getCategoriesAsync.rejected, (state,action) => {
+      console.log(action.error?.message);
+      console.log('Failed');
     });
   },
 });
@@ -73,6 +96,7 @@ export const { increment, decrement, addProduct, updateProducts } = productsSlic
 
 
 export const selectProducts = (state: RootState) => state.products.productsList;
+export const selectCategories= (state: RootState) => state.products.categoriesList;
 export const selectLastUpdate = (state: RootState) => state.products.lastUpdate;
 
 

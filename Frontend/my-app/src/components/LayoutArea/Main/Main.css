@@ -18,8 +18,8 @@
 
     grid-area: outlet; 
     max-width: 100%;   
-    background: rgb(40,102,40);
-    background: linear-gradient(135deg, rgba(40,102,40,1) 17%, rgba(194,233,113,1) 52%, rgba(96,236,245,1) 93%); 
+    background: rgb(216, 255, 216);
+    /* background: linear-gradient(135deg, rgba(40,102,40,1) 17%, rgba(194,233,113,1) 52%, rgba(96,236,245,1) 93%);  */
 
 }
 .Main >footer {

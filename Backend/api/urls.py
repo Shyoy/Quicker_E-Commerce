@@ -8,7 +8,7 @@ urlpatterns = [
     path('products',product_list ),
     path('products/check-out', checkout_list ),
     path('products/<int:code>',product_detail ),
-    path('categories',categories_list ),
+    path('products/categories',categories_list ),
     # path('token/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 

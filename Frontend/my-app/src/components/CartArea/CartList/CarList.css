@@ -1,5 +1,21 @@
 .CartList {
-    background-color: blueviolet;
+    max-height: inherit;
+    background-color:rgb(216, 255, 216);
     box-shadow:  4px 10px 8px 4px rgba(0, 0, 0, 0.199);
+    min-height: 100%;
+    
+}
+
+.CartList ul{
+    max-height: 77.3vh;
+    min-height: 77.3vh;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
     
 }
