@@ -4,7 +4,7 @@ import config from "../Utils/Config";
 
 export interface CategoriesModel{
     name: string;
-    productsIds: Array<number>;
+    products: Array<number>;
     
   }
 

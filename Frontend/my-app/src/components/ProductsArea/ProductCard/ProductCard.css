@@ -7,8 +7,8 @@
     min-width:15vw;
 }
 .ProductsCard >.card-img-top{
-    height: 70%;
-    
+    max-height: 160px;
+    /* width: fit-content; */
     border: 5px solid #555;
     border-color: rgba(8, 122, 37, 0.233);
 }

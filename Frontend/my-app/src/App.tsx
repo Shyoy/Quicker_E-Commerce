@@ -21,7 +21,10 @@ function App() {
           </Route>
           <Route path="blogs/" element={<div>Blogs</div>} />
           <Route path="contact/" element={<div>Contact</div>} />
-          <Route path="*" element={<NoPage />} />
+
+          <Route path="404notfound" element={<NoPage />} />
+          <Route path="*" element={<Navigate to="/404notfound"/>} />
+          
         </Route>
       </Routes>
     </BrowserRouter>

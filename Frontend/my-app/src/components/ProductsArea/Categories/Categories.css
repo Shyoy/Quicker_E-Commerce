@@ -1,0 +1,18 @@
+.Categories{
+
+}
+
+.Categories > .container{
+    display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    max-width: 80%;
+}
+
+.Categories >.container > .Card{
+    width: 60%;
+    max-height: 150px;
+}
+
+
+
