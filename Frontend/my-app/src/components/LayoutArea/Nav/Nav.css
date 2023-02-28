@@ -4,7 +4,9 @@
     padding: 0 1rem;
     background-color: var(--bg);
     border-bottom: var(--border);
+    display: flex;
 }
+
 
 
 .Nav > .navbar-nav{
@@ -14,6 +16,7 @@
     justify-content: flex-end;
     /* flex-wrap: nowrap; */
     flex-direction: row;
+    padding-right: 20px;
 }
 
 

@@ -1,0 +1,18 @@
+.Loading {
+    align-self: center;
+    justify-content: flex-end;
+}
+
+/* .Loading > #list4 > *{
+    background-color: #39c51565;
+    height: 10px;
+    overflow-y: hidden;
+}
+.Loading > #list4{
+    height: 50px;
+    overflow-y:visible;
+} */
+
+/* .Loading {
+
+} */

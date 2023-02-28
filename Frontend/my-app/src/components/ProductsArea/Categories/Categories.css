@@ -4,14 +4,17 @@
 
 .Categories > .container{
     display: flex;
-    flex-flow: row;
-    flex-direction: row;
+    flex-direction: row-reverse;
     max-width: 80%;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.Categories >.container > .Card{
-    width: 60%;
-    max-height: 150px;
+.Categories >.container > div{
+    /* width: 60%;
+    max-height: 150px; */
 }
 
 

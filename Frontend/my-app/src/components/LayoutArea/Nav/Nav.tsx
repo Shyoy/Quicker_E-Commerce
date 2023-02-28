@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Nav.css'
 import NavItem from '../../NavArea/NavItem/NavItem'
 import SearchBar from '../../NavArea/SearchBar/SearchBar'
 import Filter from '../../NavArea/Filter/Filter'
+import { Spinner } from 'react-bootstrap'
+import { useAppSelector } from '../../../app/hooks'
+import { selectStatus } from '../../../Redux/productsSlice'
+import Loading from '../../SharedArea/Loading/Loading'
 
 
 const Nav = () => {
+  
   return (
     <div className='Nav  navbar-expand-lg'>
+        
+        <Loading/>
         <ul className='navbar-nav'>
           <SearchBar/>
           <NavItem title={'Bookmarks'} type={"bookmarks"}/>
@@ -15,7 +22,7 @@ const Nav = () => {
           <Filter/>
 
         </ul>
-
+        <span></span>
     </div>
   )
 }

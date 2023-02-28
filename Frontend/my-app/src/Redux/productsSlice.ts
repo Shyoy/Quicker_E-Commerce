@@ -6,12 +6,14 @@ import productsAPI, { CategoriesModel } from '../API/ProductsAPI';
 export interface productsList {
   productsList: ProductModel[];
   categoriesList: CategoriesModel[];
+  status: 'idle' | 'loading' | 'failed';
   lastUpdate: Number;
 }
 
 const initialState: productsList = {
   productsList: [],
   categoriesList: [],
+  status: 'idle',
   lastUpdate: new Date().getTime(),
 };
 
@@ -69,25 +71,27 @@ export const productsSlice = createSlice({
       // console.log('Success')
       state.lastUpdate = new Date().getTime();
       state.productsList = action.payload;
+      state.status = 'idle';
     })
     .addCase(get_allAsync.pending, (state) => {
-      // console.log('Waiting');
+      state.status = 'loading';
     })
     .addCase(get_allAsync.rejected, (state,action) => {
       console.log(action.error?.message);
-      console.log('Failed');
+      state.status = 'failed';
     })
 
     .addCase(getCategoriesAsync.fulfilled, (state, action) => {
       state.lastUpdate = new Date().getTime();
       state.categoriesList = action.payload;
+      state.status = 'idle';
     })
     .addCase(getCategoriesAsync.pending, (state) => {
-      // console.log('Waiting');
+      state.status = 'loading';
     })
     .addCase(getCategoriesAsync.rejected, (state,action) => {
       console.log(action.error?.message);
-      console.log('Failed');
+      state.status = 'failed';
     });
   },
 });
@@ -97,6 +101,7 @@ export const { increment, decrement, addProduct, updateProducts } = productsSlic
 
 export const selectProducts = (state: RootState) => state.products.productsList;
 export const selectCategories= (state: RootState) => state.products.categoriesList;
+export const selectStatus = (state: RootState) => state.products.status;
 export const selectLastUpdate = (state: RootState) => state.products.lastUpdate;
 
 
