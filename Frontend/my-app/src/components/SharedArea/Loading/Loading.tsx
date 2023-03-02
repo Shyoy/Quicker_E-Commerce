@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import Spinner from 'react-bootstrap/Spinner';
 import { useAppSelector } from '../../../app/hooks';
-import { selectStatus } from '../../../Redux/productsSlice';
+import { selectCategoriesStatus,selectProductsStatus } from '../../../Redux/productsSlice'
+
 import './Loading.css'
 
 const Loading = () => {
-  const status = useAppSelector(selectStatus);
+  const categoriesStatus = useAppSelector(selectCategoriesStatus);
+  const productsStatus = useAppSelector(selectProductsStatus);
   const [isHidden,setIsHidden] = useState(true)
   useEffect(()=>{
-    if (status === 'loading'){
+    if ((categoriesStatus === 'loading')||(productsStatus === 'loading')){
       setIsHidden(false)
     }
     else{
       setIsHidden(true)
     }
-  },[status])
+  },[productsStatus,categoriesStatus])
   return (
     <div className='Loading'>
         <Spinner className='Spinner' style={{visibility:isHidden ? "hidden": "visible"}} animation="border" variant="success" size="sm" />

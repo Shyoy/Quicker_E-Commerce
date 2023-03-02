@@ -33,11 +33,12 @@
     border-radius: 20%;
     background-color: rgba(83, 83, 83, 0.459);
     transition: 300ms;
+    margin-left: 5px;
+
 }
 .SearchBar  .Search-input > .search-icon:hover{
     color: rgb(115, 214, 218) ;
     transform: scale(1.1);
-    margin-left: 5px;
 
 }
 .SearchBar  .Search-input > .clear{
@@ -51,22 +52,10 @@
     margin-top: 3px;
     transform: translate(500%,-90%);
     font-size: 6px;
-    
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     transition: 300ms;
     
 }
 
-/* .SearchBar > .contain {
-    position: absolute;
-    
-    justify-content:flex-start;
-    margin-top:15px ;
-    min-width: 200px;
-    min-height: 143px;
-} */
 
 .SearchBar  .Search-input > input{
     background-color: rgb(250, 250, 250);

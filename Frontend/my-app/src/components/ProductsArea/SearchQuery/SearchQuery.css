@@ -1,8 +1,8 @@
-.Categories{
+.SearchQuery{
 
 }
 
-.Categories > .container{
+.SearchQuery > .container{
     display: flex;
     flex-direction: row-reverse;
     max-width: 80%;
@@ -12,10 +12,7 @@
     flex-wrap: wrap;
 }
 
-.Categories >.container > div{
+.SearchQuery > .container > div{
     margin-left: 2%;
     margin-bottom: 3%;
 }
-
-
-

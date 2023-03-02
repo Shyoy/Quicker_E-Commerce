@@ -1,3 +1,4 @@
+from time import sleep
 from django.shortcuts import render, get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view, parser_classes

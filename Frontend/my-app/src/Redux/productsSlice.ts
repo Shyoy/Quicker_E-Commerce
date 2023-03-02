@@ -6,14 +6,16 @@ import productsAPI, { CategoriesModel } from '../API/ProductsAPI';
 export interface productsList {
   productsList: ProductModel[];
   categoriesList: CategoriesModel[];
-  status: 'idle' | 'loading' | 'failed';
+  categoriesStatus: 'idle' | 'loading' | 'failed';
+  productsStatus: 'idle' | 'loading' | 'failed';
   lastUpdate: Number;
 }
 
 const initialState: productsList = {
   productsList: [],
   categoriesList: [],
-  status: 'idle',
+  categoriesStatus: 'idle',
+  productsStatus: 'idle',
   lastUpdate: new Date().getTime(),
 };
 
@@ -71,27 +73,28 @@ export const productsSlice = createSlice({
       // console.log('Success')
       state.lastUpdate = new Date().getTime();
       state.productsList = action.payload;
-      state.status = 'idle';
+      state.productsStatus = 'idle';
     })
     .addCase(get_allAsync.pending, (state) => {
-      state.status = 'loading';
+      state.productsStatus = 'loading';
     })
     .addCase(get_allAsync.rejected, (state,action) => {
       console.log(action.error?.message);
-      state.status = 'failed';
+      state.productsStatus = 'failed';
     })
 
     .addCase(getCategoriesAsync.fulfilled, (state, action) => {
       state.lastUpdate = new Date().getTime();
       state.categoriesList = action.payload;
-      state.status = 'idle';
+      state.categoriesStatus = 'idle';
     })
     .addCase(getCategoriesAsync.pending, (state) => {
-      state.status = 'loading';
+      
+      state.categoriesStatus = 'loading';
     })
     .addCase(getCategoriesAsync.rejected, (state,action) => {
       console.log(action.error?.message);
-      state.status = 'failed';
+      state.categoriesStatus = 'failed';
     });
   },
 });
@@ -99,9 +102,11 @@ export const productsSlice = createSlice({
 export const { increment, decrement, addProduct, updateProducts } = productsSlice.actions;
 
 
+
 export const selectProducts = (state: RootState) => state.products.productsList;
 export const selectCategories= (state: RootState) => state.products.categoriesList;
-export const selectStatus = (state: RootState) => state.products.status;
+export const selectProductsStatus = (state: RootState) => state.products.productsStatus;
+export const selectCategoriesStatus = (state: RootState) => state.products.categoriesStatus;
 export const selectLastUpdate = (state: RootState) => state.products.lastUpdate;
 
 

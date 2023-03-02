@@ -1,19 +1,16 @@
-import { useEffect ,useState} from "react"
+import { useEffect } from "react"
 import { useParams,useNavigate} from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { selectCategories, selectProducts, selectStatus } from "../../../Redux/productsSlice";
+import {  useAppSelector } from "../../../app/hooks";
+import { selectCategories, selectProducts } from "../../../Redux/productsSlice";
 import ProductCard from "../ProductCard/ProductCard";
 import "./Categories.css"
 
 const Categories = () => {
     const navigate  = useNavigate()
-    const dispatch = useAppDispatch();
     let { name } = useParams();
 
     const categories = useAppSelector(selectCategories);
     const products = useAppSelector(selectProducts);
-    const status = useAppSelector(selectStatus);
-    // const [filterPop, setFilterPop] = useState<Boolean>(false)
     const category = categories.filter(c => c.name === name)[0] || null
     useEffect(()=>{
       console.log(categories)
