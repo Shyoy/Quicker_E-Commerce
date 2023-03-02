@@ -18,7 +18,6 @@ const SearchBar = () => {
       goToSearch()
     }
   }
-  // e.key==="Enter"
  
   
   return (

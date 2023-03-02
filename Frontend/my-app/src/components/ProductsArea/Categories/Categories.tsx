@@ -27,7 +27,7 @@ const Categories = () => {
         
         {category &&<>
         <h1>Categories</h1> 
-        <h2>{name}</h2>
+        <h2 className="text-capitalize">{name}</h2>
         <div className="container">
 
         {products.filter(product => category.products.includes(product.id)).map(product => 

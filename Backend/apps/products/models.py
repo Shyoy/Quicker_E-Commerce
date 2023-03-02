@@ -66,8 +66,8 @@ class CartItem(models.Model):
 
 class Cart(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    user = models.CharField(max_length=120)
-    # user = models.ForeignKey('accounts.User')
+    customer = models.ForeignKey('accounts.Customer', related_name='carts', on_delete=models.CASCADE)
+
     
     
     def __str__(self):
