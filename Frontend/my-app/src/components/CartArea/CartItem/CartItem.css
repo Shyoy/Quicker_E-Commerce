@@ -3,7 +3,7 @@
     max-width: 100%;
     min-height: 100%;
     /* overflow-x: hidden; */
-    background-color: rgb(40, 117, 40);
+    background-color: rgb(37 173 129 / 85%);
     display: grid;
     grid-template-rows:20% 1fr 20%;
     grid-template-columns:25% 1fr 40%;

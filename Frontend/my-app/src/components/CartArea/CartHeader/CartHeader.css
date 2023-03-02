@@ -21,6 +21,14 @@
     width: 100%;
     flex-wrap: nowrap;
 }
+.CartHeader .top > .delete-button{
+    transition: 300ms;
+    cursor: pointer;
+    
+}
+.CartHeader .top > .delete-button:hover{
+    transform: scale(1.2);
+}
 
 .CartHeader .cart-icon::after {
     font-family: 'Material Icons';
@@ -30,20 +38,31 @@
 
 }
 
-shopping_cart
-
 
 .CartHeader .bot{
     display: flex;
     justify-content:space-evenly;
     align-items: baseline;
     flex-direction: row;
-    border: 1px solid ;
-    padding: 3%;
+    border: 1px solid #64921e ;
+    box-shadow: -2px 2px 5px 1px rgba(0, 0, 0, 0.11) inset;
+    
     /* padding: 5%; */
     width: 100%;
-
-    height: 100%;   
+    height: 100%;
+}
+.CartHeader .bot >button{
+    border: 1px solid #64921e9f;
+    width: 100%;
+    height: 100%;
+    background-color: #80bd2500;
+    transition: 300ms;
+}
+.CartHeader .bot  button div{
+    transition: 300ms;
+}
+.CartHeader .bot  button:hover div{
+    transform: scale(1.2);
 }
 
 

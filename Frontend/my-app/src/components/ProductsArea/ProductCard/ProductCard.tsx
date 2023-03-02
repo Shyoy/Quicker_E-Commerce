@@ -19,23 +19,24 @@ const ProductCard = (props:ProductProps):JSX.Element => {
   const visible:boolean = currentItem?.amount < currentItem?.product?.amount
   
   return (
-      <div className="ProductsCard card"> 
+      <div className="ProductsCard"> 
               <img className="card-img-top" src={config.productImagesUrl+props.product.image} alt={props.product.name +" image"}/>
               <div className="card-body">
                 <h5 className="card-title">{props.product.name}</h5>
                 <p className="card-text">Price - {props.product.price}</p>
                 <p className="card-text">Amount - {props.product.amount}</p>
+                <div className='cart-control'>
                 {currentItemList.length === 1 ? 
-                <div className='cart-control'>
-                <button onClick={()=> dispatch(decrement({id:props.product.id}))} className='text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
-                <span className='amount '>{currentItem.amount}</span>
-                <button onClick={()=> dispatch(increment({id:props.product.id}))} style={{visibility: visible ? undefined:'hidden'}} className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
-                </div>
+                <>
+                <button hidden={true} />
+                <button onClick={()=> dispatch(decrement({id:props.product.id}))} id={"b1"} className='text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
+                <div className='amount rounded-pill'>{currentItem.amount}</div>
+                <button onClick={()=> dispatch(increment({id:props.product.id}))} style={{visibility: visible ? undefined:'hidden'}} id={"b2"} className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
+                </>
                 :
-                <div className='cart-control'>
-                <button onClick={()=> dispatch(addItem(props.product))} className='rounded-pill px-4 material-symbols-outlined'>add_shopping_cart</button>
-                </div>
-                }
+                <button onClick={()=> dispatch(addItem(props.product))} id={"b3"} className='rounded-pill  px-4 material-symbols-outlined'>add_shopping_cart</button>
+              }
+              </div>
                 
                 {/* <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> */}
               </div>

@@ -91,6 +91,10 @@ export const cartSlice = createSlice({
         console.log('delete item');
       }
     },
+    delAll: (state:cartList) => {
+      state.inCart = [];
+      
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -111,7 +115,7 @@ export const cartSlice = createSlice({
     
   });
 
-export const { increment, decrement, addItem, delItem  } = cartSlice.actions;
+export const { increment, decrement, addItem, delItem ,delAll} = cartSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
