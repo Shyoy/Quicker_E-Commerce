@@ -34,7 +34,7 @@ const ProductCard = (props:ProductProps):JSX.Element => {
                 <button onClick={()=> dispatch(increment({id:props.product.id}))} style={{visibility: visible ? undefined:'hidden'}} id={"b2"} className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
                 </>
                 :
-                <button onClick={()=> dispatch(addItem(props.product))} id={"b3"} className='rounded-pill  px-4 material-symbols-outlined'>add_shopping_cart</button>
+                <button onClick={()=> dispatch(addItem(props.product))} id={"b3"} title="add to cart" className='rounded-pill  px-4 material-symbols-outlined'>add_shopping_cart</button>
               }
               </div>
                 

@@ -11,7 +11,7 @@ export const CartHeader = () => {
   return (
     <div className='CartHeader'>
       <div className='top'>
-        <span className="material-symbols-outlined delete-button" onClick={()=>{dispatch(delAll())}}>delete</span>
+        <span className="material-symbols-outlined delete-button" title={"delete cart items"} onClick={()=>{dispatch(delAll())}}>delete</span>
         <h3 className='cart-icon'>  My Cart</h3> 
         
         </div>
