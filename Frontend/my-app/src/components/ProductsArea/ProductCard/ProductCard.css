@@ -1,9 +1,7 @@
 .ProductsCard{
-    /* flex-direction:none; */
     margin: 0.5%;
     max-height: 400px;
     box-shadow:  -4px 4px 6px 4px rgba(0, 0, 0, 0.205);
-    /* max-width:500px; */
     min-width:210px;
     transition: 300ms;
     border-bottom-left-radius: 20px; 
@@ -24,7 +22,7 @@
     transition: 500ms;
     opacity: 0.8;
     height: 150px;
-    width: 100%;
+    width: 210px;
     object-fit: cover;
 }
 .ProductsCard:hover >.card-img-top{

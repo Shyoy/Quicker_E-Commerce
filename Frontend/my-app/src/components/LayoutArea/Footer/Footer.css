@@ -1,3 +1,8 @@
 .Footer{
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color:#93bac4;
+    box-shadow:  5px -5px 15px 2px rgba(0, 0, 0, 0.274)  inset;
 }

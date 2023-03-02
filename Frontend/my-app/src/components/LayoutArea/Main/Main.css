@@ -24,8 +24,7 @@
 }
 .Main >footer {
     grid-area: footer;    
-    background-color:#5ecff1;
-    box-shadow:  5px -5px 15px 2px rgba(0, 0, 0, 0.274)  inset;
+    
 
 
 }
