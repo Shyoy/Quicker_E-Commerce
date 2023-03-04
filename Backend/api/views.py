@@ -1,16 +1,42 @@
-from time import sleep
 from django.shortcuts import render, get_object_or_404
 from rest_framework import status
-from rest_framework.decorators import api_view, parser_classes
+from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
+from rest_framework.permissions  import IsAuthenticated
+from rest_framework_simplejwt.views import TokenViewBase, TokenObtainPairView
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from apps.accounts.serializers import MyTokenObtainPairSerializer, RegisterSerializer
 from apps.products.models import Product, Cart, Category
 from apps.products.serializers import ProductSerializer, CartSerializer,CartItemSerializer,CategorySerializer
-from rest_framework.parsers import FormParser ,MultiPartParser
+from time import sleep
 from pprint import pprint
-# from rest_framework.permissions  import IsAuthenticated
+
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
+@api_view(['POST'])
+def register(request):
+    """
+    register user and return token
+    """
+    if request.method == 'POST':
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            token_serializer = MyTokenObtainPairSerializer(data={
+                'username':serializer.validated_data['username'],
+                'password':serializer.validated_data['password'],
+                })
+            if token_serializer.is_valid():
+                print(token_serializer.validated_data)
+                return Response(token_serializer.validated_data, status=status.HTTP_201_CREATED)
+            return Response(token_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET', 'POST'])
-# @parser_classes([FormParser, MultiPartParser])
 def product_list(request):
     """
     List all products, or create a new product.
@@ -68,11 +94,12 @@ def categories_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+##TODO: make sure working with auth changes
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def checkout_list(request):
     if request.method == 'POST':
-        cart_data = {'cart_items':request.data,'user':'userName'}
+        cart_data = {'cart_items':request.data,'customer':request.user.customer.id}
         
         serializer = CartSerializer(data=cart_data)
         # pprint(request.data)
@@ -83,4 +110,5 @@ def checkout_list(request):
             # print(serialized_products)
             return Response(serialized_products)
         # print('ERRORS: ', serializer.errors)
-        return Response(messages=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
