@@ -93,6 +93,7 @@ export const cartSlice = createSlice({
     },
     delAll: (state:cartList) => {
       state.inCart = [];
+      state.sum = 0;
       
     },
   },

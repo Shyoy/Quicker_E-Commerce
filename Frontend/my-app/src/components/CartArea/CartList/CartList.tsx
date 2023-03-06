@@ -3,10 +3,12 @@ import './CarList.css'
 import CartItem from '../CartItem/CartItem'
 import { useAppSelector } from '../../../app/hooks';
 import { selectInCart } from '../../../Redux/cartSlice';
+import { selectTokenAccess } from '../../../Redux/authSlice';
 
 
 const CartList = () => {
     const cart = useAppSelector(selectInCart);
+    const token = useAppSelector(selectTokenAccess);
     
 
     return (

@@ -22,6 +22,7 @@ def register(request):
     register user and return token
     """
     if request.method == 'POST':
+        print(request.data)
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

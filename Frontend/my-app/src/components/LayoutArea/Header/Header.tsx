@@ -1,4 +1,5 @@
 import { useNavigate} from 'react-router-dom'
+import Auth from '../../AuthArea/Auth/Auth'
 import './Header.css'
 
 const Header = () => {
@@ -6,15 +7,11 @@ const Header = () => {
 
   return (
     <div className='Header'>
-        <div className='title' onClick={()=> navigate('products/')}>
-          <span className='fs-1 bold' >Quiker</span>
+        <div className='title' >
+          <span className='fs-1 bold' onClick={()=> navigate('products/')} >Quiker</span>
         </div>
         
-        <div className='auth'>
-          <span className="material-symbols-outlined">login</span>
-          <span className="material-symbols-outlined">person</span>
-          <span className="material-symbols-outlined">logout</span>
-        </div>
+        <Auth/>
     </div>
   )
 }
