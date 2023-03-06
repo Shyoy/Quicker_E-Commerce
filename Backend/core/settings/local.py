@@ -4,7 +4,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-SECRET_KEY = 'django-insecure-zfuoe$wt+&6@xsg)8^^kcm5r(s6o_1)y!d7t3h*qv=^2e_qsyw'
+SECRET_KEY = 'django-insecure-h+r21on2da-i8)jzc^chl=^wprang^uc9r^8o@jc=-rd#on=he'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
