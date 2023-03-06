@@ -72,7 +72,7 @@ export const productsSlice = createSlice({
     .addCase(get_allAsync.fulfilled, (state, action) => {
       // console.log('Success')
       state.lastUpdate = new Date().getTime();
-      state.productsList = action.payload;
+      state.productsList = action.payload.filter((product) => product.amount > 0);
       state.productsStatus = 'idle';
     })
     .addCase(get_allAsync.pending, (state) => {

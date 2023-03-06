@@ -3,12 +3,15 @@ import { RootState } from '../app/store';
 import authAPI, { AuthForm } from '../API/AuthAPI';
 import { LoginForm } from '../components/AuthArea/Login/Login';
 import { RegisterForm } from '../components/AuthArea/Register/Register';
+import jwt_decode from "jwt-decode";
 
 export interface authList {
   tokenAccess: string;
   tokenRefresh: string;
-  first_name: string;
+  fullName: string;
+  authWindow:boolean;
   isLogin: boolean;
+  errMsg: string;
   status: 'idle' | 'loading' | 'failed';
   lastUpdate: Number;
 }
@@ -16,8 +19,10 @@ export interface authList {
 const initialState: authList = {
   tokenAccess: '',
   tokenRefresh: '',
-  first_name: '',
+  fullName: '',
+  authWindow: false,
   isLogin: false,
+  errMsg:'',
   status: 'idle',
   lastUpdate: new Date().getTime(),
 };
@@ -48,7 +53,21 @@ export const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.isLogin = false;
+      state.tokenAccess = '';
+      state.tokenRefresh = '';
+      state.fullName= '';
+      state.isLogin = false;
       // state.productsList = [];
+    },
+    delMsg:(state)=>{
+      state.errMsg = ''
+    },
+    openWindow:(state)=>{
+      state.authWindow= true;
+
+    },
+    closeWindow:(state)=>{
+      state.authWindow= false;
     },
     
     addProduct: (state, action: PayloadAction) => {
@@ -65,7 +84,9 @@ export const authSlice = createSlice({
       state.tokenRefresh = action.payload.refresh;
       state.status = 'idle';
       state.isLogin = true;
-      
+      state.errMsg = ''
+      state.fullName = jwt_decode<{full_name:string}>(state.tokenAccess).full_name;
+
       
     })
     .addCase(registerAsync.pending, (state) => {
@@ -73,7 +94,8 @@ export const authSlice = createSlice({
       state.status = 'loading';
     })
     .addCase(registerAsync.rejected, (state,action) => {
-      console.log(action.error?.message);
+      state.errMsg = action.error?.message?.split('"')[3] || '';
+      console.log(state.errMsg);
       state.status = 'failed';
     })
     .addCase(loginAsync.fulfilled, (state, action) => {
@@ -82,7 +104,9 @@ export const authSlice = createSlice({
       state.tokenRefresh = action.payload.refresh;
       state.status = 'idle';
       state.isLogin = true;
+      state.errMsg = ''
       
+      state.fullName = jwt_decode<{full_name:string}>(state.tokenAccess).full_name;
       
     })
     .addCase(loginAsync.pending, (state) => {
@@ -90,18 +114,22 @@ export const authSlice = createSlice({
       state.status = 'loading';
     })
     .addCase(loginAsync.rejected, (state,action) => {
-      console.log(action.error?.message);
+      state.errMsg = action.error?.message?.split('"')[3] || '';
+      console.log(state.errMsg);
       state.status = 'failed';
     });
   },
 });
 
-export const { logout, addProduct } = authSlice.actions;
+export const { logout, delMsg,openWindow,closeWindow } = authSlice.actions;
 
 
 
 export const selectIsLogin = (state: RootState) => state.auth.isLogin;
 export const selectTokenAccess = (state: RootState) => state.auth.tokenAccess;
+export const selectFullName = (state: RootState) => state.auth.fullName;
+export const selectAuthWindow = (state: RootState) => state.auth.authWindow;
+export const selectErrMsg = (state: RootState) => state.auth.errMsg;
 export const selectStatus = (state: RootState) => state.auth.status;
 export const selectLastUpdate = (state: RootState) => state.auth.lastUpdate;
 

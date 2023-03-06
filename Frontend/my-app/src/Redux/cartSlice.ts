@@ -29,10 +29,11 @@ export const checkOut = createAsyncThunk(
   async (arg:void ,ThunkAPI) => {
     const state:any = ThunkAPI.getState()
     const cart:cartItem[] = state['cart']['inCart']
+    const tokenAccess:string = state['auth']['tokenAccess']
     if (cart.length === 0){
       return ThunkAPI.rejectWithValue({});
     }
-    const response = await cartAPI.postCheckOut(cart);
+    const response = await cartAPI.postCheckOut(cart,tokenAccess);
     ThunkAPI.dispatch(updateProducts(response.data));
     // The value we return becomes the `fulfilled` action payload
     return response.data;

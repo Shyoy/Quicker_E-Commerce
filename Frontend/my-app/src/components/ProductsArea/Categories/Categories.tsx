@@ -12,6 +12,7 @@ const Categories = () => {
     const categories = useAppSelector(selectCategories);
     const products = useAppSelector(selectProducts);
     const category = categories.filter(c => c.name === name)[0] || null
+    const productsByCategory = products.filter(product => category.products.includes(product.id))
     useEffect(()=>{
       console.log(categories)
       if ((categories.length > 0)&& (!category)){
@@ -28,12 +29,16 @@ const Categories = () => {
         {category &&<>
         <h1>Categories</h1> 
         <h2 className="text-capitalize">{name}</h2>
+        {productsByCategory.length === 0 ?
+        <h4>There no products in this category yet</h4>
+        :
+        <>
         <div className="container">
-
-        {products.filter(product => category.products.includes(product.id)).map(product => 
+        {productsByCategory.map(product => 
         <ProductCard key={product.id} product={product} />)}
-        
         </div></>}
+        </>
+        }
         
     </div>
   )

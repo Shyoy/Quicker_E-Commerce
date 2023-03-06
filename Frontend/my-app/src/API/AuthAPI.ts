@@ -26,10 +26,10 @@ class AuthAPI{
 
     public async register(form: RegisterForm) {
         return await new  Promise<{data:Tokens}>(async (resolve,reject) =>{
-            console.log(form)
+            
             await axios.post<Tokens>(config.registerUrl,form)
                 .then((response) =>  resolve({data: response.data}))
-                .catch((error) => reject(error))
+                .catch((error) => reject(error.request.response))
           
         });
     }

@@ -11,6 +11,15 @@
 .Auth > button{
     background-color: rgba(0, 0, 0, 0);
     border: none;
+    transition: 300ms;
+    
+}
+.Auth > .person{
+    cursor: default;
+    
+}
+.Auth > button:hover{
+    transform: scale(1.2);
 }
 
 .Auth > .my-overlay{
@@ -130,8 +139,10 @@
     text-shadow: -6px 4px 4px #00000088;
 
 }
-.Auth .Register {
-
+.Auth .full-name {
+    text-transform: capitalize;
+    font-family: 'Pacifico', cursive;
+    text-shadow: -10px 8px 2px #1c550610;
 }
 
 .Auth .submit-button  {

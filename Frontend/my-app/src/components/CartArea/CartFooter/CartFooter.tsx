@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { openWindow, selectTokenAccess } from '../../../Redux/authSlice';
 import { checkOut, selectSumCart } from '../../../Redux/cartSlice';
 import './CartFooter.css'
 
@@ -6,16 +7,21 @@ const CartFooter = () => {
 
 
     const cartSum = useAppSelector(selectSumCart);
+    const token = useAppSelector(selectTokenAccess);
     const sum_price = Math.round((cartSum)* 100) / 100
     const dispatch = useAppDispatch();
 
-    const handleCheckOut  = async () => {
-        await dispatch(checkOut())
-    //    if (result.meta.requestStatus === 'fulfilled'){
-    //         console.log(result.payload);
-    //         const products:any = result.payload
-    //         dispatch(updateProducts())
-    //    }
+    const handleCheckOut  = () => {
+      if (token){
+        dispatch(checkOut())
+      }
+      else{
+
+        alert('You must login first !')
+        dispatch(openWindow())
+
+      }
+    
     }
 
   return (
