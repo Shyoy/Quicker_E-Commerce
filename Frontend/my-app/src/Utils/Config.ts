@@ -29,7 +29,7 @@ class ProductionConfig extends Config {
     public categoriesUrl = "https://e-commers-quiker.onrender.com/api/products/categories";
     public productsUrl = "https://e-commers-quiker.onrender.com/api/products";
     public checkOutUrl = "https://e-commers-quiker.onrender.com/api/products/check-out";
-    public productImagesUrl = "https://e-commers-quiker.onrender.com/";
+    public productImagesUrl = "https://e-commers-quiker.onrender.com";
     public registerUrl = "https://e-commers-quiker.onrender.com/api/register";
     public loginUrl = "https://e-commers-quiker.onrender.com/api/token";
 }
