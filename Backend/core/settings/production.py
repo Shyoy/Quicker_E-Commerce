@@ -4,7 +4,7 @@ from .base import *
 Will work only in production
 '''
 
-DEBUG = False
+DEBUG = True
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
