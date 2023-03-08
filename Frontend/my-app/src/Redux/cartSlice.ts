@@ -45,8 +45,8 @@ export const cartSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    increment: (state, action: PayloadAction<{id:Number}>) => {
-      let updateItem = state.inCart.filter((item) => item.product.id === action.payload.id)
+    increment: (state, action: PayloadAction<{barcode:string}>) => {
+      let updateItem = state.inCart.filter((item) => item.product.barcode === action.payload.barcode)
       if (updateItem){
         if (updateItem[0].amount === updateItem[0].product.amount){
           console.log('amount not enough ')
@@ -57,8 +57,8 @@ export const cartSlice = createSlice({
         console.log(`+1 to ${updateItem[0].product.name}`)
       }
     },
-    decrement: (state, action: PayloadAction<{id:Number}>) => {
-      let updateItem = state.inCart.filter((item) => item.product.id === action.payload.id)
+    decrement: (state, action: PayloadAction<{barcode:string}>) => {
+      let updateItem = state.inCart.filter((item) => item.product.barcode === action.payload.barcode)
       if (updateItem){
         let index = state.inCart.indexOf(updateItem[0]);
         state.sum -= updateItem[0].product.price
@@ -74,7 +74,7 @@ export const cartSlice = createSlice({
 
     addItem: (state:cartList, action: PayloadAction<ProductModel>) => {
       let currentItem: cartItem = {product:action.payload, amount:1}
-      let oldItem = state.inCart.filter((item) => item.product.id === currentItem.product.id);
+      let oldItem = state.inCart.filter((item) => item.product.barcode === currentItem.product.barcode);
       if (oldItem.length < 1){
         console.log('Adding to cart');
         state.inCart.push(currentItem);
@@ -82,8 +82,8 @@ export const cartSlice = createSlice({
       }
     },
 
-    delItem: (state:cartList, action:PayloadAction<{id:Number}>) => {
-      let currentItem = state.inCart.filter((item) => item.product.id === action.payload.id)
+    delItem: (state:cartList, action:PayloadAction<{barcode:string}>) => {
+      let currentItem = state.inCart.filter((item) => item.product.barcode === action.payload.barcode)
       if (currentItem){
         let index = state.inCart.indexOf(currentItem[0]);
 

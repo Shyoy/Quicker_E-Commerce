@@ -22,7 +22,7 @@ const ProductsList = () => {
   },[lastUpdate])
   return (
     <div className='ProductsList'>
-      <h1>ProductsList Updated on - {date}</h1>
+      <div className='head-line'>Homepage</div>
         {products.length === 0? 
         <h2>There are no products</h2> 
         : 

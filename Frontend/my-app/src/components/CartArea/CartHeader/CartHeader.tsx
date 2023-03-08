@@ -16,9 +16,9 @@ export const CartHeader = () => {
         
         </div>
       <div className='bot'>
-        <button className=''> <div>link</div> </button> 
-        <button className=''> <div>link</div> </button> 
-        <button className=''> <div>link</div> </button> 
+        <button className=''> <div></div> </button> 
+        <button className=''> <div></div> </button> 
+        <button className=''> <div></div> </button> 
         </div>
 
 
