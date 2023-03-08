@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import ProductModel from '../../../Models/Products'
 import { addItem, decrement, increment, selectInCart} from '../../../Redux/cartSlice'
@@ -13,13 +14,20 @@ interface ProductProps {
 const ProductCard = (props:ProductProps):JSX.Element => {
   const inCart = useAppSelector(selectInCart);
   const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const currentItemList = inCart.filter((item) => props.product.id === item.product.id)
   const currentItem = currentItemList[0] || null
   const visible:boolean = currentItem?.amount < currentItem?.product?.amount
   const isHidden = props.product.amount === 0
+
+  const handleClick = () => {
+    searchParams.set('product', props.product.barcode)
+    setSearchParams(searchParams)
+  };
+
   return (
-      <div className="ProductsCard"> 
+      <div className="ProductsCard" onClick={handleClick}> 
               <img className="card-img-top" src={config.productImagesUrl+props.product.image} alt={props.product.name +" image"}/>
               <div className="card-body">
                 <h5 className="card-title">{props.product.name}</h5>

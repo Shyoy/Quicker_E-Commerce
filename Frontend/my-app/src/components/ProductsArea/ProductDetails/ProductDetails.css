@@ -1,5 +1,5 @@
 
-.Auth{
+.ProductDetails{
     height: 100%;
     display: flex;
     flex-grow: 2;
@@ -7,22 +7,7 @@
     align-items: center;
 }
 
-
-.Auth > button{
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    transition: 300ms;
-    
-}
-.Auth > .person{
-    cursor: default;
-    
-}
-.Auth > button:hover{
-    transform: scale(1.2);
-}
-
-.Auth > .my-overlay{
+.ProductDetails > .my-overlay{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -35,7 +20,7 @@
     cursor: pointer;
     
 }
-.Auth > .pop-window{
+.ProductDetails > .pop-window{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -43,7 +28,7 @@
     transform: translate(-50%, -50%);
     z-index: 6;
 }
-.Auth > .pop-window > .window-body{
+.ProductDetails > .pop-window > .window-body{
     box-shadow: -20px 30px 20px 4px rgba(11, 39, 17, 0.301);
     display: flex;
     padding-top: 2%;
@@ -54,7 +39,7 @@
     color: beige;
     background-color: #29292a;
     border-radius: 50px;
-    border:#7fb330fd 10px solid;
+    border:#93bac4 10px solid;
     height: 60vh;
     max-height: 500px;
     min-height: 400px;
@@ -64,7 +49,7 @@
     cursor: default;
 }
 
-.Auth > .pop-window .header{
+.ProductDetails > .pop-window .header{
     display: flex;
     /* margin-top: 10px; */
     flex-direction: row;
@@ -77,8 +62,8 @@
     height: 10%;
 }
 
-.Auth > .pop-window .header button{
-    background-color: rgba(10, 129, 80, 0.74);
+.ProductDetails > .pop-window .header button{
+    background-color: #546a70;
     border-radius: 20px;
     margin-left: 10px;
     color: bisque;
@@ -86,7 +71,7 @@
     
 }
 
-.Auth > .pop-window .header .swap-content{
+.ProductDetails > .pop-window .header .swap-content{
     /* padding-right: 10px;
     padding-left: 10px; */
     padding-top: 5px;
@@ -97,13 +82,13 @@
     transition: 300ms;
 
 }
-.Auth > .pop-window .header .swap-content:hover{
+.ProductDetails > .pop-window .header .swap-content:hover{
    
     transform: scale(1.1);
 
 }
 
-.Auth > .pop-window .header .X{
+.ProductDetails > .pop-window .header .X{
     /* flex-grow: 1; */
     border: 3px solid #e4ffc52a;
     height: 30px;
@@ -111,13 +96,13 @@
     font-size: smaller;
     transition: 300ms;
 }
-.Auth > .pop-window .header .X:hover{
+.ProductDetails > .pop-window .header .X:hover{
     
     transform: scale(1.1);
 }
 
 
-.Auth .window-body input {
+.ProductDetails .window-body input {
     border-radius: 6px;
     max-width: 200px;
     margin-bottom: 15px;
@@ -126,7 +111,7 @@
     width: 190px;
 
 }
-.Auth .window-body i {
+.ProductDetails .window-body i {
     position: absolute;
     left: 8%;
     margin-top: 3px;
@@ -135,17 +120,17 @@
  
 
 }
-.Auth .my-body {
+.ProductDetails .my-body {
     text-shadow: -6px 4px 4px #00000088;
 
 }
-.Auth .full-name {
+.ProductDetails .full-name {
     text-transform: capitalize;
     font-family: 'Pacifico', cursive;
     text-shadow: -10px 8px 2px #1c550610;
 }
 
-.Auth .submit-button  {
+.ProductDetails .submit-button  {
     background-color: rgba(10, 129, 80, 0.74);
     border-radius: 20px;
     margin-left: 10px;
@@ -159,7 +144,7 @@
     transition: 300ms;
     
 }
-.Auth .submit-button:hover  {
+.ProductDetails .submit-button:hover  {
     transform: scale(1.1);
     
 }
