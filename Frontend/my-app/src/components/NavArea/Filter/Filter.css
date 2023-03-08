@@ -55,7 +55,7 @@
     box-shadow: -10px 10px 15px 1px rgba(0, 0, 0, 0.253) inset;
 
     position: absolute;
-    top:14.8%;
+    top:calc(3em +var(--nav-size));
     right: 1px;
     padding: 0px;
     border: 1px solid rgba(0, 0, 0, 0.555);
@@ -65,11 +65,12 @@
     font-family:Arial, Helvetica, sans-serif;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-    font-size: 24px;
 }
 .Filter .popup .Header{
     background-color: #8fd328;
     box-shadow: -10px 10px 8px 1px rgba(0, 0, 0, 0.253) inset;
+    font-size: 24px;
+
 }
 
 .Filter > .popup .link {
