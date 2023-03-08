@@ -60,6 +60,7 @@
     object-fit: cover;
     max-width: 100%;
     height: 100%;
+    cursor: pointer;
     /* width: 30%; */
 }
 
@@ -83,6 +84,7 @@
     height: 100%;
     border-top-right-radius:80% ;
     background-color: #f0f8ffe5;
+    cursor: pointer;
 }
 .CartItem > .amount > p {
     transform: translate(-10%, 0%);

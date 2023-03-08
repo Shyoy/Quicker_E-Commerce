@@ -1,81 +1,92 @@
 import React, { useEffect, useState } from 'react'
 import { Spinner } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { closeWindow, logout, openWindow, selectAuthWindow, selectErrMsg, selectFullName, selectIsLogin } from '../../../Redux/authSlice';
+import ProductModel from '../../../Models/Products';
+import {  logout, selectErrMsg, selectFullName, selectIsLogin } from '../../../Redux/authSlice';
+import { addItem, decrement, increment, selectInCart } from '../../../Redux/cartSlice';
+import { selectProducts } from '../../../Redux/productsSlice';
+import config from '../../../Utils/Config';
 
-import "./Auth.css"
+import "./ProductDetails.css"
 
-export interface authWindow{
-    status: 'register' | 'login' | 'off';
+export interface ProductDetailsProps{
+    prod: ProductModel;
     
   }
 
-const Auth = () => {
+const ProductDetails = (props:ProductDetailsProps) => {
 
-    const [loading, setLoading] = useState()
+    // const [loading, setLoading] = useState()
+    const inCart = useAppSelector(selectInCart);
+
     const dispatch = useAppDispatch();
 
-    // const [authWindow, setAuthWindow] = useState<Boolean>(false) 
-    const [LoginForm, setLoginForm] = useState<Boolean>(true) 
+    const [productWindow, setProductWindow] = useState<Boolean>(false) 
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate  = useNavigate()
+    const products = useAppSelector(selectProducts);
+    let product:any ;
 
-    const authWindow = useAppSelector(selectAuthWindow);
-    const isLogin = useAppSelector(selectIsLogin);
-    const fullName = useAppSelector(selectFullName);
+    const currentItemList = inCart.filter((item) => props.prod.barcode === item.product.barcode)
+    const currentItem = currentItemList[0] || null
+    const visible:boolean = currentItem?.amount < currentItem?.product?.amount
+
+ 
 
     // const [errMsg, setErrMsg] = useState("") 
 
+    const handleClose = () => {
+        searchParams.delete('product')
+        setSearchParams(searchParams)
+    }
+    const handleSwap = () => {}
 
-    useEffect(()=>{
-        
-        if (isLogin){
-            dispatch(closeWindow())
-        }
-    },[isLogin])
+
     
     return (
-        <div className='Auth'>
-            {isLogin ? 
-            <>
-            
-            {/* <button className="material-symbols-outlined">person</button> */}
-            <span className='full-name'>{fullName}</span>
-            <button className="material-symbols-outlined" title='Logout' onClick={()=>{dispatch(logout())}}>logout</button>
-            </>
-            :
-            <>
-            <button className="material-symbols-outlined" title='Login' onClick={()=>dispatch(openWindow())}>login</button>
-            <span className="material-symbols-outlined person">person</span>
-            </>
-
-            }
-
-            {(authWindow && !isLogin) && 
-            <>
-            <div className='my-overlay'  onClick={()=>dispatch(closeWindow())}/>
-            
-            <div className='pop-window'>
-                <div className='window-body'>
-                    <div className='header'>
-                    <button className="swap-content" onClick={()=>setLoginForm(!LoginForm)}> {LoginForm ? 'Sign Up':'Sign In'} ?</button>
-                    <button className="X" onClick={()=>dispatch(closeWindow())} >X</button>
-
-                    </div>
-
-                    {LoginForm ?
-                   <></>
-                    :
-                    <></>
-                    }
-
-                    </div>
-
+    <div className='ProductDetails'>
+        <div className='my-overlay'  onClick={handleClose}/>
+        
+        <div className='pop-window'>
+            <div className='window-body'>
+                <div className='header'>
+                <button className="swap-content" onClick={handleSwap}>swap</button>
+                <div className='fs-1 mt-4 text-capitalize'>{props.prod.name}</div>
+                <button className="X" onClick={handleClose} >X</button>
                 </div>
-        </>}
+                <div className='my-body'>
+                    <div className='cart-control me-5'>
+                        {currentItemList.length === 1 ? 
+                        <>
+                        <button hidden={true} />
+                        <button onClick={()=> dispatch(decrement({barcode:props.prod.barcode}))} id={"b1"} className='text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
+                        <div className='amount rounded-pill'>{currentItem.amount}</div>
+                        <button onClick={()=> dispatch(increment({barcode:props.prod.barcode}))} style={{visibility: visible ? undefined:'hidden'}} id={"b2"} className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
+                        </>
+                        :
+                        <button onClick={()=> dispatch(addItem(props.prod))} id={"b3"} title="add to cart"  className='rounded-pill  px-4 material-symbols-outlined'>add_shopping_cart</button>
+                    }
+                    </div>
+                    <div className='body-text'>
+                    <div className="card-text">Price: <br/><p>₪{props.prod.price}</p></div>
+                    <div className="card-text">Amount: <br/><p>{props.prod.amount}</p></div>
+                    <div className="card-text">Barcode: <br/><p>{props.prod.barcode}</p></div>
+                    </div>
+                <img className="card-img-top" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
+                </div>
+                <div className='footer'>
+                    
+                </div>
+
+            </div>
 
         </div>
+    
+
+    </div>
             
     )
 }
 
-export default Auth
+export default ProductDetails
