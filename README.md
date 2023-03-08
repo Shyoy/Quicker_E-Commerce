@@ -1,6 +1,3 @@
-# E-Commers
-E-Commers Supermarket Site On Going
-
 # Getting Started
 
 <br>
@@ -10,7 +7,7 @@ E-Commers Supermarket Site On Going
 ### Backend:
 1. **Create virtualenv**:
     ```cmd
-    cd .\Back
+    cd .\Backend
     ```
     ```cmd
     python -m venv venv
@@ -21,12 +18,12 @@ E-Commers Supermarket Site On Going
     ```
 3. **Run the server**:
     ```cmd
-    python app.py
+    python manage.py runserver
     ```
 ### Frontend:
 1. **Open new terminal**:
     ```cmd
-    cd .\Front\REACT\ayp
+    cd .\Frontend\my-app
     ```
 2. Install all needed requirements
     ```cmd
@@ -48,9 +45,9 @@ You can learn more in the [Create React App documentation](https://create-react-
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Flask:
+### Django:
 
-To learn Flask, check out the [Flask documentation](https://flask.palletsprojects.com/en/2.2.x/quickstart/).
+To learn django, check out the [Django documentation](https://www.djangoproject.com/start/).
 
-To learn Flask-SQLAlchemy, check out the [Flask-SQLAlchemy documentation](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/quickstart/).
+To learn Django REST framework, check out the [Django REST documentation](https://www.django-rest-framework.org/tutorial/quickstart/).
 
