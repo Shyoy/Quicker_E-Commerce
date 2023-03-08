@@ -51,7 +51,7 @@ const ProductDetails = (props:ProductDetailsProps) => {
         <div className='pop-window'>
             <div className='window-body'>
                 <div className='header'>
-                <button className="swap-content" onClick={handleSwap}>swap</button>
+                <button className="swap-content" style={{visibility:'hidden'}} onClick={handleSwap}>swap</button>
                 <div className='fs-1 mt-4 text-capitalize'>{props.prod.name}</div>
                 <button className="X" onClick={handleClose} >X</button>
                 </div>
