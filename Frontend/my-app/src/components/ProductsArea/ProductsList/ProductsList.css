@@ -4,6 +4,7 @@
     max-height:400px;
     width: 60vw;
     overflow-x: auto;
+    overflow-y: hidden;
     flex-direction: column;
     border: 2px solid #5c7a56;
     border-radius: 1%;

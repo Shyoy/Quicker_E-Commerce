@@ -16,7 +16,7 @@ const CartItem = (props:CartItemProps) => {
   const dispatch = useAppDispatch();
 
   return (
-    <li className='CartItem mb-1 mx-1'>
+    <li className='CartItem mx-1'>
       <img className="card-img" src={config.productImagesUrl+props.product.image} alt={props.product.name +" image"}/>
       
       <div className="exit"><button onClick={()=> dispatch(delItem({id: props.product.id}))}/></div>

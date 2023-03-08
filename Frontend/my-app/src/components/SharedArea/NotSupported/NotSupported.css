@@ -1,0 +1,46 @@
+.NotSupported {
+    width: 100vw;
+    height: 100vh;
+  
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3em var(--nav-size) 1fr;
+    /* padding: 1ex; */
+    box-sizing: border-box;
+    grid-template-areas: 
+      "header"
+      "nav"
+      "main"
+  }
+  
+  .NotSupported > header {
+    grid-area: header;
+    box-shadow:  -10px 10px 8px 1px rgba(0, 0, 0, 0.253)  inset;
+    background-color: #adff2f;
+
+  }
+  
+  .NotSupported > nav {
+    grid-area: nav;
+    max-width: 100%;
+  
+    background-color: #242526;
+  }
+  
+  .NotSupported > main {
+    grid-area: main;
+    max-width: 100%;
+    max-height:100%;
+    background-color: #d8ffd8;
+    overflow-y: scroll;
+  }
+  .NotSupported > main > *{
+    margin-top: 50px;
+    font-style: italic;
+    font-weight: lighter;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+  }

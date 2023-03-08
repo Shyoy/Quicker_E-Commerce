@@ -2,7 +2,9 @@ import React from 'react'
 
 const NoPage = () => {
   return (
-    <div>Page not found 404</div>
+    <div className='NoPage'>
+      <h1 className='mt-5'>Page not found 404</h1>
+      </div>
   )
 }
 

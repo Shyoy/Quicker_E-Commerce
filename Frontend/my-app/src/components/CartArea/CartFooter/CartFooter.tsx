@@ -1,4 +1,5 @@
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useSearchParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector, useQuery } from '../../../app/hooks';
 import { openWindow, selectTokenAccess } from '../../../Redux/authSlice';
 import { checkOut, selectSumCart } from '../../../Redux/cartSlice';
 import './CartFooter.css'
@@ -10,18 +11,20 @@ const CartFooter = () => {
     const token = useAppSelector(selectTokenAccess);
     const sum_price = Math.round((cartSum)* 100) / 100
     const dispatch = useAppDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const handleCheckOut  = () => {
       if (token){
         dispatch(checkOut())
       }
       else{
-
         alert('You must login first !')
-        dispatch(openWindow())
+        if (!searchParams.has('auth')){
+          searchParams.set('auth','login');
+          setSearchParams(searchParams)
 
+        }
       }
-    
     }
 
   return (

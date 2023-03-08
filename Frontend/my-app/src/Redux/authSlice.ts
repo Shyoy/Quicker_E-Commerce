@@ -94,8 +94,17 @@ export const authSlice = createSlice({
       state.status = 'loading';
     })
     .addCase(registerAsync.rejected, (state,action) => {
-      state.errMsg = action.error?.message?.split('"')[3] || '';
+      if (action.error?.message == 'Rejected'){
+        state.errMsg = 'Sorry there was an error connecting to the server'
+      }
+      else if (action.error?.message?.includes('UNIQUE')){
+        state.errMsg = 'Sorry This email address is already taken'
+      }
+      else{
+        state.errMsg = action.error?.message?.split('"')[3] || '';
+      }
       console.log(state.errMsg);
+      console.log(action.error?.message);
       state.status = 'failed';
     })
     .addCase(loginAsync.fulfilled, (state, action) => {
@@ -114,7 +123,12 @@ export const authSlice = createSlice({
       state.status = 'loading';
     })
     .addCase(loginAsync.rejected, (state,action) => {
-      state.errMsg = action.error?.message?.split('"')[3] || '';
+      if (action.error?.message == 'Rejected'){
+        state.errMsg = 'Sorry there was an error connecting to the server'
+      }
+      else{
+        state.errMsg = action.error?.message?.split('"')[3] || '';
+      }
       console.log(state.errMsg);
       state.status = 'failed';
     });

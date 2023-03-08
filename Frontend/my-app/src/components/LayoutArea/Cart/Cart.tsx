@@ -13,9 +13,7 @@ const Cart = () => {
             <div className='Cart-Header'>
                 <CartHeader/>
             </div>
-            <div className='Cart-Content'>
                 <CartList/>
-            </div>
             <div className='Cart-Footer'>
                 <CartFooter/>
             </div>

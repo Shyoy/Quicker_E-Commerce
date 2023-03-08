@@ -7,9 +7,9 @@
 }
 
 .CartList ul{
-    max-height: 77.3vh;
-    min-height: 77.3vh;
-    height: inherit;
+    
+    height: 100%;
+    flex-flow: row wrap;
     display: flex;
     flex-direction: column;
     flex-flow: column;

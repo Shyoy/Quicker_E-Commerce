@@ -19,7 +19,14 @@ const Loading = () => {
   },[productsStatus,categoriesStatus])
   return (
     <div className='Loading'>
+        {categoriesStatus === 'failed' || productsStatus === 'failed' ? 
+        <span className='text-danger'> Network Error</span>
+        :
+        <span></span>
+        }
+        
         <Spinner className='Spinner' style={{visibility:isHidden ? "hidden": "visible"}} animation="border" variant="success" size="sm" />
+
     </div>
   )
 }

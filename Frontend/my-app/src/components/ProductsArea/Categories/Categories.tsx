@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useParams,useNavigate} from "react-router-dom";
 import {  useAppSelector } from "../../../app/hooks";
+import ProductModel from "../../../Models/Products";
 import { selectCategories, selectProducts } from "../../../Redux/productsSlice";
 import ProductCard from "../ProductCard/ProductCard";
 import "./Categories.css"
@@ -12,11 +13,13 @@ const Categories = () => {
     const categories = useAppSelector(selectCategories);
     const products = useAppSelector(selectProducts);
     const category = categories.filter(c => c.name === name)[0] || null
-    const productsByCategory = products.filter(product => category.products.includes(product.id))
+    let productsByCategory:ProductModel[] = [];
+    if (category) {
+      productsByCategory = products.filter(product => category.products.includes(product.id))
+    }
+   
     useEffect(()=>{
-      console.log(categories)
       if ((categories.length > 0)&& (!category)){
-        console.log('categories')
         navigate('404notfound/')
       }
       

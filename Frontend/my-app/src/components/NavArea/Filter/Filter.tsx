@@ -14,7 +14,7 @@ const Filter = () => {
   return (
     <li className='Filter'>
 
-        <span title='Filter' onClick={()=> setFilterPop(!filterPop)} className="icon-button material-symbols-outlined">
+        <span title='Filter' onClick={()=> setFilterPop(!filterPop)} className="icon-button material-symbols-outlined" style={{backgroundColor:filterPop && 'rgba(147, 186, 196, 0.58)'}}>
         {"filter_alt"}
         </span>
         {filterPop 
@@ -23,7 +23,7 @@ const Filter = () => {
           <span className='Header'>Categories</span>
         <ul>
           {categories.map((category, i) =>
-          <Link key={i} className='link' to={'products/categories/'+category.name} >
+          <Link key={i} className='link' to={'products/categories/'+category.name+"/"} >
            <li>
             {category.name}
              </li>

@@ -37,7 +37,7 @@ a {
   font-weight: bold;
   font-size: 18px;
   display: grid;
-  grid-template-columns: 20vw 1fr;
+  grid-template-columns: 250px 1fr;
   grid-template-rows: 3em var(--nav-size) 1fr;
   /* padding: 1ex; */
   box-sizing: border-box;
