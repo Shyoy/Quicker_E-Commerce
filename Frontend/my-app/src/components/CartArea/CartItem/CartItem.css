@@ -3,7 +3,7 @@
     max-width: 100%;
     /* min-height: 100%; */
     margin-top: 5px;
-    height: 25vh;
+    height: 15vh;
     max-height: 160px;
     min-height: 100px;
     border-radius: 5px;
@@ -12,7 +12,7 @@
     background-color: rgb(37 173 129 / 85%);
     display: grid;
     grid-template-rows:20% 1fr 20%;
-    grid-template-columns:25% 1fr 40%;
+    grid-template-columns:25% 1fr 46%;
     /* padding: 1ex; */
     z-index: 1;
     box-sizing: border-box;
