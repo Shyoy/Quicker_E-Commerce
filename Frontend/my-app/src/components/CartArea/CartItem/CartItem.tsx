@@ -17,6 +17,7 @@ const CartItem = (props:CartItemProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useAppDispatch();
+  const header = props.product.name.split(' ').filter(s=> s !== ''&& s.length > 2)[0]||''
 
   const handleClick = () => {
     searchParams.set('product', props.product.barcode)
@@ -28,10 +29,13 @@ const CartItem = (props:CartItemProps) => {
       <img className="card-img" onClick={handleClick} src={config.productImagesUrl+props.product.image} alt={props.product.name +" image"}/>
       
       <div className="exit"><button onClick={()=> dispatch(delItem({barcode: props.product.barcode}))}/></div>
-      <p className="header fs-4 ">{props.product.name}</p>
-      <p className="main"><span className='small'>₪</span>{sum_price}</p>
+      <p className="header " onClick={handleClick}>{header}</p>
+      <div className="main">
+        <span className='small'>₪</span>
+        <span>{sum_price}</span>
+        </div>
       <p className="cardFooter small text-black-50"><span className='small'>₪</span> {props.product.price}</p>
-      <div className='amount' onClick={handleClick}><p >{props.amount}</p></div>
+      <div className='amount' onClick={handleClick}><span >{props.amount}</span></div>
     </li>
   )
 }

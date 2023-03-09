@@ -33,9 +33,9 @@ const CartFooter = () => {
             <span className='small'>₪</span>
             <span>{sum_price}</span>
         </div>
-        <div className='checkout'>
+        <div className='checkout' title='Checkout' onClick={handleCheckOut}>
         {cartSum > 0 ?
-        <button className='btn checkout-icon' title='Checkout' onClick={handleCheckOut}/>
+        <button className='btn checkout-icon'  />
             
         :
         <button className='btn checkout-icon' disabled/>

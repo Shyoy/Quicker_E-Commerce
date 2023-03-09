@@ -27,30 +27,41 @@
 }
 
 .CartFooter> .checkout{
+    max-height: 100%;
+    max-width: 100%;
     flex-grow: 4;
     height: 100%;
     flex-shrink: 0;
-    align-items: center;
     display: flex;
+    align-items: center;
     justify-content: center;
+    cursor: pointer;
+    background-color: #2d460846;
+    transition: 800ms;
+
+    
+    
+}
+.CartFooter> .checkout:hover{
+    background-color: #93bac48e;
+
+    /* filter: brightness(0.5) contrast(6); */
     
 }
 
 .CartFooter> .checkout> button{
     transition: 400ms;
-    height: 100%;
-    width: 100%;
-    background-color: #80bd25;
-    border-radius: 0px;
+    height: 50px;
+    width: 60px;
+    border:none ;
+    border-radius: 50%;
     font-size: 150%;
-
-
-    }
-.CartFooter> .checkout> button:hover {
     
-    background-color: #109410;
-    font-size: 200%;
-    filter: brightness(1.2) contrast(1.1);
+    
+}
+.CartFooter> .checkout:hover> button {
+    
+    transform: scale(1.2);
 
 }
     
