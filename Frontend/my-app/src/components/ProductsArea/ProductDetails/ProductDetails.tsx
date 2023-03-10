@@ -7,6 +7,7 @@ import {  logout, selectErrMsg, selectFullName, selectIsLogin } from '../../../R
 import { addItem, decrement, increment, selectInCart } from '../../../Redux/cartSlice';
 import { selectProducts } from '../../../Redux/productsSlice';
 import config from '../../../Utils/Config';
+import ProductEdit from '../ProductEdit/ProductEdit';
 
 import "./ProductDetails.css"
 
@@ -22,11 +23,11 @@ const ProductDetails = (props:ProductDetailsProps) => {
 
     const dispatch = useAppDispatch();
 
-    const [productWindow, setProductWindow] = useState<Boolean>(false) 
+    const [EditWindow, setEditWindow] = useState<Boolean>(false) 
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate  = useNavigate()
-    const products = useAppSelector(selectProducts);
-    let product:any ;
+    // const products = useAppSelector(selectProducts);
+    // let product:any ;
 
     const currentItemList = inCart.filter((item) => props.prod.barcode === item.product.barcode)
     const currentItem = currentItemList[0] || null
@@ -40,8 +41,9 @@ const ProductDetails = (props:ProductDetailsProps) => {
         searchParams.delete('product')
         setSearchParams(searchParams)
     }
-    const handleSwap = () => {}
-
+    const handleSwap = () => {
+        setEditWindow(!EditWindow)
+    }
 
     
     return (
@@ -51,10 +53,23 @@ const ProductDetails = (props:ProductDetailsProps) => {
         <div className='pop-window'>
             <div className='window-body'>
                 <div className='header'>
+<<<<<<< Updated upstream
                 <button className="swap-content" onClick={handleSwap}>swap</button>
                 <div className='fs-1 mt-4 text-capitalize'>{props.prod.name}</div>
                 <button className="X" onClick={handleClose} >X</button>
+=======
+                    <button className="swap-content" onClick={handleSwap}>{EditWindow ? 'Back': 'Edit'}</button>
+                    <div className='fs-1 mt-4 text-capitalize'>
+                        {props.prod.name}
+                    </div>
+                    <button className="X" onClick={handleClose} >X</button>
+>>>>>>> Stashed changes
                 </div>
+                {EditWindow ? 
+
+                <ProductEdit prod={props.prod}/>
+
+                :
                 <div className='my-body'>
                     <div className='cart-control me-5'>
                         {currentItemList.length === 1 ? 
@@ -68,6 +83,7 @@ const ProductDetails = (props:ProductDetailsProps) => {
                         <button onClick={()=> dispatch(addItem(props.prod))} id={"b3"} title="add to cart"  className='rounded-pill  px-4 material-symbols-outlined'>add_shopping_cart</button>
                     }
                     </div>
+                   
                     <div className='body-text'>
                     <div className="card-text">Price: <br/><p>₪{props.prod.price}</p></div>
                     <div className="card-text">Amount: <br/><p>{props.prod.amount}</p></div>
@@ -75,6 +91,11 @@ const ProductDetails = (props:ProductDetailsProps) => {
                     </div>
                 <img className="card-img-top" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
                 </div>
+<<<<<<< Updated upstream
+=======
+                }
+
+>>>>>>> Stashed changes
                 <div className='footer'>
                     
                 </div>

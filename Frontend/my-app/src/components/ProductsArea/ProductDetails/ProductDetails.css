@@ -151,9 +151,28 @@
     
 
 }
+<<<<<<< Updated upstream
 .ProductDetails .my-body .body-text > .card-text > *{
     text-align: right ;
     
+=======
+.ProductDetails .my-body .inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    width: 70%;
+    height: 28px;
+    box-shadow: -4px 3px 4px 3px rgba(0, 0, 0, 0.205);
+    border-radius: 50rem ;
+    font-weight: 300;
+    border: 2px solid #8fd4282a;
+    text-align: center;
+    text-shadow:none;
+    align-self: flex-end;
+    cursor: auto;
+    margin-bottom: 3px;
+>>>>>>> Stashed changes
 
 }
 .ProductDetails .my-body img{
