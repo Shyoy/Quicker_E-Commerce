@@ -53,17 +53,14 @@ const ProductDetails = (props:ProductDetailsProps) => {
         <div className='pop-window'>
             <div className='window-body'>
                 <div className='header'>
-<<<<<<< Updated upstream
                 <button className="swap-content" onClick={handleSwap}>swap</button>
                 <div className='fs-1 mt-4 text-capitalize'>{props.prod.name}</div>
                 <button className="X" onClick={handleClose} >X</button>
-=======
                     <button className="swap-content" onClick={handleSwap}>{EditWindow ? 'Back': 'Edit'}</button>
                     <div className='fs-1 mt-4 text-capitalize'>
                         {props.prod.name}
                     </div>
                     <button className="X" onClick={handleClose} >X</button>
->>>>>>> Stashed changes
                 </div>
                 {EditWindow ? 
 
@@ -91,11 +88,8 @@ const ProductDetails = (props:ProductDetailsProps) => {
                     </div>
                 <img className="card-img-top" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
                 </div>
-<<<<<<< Updated upstream
-=======
                 }
 
->>>>>>> Stashed changes
                 <div className='footer'>
                     
                 </div>

@@ -171,11 +171,9 @@
     cursor: auto;
     margin-bottom: 3px;
 
-<<<<<<< Updated upstream
 .ProductDetails .my-body .body-text > .card-text > *{
     text-align: right ;
     
-=======
 .ProductDetails .my-body .inputs {
     display: flex;
     justify-content: center;
@@ -192,7 +190,6 @@
     align-self: flex-end;
     cursor: auto;
     margin-bottom: 3px;
->>>>>>> Stashed changes
 
 }
 
