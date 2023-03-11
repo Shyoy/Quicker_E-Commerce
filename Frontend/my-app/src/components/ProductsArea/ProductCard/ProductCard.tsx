@@ -30,7 +30,7 @@ const ProductCard = (props:ProductProps):JSX.Element => {
       <div className="ProductsCard" > 
               <img className="card-img-top" onClick={handleClick} src={config.productImagesUrl+props.product.image} alt={props.product.name +" image"}/>
               <div className="card-body">
-                <h5 className="card-title text-capitalize fs-3">{props.product.name}</h5>
+                <h5 className="card-title text-capitalize fs-4">{props.product.name}</h5>
                 <p className="card-text ">Price - ₪{props.product.price}</p>
                 <p className="card-text">Amount - {props.product.amount}</p>
                 <div className='cart-control'>

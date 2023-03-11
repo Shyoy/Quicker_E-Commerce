@@ -14,7 +14,7 @@ const Nav = () => {
         <ul className='navbar-nav'>
           <SearchBar/>
           <NavItem title={'Bookmarks'} type={"bookmarks"}/>
-          <NavItem title={'Featured'} type={"new_releases"}/>
+          <NavItem title={'Featured Products'} type={"new_releases"}/>
           <Filter/>
 
         </ul>

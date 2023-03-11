@@ -3,20 +3,16 @@
     max-width: 100%;
     /* min-height: 100%; */
     margin-top: 5px;
-<<<<<<< Updated upstream
-    height: 150px;
-=======
     height: 15vh;
     max-height: 140px;
     min-height: 90px;
->>>>>>> Stashed changes
     border-radius: 5px;
     border: 3px solid #40bb353a;
     /* overflow-x: hidden; */
     background-color: rgb(37 173 129 / 85%);
     display: grid;
     grid-template-rows:20% 1fr 20%;
-    grid-template-columns:25% 1fr 40%;
+    grid-template-columns:25% 1fr 46%;
     /* padding: 1ex; */
     z-index: 1;
     box-sizing: border-box;
@@ -37,16 +33,20 @@
 .CartItem > .exit{
     grid-area: exit;
     padding:7%;
-    justify-self: start;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 20px;
 }
 .CartItem > .exit > button{
-    grid-area: exit;
+    height: 20px;
+    
     background-color: rgba(128, 128, 128, 0);
     color: rgb(0, 0, 0);
     border: none;
-    padding-right: 5px;
-    padding-left: 5px;
-    font-size: 100%;   
+   
     transition: 300ms;
 
 
@@ -67,16 +67,23 @@
     max-width: 100%;
     height: 100%;
     cursor: pointer;
+    
     /* width: 30%; */
 }
 
 .CartItem > .main {
     grid-area: main;
-    padding-right: 5%;
-    transform: translate(30%, -10%);
-    margin: 0 auto;
-    justify-self: end;
-    padding: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 40px;
+    display: flex;
+    margin: 0 auto; 
+    text-align: center;
+    
+    justify-items: center;
+    align-items: center;
+
+    /* padding: 10px; */
 
 }
 .CartItem > .cardFooter {
@@ -91,20 +98,38 @@
     margin: 0 auto;
 }
 .CartItem > .amount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     object-fit: cover;
+
     max-width: 100%;
     height: 100%;
+    border: 2px solid #93bac48c;
     border-top-right-radius:80% ;
     background-color: #f0f8ffe5;
     cursor: pointer;
 }
 .CartItem > .amount > p {
-    transform: translate(-10%, 0%);
+    /* transform: translate(-10%, 0%); */
     padding: 1%;
 }
 
-.Cart > .Cart-Header {
-    grid-area: header;    
-    background-color:rgb(17, 152, 194)
+.CartItem  .header {
+    display: flex;
+    grid-area: header;  
+    max-width: 100%;
+    max-height: 100%;
+    justify-content: flex-start;
+    padding-left: 10px;
+    text-transform: capitalize;
+    font-weight: 400;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: -6px 4px 3px rgba(0, 0, 0, 0.151);
+    align-items: center;
+    margin: 0px;
+    cursor: pointer;
+ 
 
 }
