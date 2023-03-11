@@ -53,14 +53,14 @@ const ProductDetails = (props:ProductDetailsProps) => {
         <div className='pop-window'>
             <div className='window-body'>
                 <div className='header'>
-                <button className="swap-content" onClick={handleSwap}>swap</button>
-                <div className='fs-1 mt-4 text-capitalize'>{props.prod.name}</div>
-                <button className="X" onClick={handleClose} >X</button>
+
                     <button className="swap-content" onClick={handleSwap}>{EditWindow ? 'Back': 'Edit'}</button>
+
                     <div className='fs-1 mt-4 text-capitalize'>
                         {props.prod.name}
                     </div>
                     <button className="X" onClick={handleClose} >X</button>
+
                 </div>
                 {EditWindow ? 
 
@@ -68,7 +68,7 @@ const ProductDetails = (props:ProductDetailsProps) => {
 
                 :
                 <div className='my-body'>
-                    <div className='cart-control me-5'>
+                    <div className='cart-control me-4'>
                         {currentItemList.length === 1 ? 
                         <>
                         <button hidden={true} />
@@ -77,21 +77,34 @@ const ProductDetails = (props:ProductDetailsProps) => {
                         <button onClick={()=> dispatch(increment({barcode:props.prod.barcode}))} style={{visibility: visible ? undefined:'hidden'}} id={"b2"} className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
                         </>
                         :
-                        <button onClick={()=> dispatch(addItem(props.prod))} id={"b3"} title="add to cart"  className='rounded-pill  px-4 material-symbols-outlined'>add_shopping_cart</button>
+                        <button onClick={()=> dispatch(addItem(props.prod))} id={"b3"} title="add to cart"  className='rounded-pill  px-2 material-symbols-outlined'>add_shopping_cart</button>
                     }
                     </div>
                    
                     <div className='body-text'>
-                    <div className="card-text">Price: <br/><p>₪{props.prod.price}</p></div>
-                    <div className="card-text">Amount: <br/><p>{props.prod.amount}</p></div>
-                    <div className="card-text">Barcode: <br/><p>{props.prod.barcode}</p></div>
+                        <div className="card-text">Price: <br/>
+                            <div className='inputs'>
+                                ₪{props.prod.price}
+                            </div>
+                        </div>
+                        <div className="card-text">Amount: <br/>
+                            <div className='inputs'>
+                                {props.prod.amount}
+                            </div>
+                        </div>
+                        <div className="card-text">Barcode: <br/>
+                            <div className='inputs'>
+                                {props.prod.barcode}
+                            </div>
+                        </div>
                     </div>
-                <img className="card-img-top" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
+                    <img className="card-img-top" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
                 </div>
+
                 }
 
                 <div className='footer'>
-                    
+                        
                 </div>
 
             </div>
