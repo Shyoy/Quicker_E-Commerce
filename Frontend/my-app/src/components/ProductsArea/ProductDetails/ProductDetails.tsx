@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import ProductModel from '../../../Models/Products';
 import {  logout, selectErrMsg, selectFullName, selectIsLogin } from '../../../Redux/authSlice';
 import { addItem, decrement, increment, selectInCart } from '../../../Redux/cartSlice';
-import { selectProducts } from '../../../Redux/productsSlice';
+import { selectDetailWindow, selectProducts, setDetailWindow } from '../../../Redux/productsSlice';
 import config from '../../../Utils/Config';
 import ProductEdit from '../ProductEdit/ProductEdit';
 
@@ -20,13 +20,14 @@ const ProductDetails = (props:ProductDetailsProps) => {
 
     // const [loading, setLoading] = useState()
     const inCart = useAppSelector(selectInCart);
-
+    
     const dispatch = useAppDispatch();
 
-    const [EditWindow, setEditWindow] = useState<Boolean>(false) 
+    // const [EditWindow, setEditWindow] = useState<Boolean>(false) 
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate  = useNavigate()
-    // const products = useAppSelector(selectProducts);
+
+    const detailWindow = useAppSelector(selectDetailWindow);
     // let product:any ;
 
     const currentItemList = inCart.filter((item) => props.prod.barcode === item.product.barcode)
@@ -42,7 +43,15 @@ const ProductDetails = (props:ProductDetailsProps) => {
         setSearchParams(searchParams)
     }
     const handleSwap = () => {
-        setEditWindow(!EditWindow)
+        console.log(detailWindow)
+        if (detailWindow !=='product'){
+            dispatch(setDetailWindow('product'))
+
+        }
+        else{
+            dispatch(setDetailWindow('edit'))
+
+        }
     }
 
     
@@ -54,15 +63,15 @@ const ProductDetails = (props:ProductDetailsProps) => {
             <div className='window-body'>
                 <div className='header'>
 
-                    <button className="swap-content" onClick={handleSwap}>{EditWindow ? 'Back': 'Edit'}</button>
+                    <button className="X" onClick={handleClose} >X</button>
 
                     <div className='fs-1 mt-4 text-capitalize'>
                         {props.prod.name}
                     </div>
-                    <button className="X" onClick={handleClose} >X</button>
+                    <button className="swap-content" onClick={handleSwap}>{detailWindow === 'edit' ? 'Back': 'Edit'}</button>
 
                 </div>
-                {EditWindow ? 
+                {detailWindow === 'edit' ? 
 
                 <ProductEdit prod={props.prod}/>
 
@@ -72,12 +81,12 @@ const ProductDetails = (props:ProductDetailsProps) => {
                         {currentItemList.length === 1 ? 
                         <>
                         <button hidden={true} />
-                        <button onClick={()=> dispatch(decrement({barcode:props.prod.barcode}))} id={"b1"} className='text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
+                        <button onClick={()=> dispatch(decrement({barcode:props.prod.barcode}))}  className='cart-buttons text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
                         <div className='amount rounded-pill'>{currentItem.amount}</div>
-                        <button onClick={()=> dispatch(increment({barcode:props.prod.barcode}))} style={{visibility: visible ? undefined:'hidden'}} id={"b2"} className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
+                        <button onClick={()=> dispatch(increment({barcode:props.prod.barcode}))} style={{visibility: visible ? undefined:'hidden'}}  className='cart-buttons text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
                         </>
                         :
-                        <button onClick={()=> dispatch(addItem(props.prod))} id={"b3"} title="add to cart"  className='rounded-pill  px-2 material-symbols-outlined'>add_shopping_cart</button>
+                        <button onClick={()=> dispatch(addItem(props.prod))}  title="add to cart"  className='cart-buttons rounded-pill  px-2 material-symbols-outlined'>add_shopping_cart</button>
                     }
                     </div>
                    

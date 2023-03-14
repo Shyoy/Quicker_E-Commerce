@@ -8,6 +8,7 @@ export interface productsList {
   categoriesList: CategoriesModel[];
   categoriesStatus: 'idle' | 'loading' | 'failed';
   productsStatus: 'idle' | 'loading' | 'failed';
+  detailWindow: 'product'| 'add' | 'edit';
   lastUpdate: Number;
 }
 
@@ -16,6 +17,7 @@ const initialState: productsList = {
   categoriesList: [],
   categoriesStatus: 'idle',
   productsStatus: 'idle',
+  detailWindow: 'product',
   lastUpdate: new Date().getTime(),
 };
 
@@ -38,6 +40,24 @@ export const getCategoriesAsync = createAsyncThunk(
   }
 );
 
+export const editProductAsync = createAsyncThunk(
+  'products/editProduct',
+  async (form:FormData, ThunkAPI) => {
+    if (form.has('id')){
+      let id:string = form.get('id')?.toString()||'';
+      form.delete('id');
+
+      const response = await productsAPI.editProduct(id, form);
+      console.log(response.data)
+      // The value we return becomes the `fulfilled` action payload
+      ThunkAPI.dispatch(updateProducts(Array(response.data)))
+      return response.data;
+      
+    }
+  }
+);
+
+
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
@@ -55,16 +75,21 @@ export const productsSlice = createSlice({
       state.productsList.push(action.payload);
     },
     updateProducts: (state, action: PayloadAction<ProductModel[]>) => {
-      console.log('updateProducts');
       action.payload.map((newProduct:ProductModel) => {
         const oldProductList = state.productsList.filter((oldProduct) =>oldProduct.id === newProduct.id)
         if (oldProductList){
           const oldProduct:ProductModel = oldProductList[0]
+          
           oldProduct.amount = newProduct.amount
+          oldProduct.price = newProduct.price
+          oldProduct.image = newProduct.image
         } 
         return null;
       })
-    }
+    },
+    setDetailWindow: (state, action: PayloadAction<'product'| 'add' | 'edit'>) => {
+      state.detailWindow = action.payload
+    },
   },
   
   extraReducers: (builder) => {
@@ -79,6 +104,20 @@ export const productsSlice = createSlice({
       state.productsStatus = 'loading';
     })
     .addCase(get_allAsync.rejected, (state,action) => {
+      console.log(action.error?.message);
+      state.productsStatus = 'failed';
+    })
+    .addCase(editProductAsync.fulfilled, (state, action) => {
+      // console.log('Success')
+      state.lastUpdate = new Date().getTime();
+      state.detailWindow = 'product'
+      state.productsStatus = 'idle';
+
+    })
+    .addCase(editProductAsync.pending, (state) => {
+      state.productsStatus = 'loading';
+    })
+    .addCase(editProductAsync.rejected, (state,action) => {
       console.log(action.error?.message);
       state.productsStatus = 'failed';
     })
@@ -99,7 +138,7 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { increment, decrement, addProduct, updateProducts } = productsSlice.actions;
+export const { increment, decrement, addProduct, updateProducts, setDetailWindow } = productsSlice.actions;
 
 
 
@@ -107,6 +146,7 @@ export const selectProducts = (state: RootState) => state.products.productsList;
 export const selectCategories= (state: RootState) => state.products.categoriesList;
 export const selectProductsStatus = (state: RootState) => state.products.productsStatus;
 export const selectCategoriesStatus = (state: RootState) => state.products.categoriesStatus;
+export const selectDetailWindow = (state: RootState) => state.products.detailWindow;
 export const selectLastUpdate = (state: RootState) => state.products.lastUpdate;
 
 

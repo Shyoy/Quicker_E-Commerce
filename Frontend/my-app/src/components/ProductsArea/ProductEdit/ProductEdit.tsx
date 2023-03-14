@@ -1,17 +1,37 @@
 import React, { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import ProductModel from '../../../Models/Products'
+import { editProductAsync, selectLastUpdate } from '../../../Redux/productsSlice'
 import config from '../../../Utils/Config'
 import './ProductEdit.css'
 
 interface ProductAddProps{
   prod: ProductModel
+  
 }
 
 const ProductEdit = (props:ProductAddProps) => {
   const [price, setPrice] = useState<string>(props.prod.price.toString()) 
   const [amount, setAmount] = useState<string>(props.prod.amount.toString()) 
+  const [image, setImage] = useState<File>()
+  const [previewImage, setPreviewImage] = useState<string>("");
 
+  const [isChanged, setIsChanged] = useState<Boolean>(false);
+  const dispatch = useAppDispatch();
 
+  const lastUpd = useAppSelector(selectLastUpdate);
+
+  useEffect(()=>{
+    if (price !== props.prod.price.toString() || 
+          amount !== props.prod.amount.toString() ||
+          image !== undefined){
+
+      setIsChanged(true)
+    }else{
+      setIsChanged(false)
+
+    }
+  },[image,amount,price])
 
   const handleChangePrice = (e:React.ChangeEvent<HTMLInputElement>) => {
     let inp:string;
@@ -34,11 +54,61 @@ const ProductEdit = (props:ProductAddProps) => {
     /^([0-9]{0,6})$/.test(e.target.value) && setAmount(e.target.value)
   }
 
+
+
+  const handleImageChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
+    const maxMbSize = 2
+    const validTypes = ['image/png', 'image/jpg', 'image/jpeg']
+    let inp = e.target.files?.[0] ;
+    if (inp){
+      console.log(inp);
+      if (inp?.size/1024/1024 > maxMbSize){
+        console.log(`Max File size is ${maxMbSize} MB`);   
+
+      }else if (!validTypes.includes(inp.type)){
+        console.log('Invalid file type');
+
+      }else{
+        setPreviewImage(URL.createObjectURL(inp));
+        setImage(inp)
+        
+      }
+    }
+  }
+  const handleSubmit = () =>{
+    
+    let formData = new FormData();
+    if (parseFloat(price) < 0.5){
+      console.log('Price must be more then 0.5');
+    }
+    else{
+      
+      if (image){
+        formData.append('image', image)
+      }
+      formData.append('amount', amount)
+      formData.append('price', parseFloat(price).toString())
+      formData.append('id', props.prod.id.toString())
+      if (isChanged){
+          dispatch(editProductAsync(formData))
+      }else{
+        console.log('Nothing is changed in the product');
+        alert('Nothing is changed in the product')
+      }
+
+
+    }
+  }
+
   return (
     <div className='ProductEdit'>
         <div className='cart-control me-4'>
+            {isChanged ? 
             
-            <button onClick={()=> props.prod} id={"b3"} title="add to cart"  className='rounded-pill  px-3'>Submit</button>
+            <button onClick={handleSubmit}  title="Submit changes"  className='submit-button rounded-pill  px-3'>Submit</button>
+            :
+            <button disabled  title="Submit changes"  className='rounded-pill  px-3'>Submit</button>
+            }
         
         </div>
         <div className='body-text'>
@@ -56,7 +126,20 @@ const ProductEdit = (props:ProductAddProps) => {
               </div>
             </div>
         </div>
-        <img className="card-img-top" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
+        {previewImage ? 
+        <img className="previewImage" src={previewImage} alt={props.prod.name +" image"}/>
+        :
+        <img className="prod-image" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
+        }
+        
+        <label className="file-upload">
+            <input type="file" accept="image/png, image/jpg, image/jpeg" onChange={(e)=>handleImageChange(e)}/>
+            Upload Image
+        </label>
+            {image?.name && 
+            <span className='image-name'>{image?.name}</span>
+            }
+
     </div>
   )
 }

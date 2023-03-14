@@ -39,10 +39,10 @@
     color: #242526;
     background-color: #93bac4;
     border-radius: 20px;
-    border:#242526 10px solid;
+    border:#333435 10px solid;
     height: 75vh;
     max-height: 800px;
-    min-height: 600px;
+    min-height: 500px;
     width: 60vw;
     max-width: 800px;
     min-width: 650px;
@@ -58,6 +58,7 @@
     padding-left: 20px;
     padding-right: 20px;
     /* margin-bottom: 20px; */
+    /* padding-bottom: 20px; */
     width: 100%;
     height: 10%;
 }
@@ -219,25 +220,6 @@
 }
 
 
-.ProductDetails .submit-button  {
-    background-color: rgba(10, 129, 80, 0.74);
-    border-radius: 20px;
-    margin-left: 10px;
-    color: bisque;
-    border: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 110px;
-    font-size: smaller;
-    border: 3px solid #e4ffc52a;
-    transition: 300ms;
-    
-}
-.ProductDetails .submit-button:hover  {
-    transform: scale(1.1);
-    
-}
-
 .ProductDetails .cart-control{
     display: flex;
     flex-direction: column-reverse;
@@ -246,7 +228,7 @@
     /* padding-right: 10px; */
 }
 
-.ProductDetails .cart-control  button {
+.ProductDetails .cart-control  .cart-buttons {
     box-shadow:  -4px 2px 5px 2px rgba(0, 0, 0, 0.205);
     margin-top: 10px;
     margin-bottom: 10px;
@@ -257,7 +239,7 @@
     background-color: rgba(73, 219, 109, 0.993);
 
 }
-.ProductDetails .cart-control > button:hover {
+.ProductDetails .cart-control > .cart-buttons:hover {
     transform: scale(1.08);
     filter:contrast(1.5);
     filter:brightness(1.1);
