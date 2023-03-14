@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import ProductModel from '../../../Models/Products'
-import { editProductAsync, selectLastUpdate } from '../../../Redux/productsSlice'
+import { editProductAsync, selectProductWindow, selectLastUpdate } from '../../../Redux/productsSlice'
 import config from '../../../Utils/Config'
 import './ProductEdit.css'
 
-interface ProductAddProps{
+interface ProductEditProps{
   prod: ProductModel
-  
+  handleClose:()=>void
+  handleSwap:()=>void
 }
 
-const ProductEdit = (props:ProductAddProps) => {
+const ProductEdit = (props:ProductEditProps) => {
   const [price, setPrice] = useState<string>(props.prod.price.toString()) 
   const [amount, setAmount] = useState<string>(props.prod.amount.toString()) 
   const [image, setImage] = useState<File>()
@@ -18,6 +19,7 @@ const ProductEdit = (props:ProductAddProps) => {
 
   const [isChanged, setIsChanged] = useState<Boolean>(false);
   const dispatch = useAppDispatch();
+  const productWindow = useAppSelector(selectProductWindow);
 
   const lastUpd = useAppSelector(selectLastUpdate);
 
@@ -102,44 +104,59 @@ const ProductEdit = (props:ProductAddProps) => {
 
   return (
     <div className='ProductEdit'>
-        <div className='cart-control me-4'>
-            {isChanged ? 
-            
-            <button onClick={handleSubmit}  title="Submit changes"  className='submit-button rounded-pill  px-3'>Submit</button>
-            :
-            <button disabled  title="Submit changes"  className='rounded-pill  px-3'>Submit</button>
-            }
-        
-        </div>
-        <div className='body-text'>
-            <div className="card-text">Price: <br/>
-                <input className='inputs'value={'₪'+price} onChange={(e)=>handleChangePrice(e)}/>
-                 
-            </div>
-            <div className="card-text">Amount: <br/>
-                <input className='inputs'value={amount} onChange={(e)=>handleAmountPrice(e)}/>
-                 
-            </div>
-            <div className="card-text">Barcode: <br/>
-              <div className='inputs'>
-                {props.prod.barcode}
-              </div>
-            </div>
-        </div>
-        {previewImage ? 
-        <img className="previewImage" src={previewImage} alt={props.prod.name +" image"}/>
-        :
-        <img className="prod-image" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
-        }
-        
-        <label className="file-upload">
-            <input type="file" accept="image/png, image/jpg, image/jpeg" onChange={(e)=>handleImageChange(e)}/>
-            Upload Image
-        </label>
-            {image?.name && 
-            <span className='image-name'>{image?.name}</span>
-            }
+      <div className='header'>
 
+          <button className="X" onClick={props.handleClose} >X</button>
+
+          <div className='fs-1 mt-4 text-capitalize'>
+              {props.prod.name}
+          </div>
+          <button className="swap-content" onClick={props.handleSwap}>{productWindow === 'edit' ? 'Back': 'Edit'}</button>
+
+      </div>
+      <div className='my-body'>
+          <div className='cart-control me-4'>
+              {isChanged ? 
+              
+              <button onClick={handleSubmit}  title="Submit changes"  className='submit-button rounded-pill  px-3'>Submit</button>
+              :
+              <button disabled  title="Submit changes"  className='rounded-pill  px-3'>Submit</button>
+              }
+          
+          </div>
+          <div className='body-text'>
+              <div className="card-text">Price: <br/>
+                  <input className='inputs'value={'₪'+price} onChange={(e)=>handleChangePrice(e)}/>
+                  
+              </div>
+              <div className="card-text">Amount: <br/>
+                  <input className='inputs'value={amount} onChange={(e)=>handleAmountPrice(e)}/>
+                  
+              </div>
+              <div className="card-text">Barcode: <br/>
+                <div className='inputs'>
+                  {props.prod.barcode}
+                </div>
+              </div>
+          </div>
+          {previewImage ? 
+          <img className="previewImage" src={previewImage} alt={props.prod.name +" image"}/>
+          :
+          <img className="prod-image" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
+          }
+          
+          <label className="file-upload">
+              <input type="file" accept="image/png, image/jpg, image/jpeg" onChange={(e)=>handleImageChange(e)}/>
+              Upload Image
+          </label>
+              {image?.name && 
+              <span className='image-name'>{image?.name}</span>
+              }
+
+      </div>
+      <div className='footer'>
+                          
+      </div>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector, useQuery } from '../../../app/hooks';
 import ProductModel from '../../../Models/Products';
 import { getCategoriesAsync, get_allAsync, selectProducts } from '../../../Redux/productsSlice';
-import ProductDetails from '../../ProductsArea/ProductDetails/ProductDetails';
+import ProductWindow from '../../ProductsArea/ProductWindow/ProductWindow';
 import Footer from '../Footer/Footer';
 
 import './Main.css'
@@ -41,7 +41,7 @@ const Main = () => {
   return (
     <div className='Main'>
       {/* <h1>Main</h1> */}
-      {product && <ProductDetails prod={product}/>}
+      {product && <ProductWindow prod={product}/>}
       <div className='Outlet'><Outlet/></div>
       <footer><Footer/></footer>
 

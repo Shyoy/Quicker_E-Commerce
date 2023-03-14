@@ -8,7 +8,7 @@ export interface productsList {
   categoriesList: CategoriesModel[];
   categoriesStatus: 'idle' | 'loading' | 'failed';
   productsStatus: 'idle' | 'loading' | 'failed';
-  detailWindow: 'product'| 'add' | 'edit';
+  productWindow: 'detail'| 'add' | 'edit';
   lastUpdate: Number;
 }
 
@@ -17,7 +17,7 @@ const initialState: productsList = {
   categoriesList: [],
   categoriesStatus: 'idle',
   productsStatus: 'idle',
-  detailWindow: 'product',
+  productWindow: 'detail',
   lastUpdate: new Date().getTime(),
 };
 
@@ -87,8 +87,8 @@ export const productsSlice = createSlice({
         return null;
       })
     },
-    setDetailWindow: (state, action: PayloadAction<'product'| 'add' | 'edit'>) => {
-      state.detailWindow = action.payload
+    setProductWindow: (state, action: PayloadAction<'detail'| 'add' | 'edit'>) => {
+      state.productWindow = action.payload
     },
   },
   
@@ -110,7 +110,7 @@ export const productsSlice = createSlice({
     .addCase(editProductAsync.fulfilled, (state, action) => {
       // console.log('Success')
       state.lastUpdate = new Date().getTime();
-      state.detailWindow = 'product'
+      state.productWindow = 'detail'
       state.productsStatus = 'idle';
 
     })
@@ -138,7 +138,7 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { increment, decrement, addProduct, updateProducts, setDetailWindow } = productsSlice.actions;
+export const { increment, decrement, addProduct, updateProducts, setProductWindow} = productsSlice.actions;
 
 
 
@@ -146,7 +146,7 @@ export const selectProducts = (state: RootState) => state.products.productsList;
 export const selectCategories= (state: RootState) => state.products.categoriesList;
 export const selectProductsStatus = (state: RootState) => state.products.productsStatus;
 export const selectCategoriesStatus = (state: RootState) => state.products.categoriesStatus;
-export const selectDetailWindow = (state: RootState) => state.products.detailWindow;
+export const selectProductWindow = (state: RootState) => state.products.productWindow;
 export const selectLastUpdate = (state: RootState) => state.products.lastUpdate;
 
 
