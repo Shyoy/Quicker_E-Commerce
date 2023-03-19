@@ -80,9 +80,11 @@ export const productsSlice = createSlice({
         if (oldProductList){
           const oldProduct:ProductModel = oldProductList[0]
           
+          oldProduct.image = newProduct.image
           oldProduct.amount = newProduct.amount
           oldProduct.price = newProduct.price
-          oldProduct.image = newProduct.image
+          state.lastUpdate = new Date().getTime();
+
         } 
         return null;
       })

@@ -1,24 +1,5 @@
 
-.ProductDetails {
-    box-shadow: -20px 30px 20px 4px rgba(11, 39, 17, 0.301);
-    display: flex;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    color: #242526;
-    background-color: #93bac4;
-    border-radius: 20px;
-    border:#333435 10px solid;
-    height: 75vh;
-    max-height: 800px;
-    min-height: 500px;
-    width: 60vw;
-    max-width: 800px;
-    min-width: 650px;
-    cursor: default;
-}
+
 
 .ProductDetails > .header{
     display: flex;
@@ -35,40 +16,68 @@
 }
 
 .ProductDetails > .header button{
-    background-color: #80bd25;
-    border-radius: 20px;
-    margin-left: 10px;
-    color: #242526;
-    border: none;
+    border-radius: 50%;
+    margin-bottom: 10px;
     
 }
 
-.ProductDetails > .header .swap-content{
+.ProductDetails > .header .options-buttons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.ProductDetails > .header .edit-button{
     /* padding-right: 10px;
     padding-left: 10px; */
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 110px;
+    /* padding-top: 5px;
+    padding-bottom: 5px; */
+    color: rgb(2, 255, 242);
+    width: 30px;
+    height: 30px;
     font-size: smaller;
     border: 3px solid #e4ffc52a;
+    background-color: #80bd25;
+
     transition: 300ms;
 
 }
-.ProductDetails > .header .swap-content:hover{
+.ProductDetails > .header .edit-button:hover{
    
-    transform: scale(1.1);
+    transform: scale(1.2);
 
+}
+.ProductWindow .addButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    /* margin-top: 4.3%; */
+    font-size: 26px;
+    width: 30px;
+    height: 30px;
+
+    color: #80bd25;
+    background-color: darkgreen;
+    border: 4px solid #91c840;
+    border-radius: 50%;
+    transition: 300ms;
+}
+.ProductWindow .addButton:hover {
+    transform: scale(1.2);
 }
 
 .ProductDetails > .header .X{
-    /* flex-grow: 1; */
+    background-color: #80bd25;
     border: 3px solid #e4ffc52a;
     height: 30px;
     width: 30px;
     font-size: smaller;
     transition: 300ms;
 }
-.ProductDetails > .pop-window .header .X:hover{
+.ProductDetails > .header .X:hover{
     
     transform: scale(1.1);
 }
@@ -76,7 +85,7 @@
 .ProductDetails .my-body {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 70%;
@@ -150,6 +159,7 @@
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
+    width: 20%;
 }
 
 .ProductDetails .cart-control  .cart-buttons {

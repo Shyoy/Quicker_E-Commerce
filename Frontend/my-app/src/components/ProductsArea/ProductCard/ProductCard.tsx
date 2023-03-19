@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import ProductModel from '../../../Models/Products'
 import { addItem, decrement, increment, selectInCart} from '../../../Redux/cartSlice'
+import { selectLastUpdate } from '../../../Redux/productsSlice'
 import config from '../../../Utils/Config'
 import './ProductCard.css'
 

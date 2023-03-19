@@ -26,7 +26,7 @@ class Product(models.Model):
     price = models.FloatField(validators=[MinValueValidator(0.5)])
     amount = models.IntegerField(default=1)
     image = models.ImageField(upload_to=ImageHandler.path,validators=[ImageValidator(3),validate_image_file_extension])
-    categories = models.ManyToManyField(Category,related_name='products')
+    categories = models.ManyToManyField(Category,related_name='products',blank=True)
 
     class Meta:
         ordering = ['created']

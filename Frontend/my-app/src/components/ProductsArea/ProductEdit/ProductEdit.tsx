@@ -35,7 +35,7 @@ const ProductEdit = (props:ProductEditProps) => {
     }
   },[image,amount,price])
 
-  const handleChangePrice = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handlePriceChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     let inp:string;
     if (e.target.value.length === 1 && e.target.value[0] !== '₪'){
       inp = e.target.value;
@@ -52,7 +52,7 @@ const ProductEdit = (props:ProductEditProps) => {
     }
     
   }
-  const handleAmountPrice = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleAmountChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     /^([0-9]{0,6})$/.test(e.target.value) && setAmount(e.target.value)
   }
 
@@ -107,15 +107,14 @@ const ProductEdit = (props:ProductEditProps) => {
       <div className='header'>
 
           <button className="X" onClick={props.handleClose} >X</button>
-
           <div className='fs-1 mt-4 text-capitalize'>
               {props.prod.name}
           </div>
-          <button className="swap-content" onClick={props.handleSwap}>{productWindow === 'edit' ? 'Back': 'Edit'}</button>
+          <button className="swap-content" onClick={props.handleSwap}>{'Back'}</button>
 
       </div>
       <div className='my-body'>
-          <div className='cart-control me-4'>
+          <div className='button-control '>
               {isChanged ? 
               
               <button onClick={handleSubmit}  title="Submit changes"  className='submit-button rounded-pill  px-3'>Submit</button>
@@ -126,11 +125,11 @@ const ProductEdit = (props:ProductEditProps) => {
           </div>
           <div className='body-text'>
               <div className="card-text">Price: <br/>
-                  <input className='inputs'value={'₪'+price} onChange={(e)=>handleChangePrice(e)}/>
+                  <input className='inputs'value={'₪'+price} onChange={(e)=>handlePriceChange(e)}/>
                   
               </div>
               <div className="card-text">Amount: <br/>
-                  <input className='inputs'value={amount} onChange={(e)=>handleAmountPrice(e)}/>
+                  <input className='inputs'value={amount} onChange={(e)=>handleAmountChange(e)}/>
                   
               </div>
               <div className="card-text">Barcode: <br/>

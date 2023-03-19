@@ -15,6 +15,7 @@ export interface ProductDetailsProps{
     prod: ProductModel;
     handleClose:()=>void
     handleSwap:()=>void
+    handleClickAdd:()=>void
   }
 
 const ProductDetails = (props:ProductDetailsProps) => {
@@ -44,11 +45,13 @@ const ProductDetails = (props:ProductDetailsProps) => {
             <div className='fs-1 mt-4 text-capitalize'>
                 {props.prod.name}
             </div>
-            <button className="swap-content" onClick={props.handleSwap}>{'Edit'}</button>
-
+            <div className='options-buttons'>
+                <button className="addButton bi bi-plus-circle-fill " onClick={props.handleClickAdd} title='Add new product'></button>
+                <button className="edit-button"  onClick={props.handleSwap} title='Edit product'><i className="bi bi-pencil-square" /></button>
+            </div>
         </div>
         <div className='my-body'>
-            <div className='cart-control me-4'>
+            <div className='cart-control'>
                 {currentItemList.length === 1 ? 
                 <>
                 <button hidden={true} />
