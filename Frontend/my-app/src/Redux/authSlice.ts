@@ -70,10 +70,6 @@ export const authSlice = createSlice({
       state.authWindow= false;
     },
     
-    addProduct: (state, action: PayloadAction) => {
-      // state.productsList.push(action.payload);
-    },
-    
   },
   
   extraReducers: (builder) => {
