@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import ProductModel from '../../../Models/Products'
-import { addProductAsync, selectProductWindow, selectLastUpdate } from '../../../Redux/productsSlice'
+import { addProductAsync, selectProductWindow, selectLastUpdate, selectProducts } from '../../../Redux/productsSlice'
 import config from '../../../Utils/Config'
 import './ProductAdd.css'
 
@@ -17,12 +18,12 @@ const ProductAdd = (props:ProductAddProps) => {
   const [barcode, setBarcode] = useState<string>('') 
   const [image, setImage] = useState<File>()
   const [previewImage, setPreviewImage] = useState<string>("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [isChanged, setIsChanged] = useState<Boolean>(false);
   const dispatch = useAppDispatch();
   const productWindow = useAppSelector(selectProductWindow);
-
-  const lastUpd = useAppSelector(selectLastUpdate);
+  const products = useAppSelector(selectProducts);
 
   useEffect(()=>{
     if (name !== '' && 
@@ -37,6 +38,13 @@ const ProductAdd = (props:ProductAddProps) => {
 
     }
   },[image,amount,price])
+  // useEffect(()=>{
+  //   if (productWindow === 'detail'){
+  //     searchParams.set('product',products[0].barcode.toString());
+  //     searchParams.set('action','detail');
+  //     setSearchParams(searchParams)
+  //   }
+  // },[productWindow])
 
   const handleNameChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     /^([a-z .0-9]{0,24})$/.test(e.target.value) && 
