@@ -1,0 +1,46 @@
+
+
+.ProductWindow > .my-overlay{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    height: 100%;
+    width: 100vw;
+    background-color: rgba(43, 42, 42, 0.603);
+    cursor: pointer;
+    
+}
+.ProductWindow > .pop-window{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* margin-right: -50%; */
+    transform: translate(-50%, -50%);
+    z-index: 6;
+}
+
+.ProductWindow > .pop-window > div {
+    box-shadow: -20px 30px 20px 4px rgba(11, 39, 17, 0.301);
+    display: flex;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: #242526;
+    background-color: #93bac4;
+    border-radius: 20px;
+    border:#333435 10px solid;
+    height: 75vh;
+    max-height: 800px;
+    min-height: 395px;
+    width: 60vw;
+    max-width: 800px;
+    min-width: 700px;
+    cursor: default;
+}
+
+

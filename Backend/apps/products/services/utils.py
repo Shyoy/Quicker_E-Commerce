@@ -1,8 +1,9 @@
+import imp
 from django.db import models
 from io import BytesIO
 from PIL import Image
 from django.core.files import File
-
+from datetime import datetime
 #image compression method
 
 
@@ -15,10 +16,11 @@ class ImageHandler:
         Returns a path to the image,\ 
         Made to be used inside ImageField as upload_to=path
         '''
+        time = int(datetime.now().timestamp())
         # print(instance.image)
         extension = filename.split('.')[-1]
         # file will be uploaded to MEDIA_ROOT / <barcode>/<filename>
-        return f'products/{instance.barcode}_{instance.name}.{extension}'
+        return f'products/{instance.barcode}_{time}_{instance.name}.{extension}'
     
     @staticmethod
     def compress(image:object):

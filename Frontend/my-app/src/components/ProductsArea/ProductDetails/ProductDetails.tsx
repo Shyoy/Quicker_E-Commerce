@@ -5,29 +5,28 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import ProductModel from '../../../Models/Products';
 import {  logout, selectErrMsg, selectFullName, selectIsLogin } from '../../../Redux/authSlice';
 import { addItem, decrement, increment, selectInCart } from '../../../Redux/cartSlice';
-import { selectProducts } from '../../../Redux/productsSlice';
+import { selectProductWindow, selectProducts, setProductWindow } from '../../../Redux/productsSlice';
 import config from '../../../Utils/Config';
+import ProductEdit from '../ProductEdit/ProductEdit';
 
 import "./ProductDetails.css"
 
 export interface ProductDetailsProps{
     prod: ProductModel;
-    
+    handleClose:()=>void
+    handleSwap:()=>void
+    handleClickAdd:()=>void
   }
 
 const ProductDetails = (props:ProductDetailsProps) => {
-
-    // const [loading, setLoading] = useState()
-    const inCart = useAppSelector(selectInCart);
-
+    
     const dispatch = useAppDispatch();
 
-    const [productWindow, setProductWindow] = useState<Boolean>(false) 
-    const [searchParams, setSearchParams] = useSearchParams();
+    // const [searchParams, setSearchParams] = useSearchParams();
     const navigate  = useNavigate()
-    const products = useAppSelector(selectProducts);
-    let product:any ;
 
+    
+    const inCart = useAppSelector(selectInCart);
     const currentItemList = inCart.filter((item) => props.prod.barcode === item.product.barcode)
     const currentItem = currentItemList[0] || null
     const visible:boolean = currentItem?.amount < currentItem?.product?.amount
@@ -36,70 +35,65 @@ const ProductDetails = (props:ProductDetailsProps) => {
 
     // const [errMsg, setErrMsg] = useState("") 
 
-    const handleClose = () => {
-        searchParams.delete('product')
-        setSearchParams(searchParams)
-    }
-    const handleSwap = () => {}
-
-
     
     return (
     <div className='ProductDetails'>
-        <div className='my-overlay'  onClick={handleClose}/>
-        
-        <div className='pop-window'>
-            <div className='window-body'>
-                <div className='header'>
-                    <button className="swap-content" style={{visibility:'hidden'}} onClick={handleSwap}>swap</button>
-                    <div className='fs-1 mt-4 text-capitalize'>
-                        {props.prod.name}
-                    </div>
-                    <button className="X" onClick={handleClose} >X</button>
-                </div>
-                <div className='my-body'>
-                    <div className='cart-control me-4'>
-                        {currentItemList.length === 1 ? 
-                        <>
-                        <button hidden={true} />
-                        <button onClick={()=> dispatch(decrement({barcode:props.prod.barcode}))} id={"b1"} className='text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
-                        <div className='amount rounded-pill'>{currentItem.amount}</div>
-                        <button onClick={()=> dispatch(increment({barcode:props.prod.barcode}))} style={{visibility: visible ? undefined:'hidden'}} id={"b2"} className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
-                        </>
-                        :
-                        <button onClick={()=> dispatch(addItem(props.prod))} id={"b3"} title="add to cart"  className='rounded-pill  px-2 material-symbols-outlined'>add_shopping_cart</button>
-                    }
-                    </div>
-                    <div className='body-text'>
-                        <div className="card-text">Price: <br/>
-                            <div className='inputs'>
-                                ₪{props.prod.price}
-                            </div>
-                        </div>
-                        <div className="card-text">Amount: <br/>
-                            <div className='inputs'>
-                                {props.prod.amount}
-                            </div>
-                        </div>
-                        <div className="card-text">Barcode: <br/>
-                            <div className='inputs'>
-                                {props.prod.barcode}
-                            </div>
-                        </div>
-                    </div>
-                    <img className="card-img-top" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
-                </div>
+        <div className='header'>
 
-                <div className='footer'>
-                        
-                </div>
+            <button className="X" onClick={props.handleClose} >X</button>
 
+            <div className='fs-1 mt-4 text-capitalize'>
+                {props.prod.name}
             </div>
-
+            <div className='options-buttons'>
+                <button className="addButton bi bi-plus-circle-fill " onClick={props.handleClickAdd} title='Add new product'></button>
+                <button className="edit-button"  onClick={props.handleSwap} title='Edit product'><i className="bi bi-pencil-square" /></button>
+            </div>
         </div>
-    
+        <div className='my-body'>
+            <div className='cart-control'>
+                {currentItemList.length === 1 ? 
+                <>
+                <button hidden={true} />
+                <button onClick={()=> dispatch(decrement({barcode:props.prod.barcode}))}  className='cart-buttons text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
+                <div className='amount rounded-pill'>{currentItem.amount}</div>
+                <button onClick={()=> dispatch(increment({barcode:props.prod.barcode}))} style={{visibility: visible ? undefined:'hidden'}}  className='cart-buttons text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
+                </>
+                :
+                <button onClick={()=> dispatch(addItem(props.prod))}  title="add to cart"  className='cart-buttons rounded-pill  px-2 material-symbols-outlined'>add_shopping_cart</button>
+            }
+            </div>
+            
+            <div className='body-text'>
+                <div className="card-text">Price: <br/>
+                    <div className='inputs'>
+                        ₪{props.prod.price}
+                    </div>
+                </div>
+                <div className="card-text">Amount: <br/>
+                    <div className='inputs'>
+                        {props.prod.amount}
+                    </div>
+                </div>
+                <div className="card-text">Barcode: <br/>
+                    <div className='inputs'>
+                        {props.prod.barcode}
+                    </div>
+                </div>
+            </div>
+            <img className="card-img-top" src={config.productImagesUrl+props.prod.image} alt={props.prod.name +" image"}/>
+        </div>
+            <div className='footer'>
+                
+        </div>
 
     </div>
+                
+
+        
+    
+
+    
             
     )
 }

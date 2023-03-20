@@ -26,6 +26,23 @@ class ProductsAPI{
           
         });
     }
+    public async editProduct(id:string, form:FormData) {
+        return await new  Promise<{data: ProductModel}>(async (resolve,reject) =>{
+            await axios.put<ProductModel>(config.productsUrl+'/'+id, form)
+                .then((response) =>  resolve({data: response.data}))
+                .catch((error) => reject(error))
+          
+        });
+    }
+    public async addProduct(form:FormData) {
+        return await new  Promise<{data: ProductModel}>(async (resolve,reject) =>{
+            console.log(form);
+            await axios.post<ProductModel>(config.productsUrl, form)
+                .then((response) =>  resolve({data: response.data}))
+                .catch((error) => reject(error))
+          
+        });
+    }
 
 }
 

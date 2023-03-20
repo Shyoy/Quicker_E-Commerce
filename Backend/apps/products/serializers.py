@@ -11,7 +11,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Product
         fields = '__all__'
-        # exclude = ['id']
+      
 
 
 class CartItemSerializer(serializers.ModelSerializer):

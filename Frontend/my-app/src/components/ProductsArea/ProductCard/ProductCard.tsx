@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import ProductModel from '../../../Models/Products'
 import { addItem, decrement, increment, selectInCart} from '../../../Redux/cartSlice'
+import { selectLastUpdate } from '../../../Redux/productsSlice'
 import config from '../../../Utils/Config'
 import './ProductCard.css'
 
@@ -37,12 +38,12 @@ const ProductCard = (props:ProductProps):JSX.Element => {
                 {currentItemList.length === 1 ? 
                 <>
                 <button hidden={true} />
-                <button onClick={()=> dispatch(decrement({barcode:props.product.barcode}))} id={"b1"} className='text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
+                <button onClick={()=> dispatch(decrement({barcode:props.product.barcode}))} className='text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
                 <div className='amount rounded-pill'>{currentItem.amount}</div>
-                <button onClick={()=> dispatch(increment({barcode:props.product.barcode}))} style={{visibility: visible ? undefined:'hidden'}} id={"b2"} className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
+                <button onClick={()=> dispatch(increment({barcode:props.product.barcode}))} style={{visibility: visible ? undefined:'hidden'}}  className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
                 </>
                 :
-                <button onClick={()=> dispatch(addItem(props.product))} id={"b3"} title="add to cart" style={{visibility:isHidden ? "hidden": "visible"}} className='rounded-pill  px-4 material-symbols-outlined'>add_shopping_cart</button>
+                <button onClick={()=> dispatch(addItem(props.product))} title="add to cart" style={{visibility:isHidden ? "hidden": "visible"}} className='rounded-pill  px-4 material-symbols-outlined'>add_shopping_cart</button>
               }
               </div>
                 

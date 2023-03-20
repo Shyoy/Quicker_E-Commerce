@@ -1,55 +1,7 @@
 
-.ProductDetails{
-    /* height: 100%;
-    display: flex;
-    flex-grow: 2;
-    justify-content:space-evenly;
-    align-items: center; */
-}
 
-.ProductDetails > .my-overlay{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-    height: 100%;
-    width: 100vw;
-    background-color: rgba(43, 42, 42, 0.603);
-    cursor: pointer;
-    
-}
-.ProductDetails > .pop-window{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* margin-right: -50%; */
-    transform: translate(-50%, -50%);
-    z-index: 6;
-}
-.ProductDetails > .pop-window > .window-body{
-    box-shadow: -20px 30px 20px 4px rgba(11, 39, 17, 0.301);
-    display: flex;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    color: #242526;
-    background-color: #93bac4;
-    border-radius: 20px;
-    border:#242526 10px solid;
-    height: 75vh;
-    max-height: 800px;
-    min-height: 600px;
-    width: 60vw;
-    max-width: 800px;
-    min-width: 650px;
-    cursor: default;
-}
 
-.ProductDetails > .pop-window .header{
+.ProductDetails > .header{
     display: flex;
     /* margin-top: 10px; */
     flex-direction: row;
@@ -58,92 +10,93 @@
     padding-left: 20px;
     padding-right: 20px;
     /* margin-bottom: 20px; */
+    /* padding-bottom: 20px; */
     width: 100%;
     height: 10%;
 }
 
-.ProductDetails > .pop-window .header button{
-    background-color: #80bd25;
-    border-radius: 20px;
-    margin-left: 10px;
-    color: #242526;
-    border: none;
+.ProductDetails > .header button{
+    border-radius: 50%;
+    margin-bottom: 10px;
     
 }
 
-.ProductDetails > .pop-window .header .swap-content{
+.ProductDetails > .header .options-buttons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.ProductDetails > .header .edit-button{
     /* padding-right: 10px;
     padding-left: 10px; */
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 110px;
+    /* padding-top: 5px;
+    padding-bottom: 5px; */
+    color: rgb(2, 255, 242);
+    width: 30px;
+    height: 30px;
     font-size: smaller;
     border: 3px solid #e4ffc52a;
+    background-color: #80bd25;
+
     transition: 300ms;
 
 }
-.ProductDetails > .pop-window .header .swap-content:hover{
+.ProductDetails > .header .edit-button:hover{
    
-    transform: scale(1.1);
+    transform: scale(1.2);
 
 }
+.ProductWindow .addButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    /* margin-top: 4.3%; */
+    font-size: 26px;
+    width: 30px;
+    height: 30px;
 
-.ProductDetails > .pop-window .header .X{
-    /* flex-grow: 1; */
+    color: #80bd25;
+    background-color: darkgreen;
+    border: 4px solid #91c840;
+    border-radius: 50%;
+    transition: 300ms;
+}
+.ProductWindow .addButton:hover {
+    transform: scale(1.2);
+}
+
+.ProductDetails > .header .X{
+    background-color: #80bd25;
     border: 3px solid #e4ffc52a;
     height: 30px;
     width: 30px;
     font-size: smaller;
     transition: 300ms;
 }
-.ProductDetails > .pop-window .header .X:hover{
+.ProductDetails > .header .X:hover{
     
     transform: scale(1.1);
 }
 
-
-/* .ProductDetails .window-body input {
-    border-radius: 6px;
-    max-width: 200px;
-    margin-bottom: 15px;
-    box-shadow: -7px 5px 5px 2px #00000088;
-    margin-left: 8px;
-    width: 190px;
-
-} */
-/* .ProductDetails .window-body i {
-    position: absolute;
-    left: 8%;
-    margin-top: 3px;
-  
-    color: beige;
- 
-
-} */
 .ProductDetails .my-body {
-    /* margin-top: 5%; */
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 70%;
-    /* text-shadow: -6px 4px 4px #00000088; */
 
 }
 
 .ProductDetails .my-body .body-text {
-    /* margin-right: 10%; */
     display: flex;
     flex-direction: column;
-    /* justify-content: flex-end; */
     align-items: normal;
-    
     width: 38%;
-    /* text-align: unset; */
-
-    /* width: 100%; */
-    /* text-shadow: -6px 4px 4px #00000088; */
 
 }
 .ProductDetails .my-body .body-text > .card-text{
@@ -153,17 +106,20 @@
     text-align: left;
     display: flex;
     text-shadow: -6px 4px 3px #44691a41;
-    /* justify-content: flex-start; */
     flex-direction: column;
-    
 
 }
+
 .ProductDetails .my-body .inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: aliceblue;
     width: 70%;
     height: 28px;
     box-shadow: -4px 3px 4px 3px rgba(0, 0, 0, 0.205);
     border-radius: 50rem ;
+    font-weight: 300;
     border: 2px solid #8fd4282a;
     text-align: center;
     text-shadow:none;
@@ -195,38 +151,18 @@
     align-items: center;
     width: 100%;
 
-
 }
 
-
-.ProductDetails .submit-button  {
-    background-color: rgba(10, 129, 80, 0.74);
-    border-radius: 20px;
-    margin-left: 10px;
-    color: bisque;
-    border: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 110px;
-    font-size: smaller;
-    border: 3px solid #e4ffc52a;
-    transition: 300ms;
-    
-}
-.ProductDetails .submit-button:hover  {
-    transform: scale(1.1);
-    
-}
 
 .ProductDetails .cart-control{
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
-    /* padding-right: 10px; */
+    width: 20%;
 }
 
-.ProductDetails .cart-control  button {
+.ProductDetails .cart-control  .cart-buttons {
     box-shadow:  -4px 2px 5px 2px rgba(0, 0, 0, 0.205);
     margin-top: 10px;
     margin-bottom: 10px;
@@ -237,7 +173,7 @@
     background-color: rgba(73, 219, 109, 0.993);
 
 }
-.ProductDetails .cart-control > button:hover {
+.ProductDetails .cart-control > .cart-buttons:hover {
     transform: scale(1.08);
     filter:contrast(1.5);
     filter:brightness(1.1);
@@ -246,13 +182,10 @@
 
 .ProductDetails .amount{
     cursor: pointer;
-    /* flex-direction:none; */
     display: inline-block;
     box-shadow:  -4px 3px 4px 3px rgba(0, 0, 0, 0.205);
-
     background-color: aliceblue;   
     padding-top: 0;
-    /* height: 50px; */
     width:60px;
     
 }
