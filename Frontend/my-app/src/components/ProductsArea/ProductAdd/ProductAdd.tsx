@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import ProductModel from '../../../Models/Products'
-import { editProductAsync, selectProductWindow, selectLastUpdate } from '../../../Redux/productsSlice'
+import { addProductAsync, selectProductWindow, selectLastUpdate } from '../../../Redux/productsSlice'
 import config from '../../../Utils/Config'
 import './ProductAdd.css'
 
@@ -113,8 +113,8 @@ const ProductAdd = (props:ProductAddProps) => {
       formData.append('amount', amount)
       formData.append('barcode', barcode)
       formData.append('price', parseFloat(price).toString())
-      console.log(formData);
-          // dispatch(editProductAsync(formData))
+      // console.log(formData);
+      dispatch(addProductAsync(formData))
 
     }
     

@@ -56,6 +56,18 @@ export const editProductAsync = createAsyncThunk(
     }
   }
 );
+export const addProductAsync = createAsyncThunk(
+  'products/addProduct',
+  async (form:FormData, ThunkAPI) => {
+
+    const response = await productsAPI.addProduct(form);
+    // The value we return becomes the `fulfilled` action payload
+    // ThunkAPI.dispatch(updateProducts(Array(response.data)))
+    return response.data;
+      
+    
+  }
+);
 
 
 export const productsSlice = createSlice({
@@ -106,6 +118,21 @@ export const productsSlice = createSlice({
       state.productsStatus = 'loading';
     })
     .addCase(get_allAsync.rejected, (state,action) => {
+      console.log(action.error?.message);
+      state.productsStatus = 'failed';
+    })
+    .addCase(addProductAsync.fulfilled, (state, action) => {
+      // console.log('Success')
+      state.productsList.push(action.payload)
+      state.lastUpdate = new Date().getTime();
+      state.productWindow = 'detail'
+      state.productsStatus = 'idle';
+
+    })
+    .addCase(addProductAsync.pending, (state) => {
+      state.productsStatus = 'loading';
+    })
+    .addCase(addProductAsync.rejected, (state,action) => {
       console.log(action.error?.message);
       state.productsStatus = 'failed';
     })
