@@ -1,6 +1,8 @@
 .ProductsCard{
     margin: 0.5%;
-    max-height: 400px;
+    /* max-height: 400px;
+    min-height: 370px; */
+    height: 380px;
     box-shadow:  -4px 4px 6px 4px rgba(0, 0, 0, 0.205);
     min-width:210px;
     transition: 300ms;
@@ -28,19 +30,26 @@
 .ProductsCard:hover >.card-img-top{
     border-radius: 0px;
     opacity: 1;
+    cursor: pointer;
     
 }
 
-.ProductsCard > .card-body{
+.ProductsCard > .item-body{
     border-top: 5px solid #555;
-
     border-color: rgba(8, 122, 37, 0.233);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 200px;
+    /* max-height: 200px; */
 }
 
 .ProductsCard .cart-control{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 5px;
 }
 
 .ProductsCard .cart-control  button {

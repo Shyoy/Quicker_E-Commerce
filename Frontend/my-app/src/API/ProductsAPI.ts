@@ -34,6 +34,14 @@ class ProductsAPI{
           
         });
     }
+    public async deleteProduct(id:string) {
+        return await new  Promise<{data: any}>(async (resolve,reject) =>{
+            await axios.delete(config.productsUrl+'/'+id)
+                .then((response) =>  resolve({data: response.data}))
+                .catch((error) => reject(error))
+          
+        });
+    }
     public async addProduct(form:FormData) {
         return await new  Promise<{data: ProductModel}>(async (resolve,reject) =>{
             console.log(form);

@@ -60,7 +60,7 @@ const Register = () => {
 
   return (
     <div className='Register' onKeyUp={handleKeyPress}>
-      <h2 className='mb-4'>Sign Up</h2>
+      <h3 className=''>Sign Up</h3>
       <div className='mb-2 small smaller text-danger' style={{visibility:errMsg!=''||typeErr!='' ? "visible": "hidden"}}>{errMsg||typeErr} !</div>
       <input type="text" placeholder=' Full name' value={name} onChange={(e)=>{ /^[a-z|A-Z| ]*$/.test(e.target.value) && setName(e.target.value)}} />
       <i className="material-symbols-rounded">
