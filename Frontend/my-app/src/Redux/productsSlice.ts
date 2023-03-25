@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import ProductModel from '../Models/Products';
 import productsAPI, { CategoriesModel } from '../API/ProductsAPI';
+import { current } from 'immer';
+import { useNavigate } from 'react-router-dom';
+
 
 export interface productsList {
   productsList: ProductModel[];
@@ -46,26 +49,31 @@ export const editProductAsync = createAsyncThunk(
     if (form.has('id')){
       let id:string = form.get('id')?.toString()||'';
       form.delete('id');
-
       const response = await productsAPI.editProduct(id, form);
       console.log(response.data)
       // The value we return becomes the `fulfilled` action payload
       ThunkAPI.dispatch(updateProducts(Array(response.data)))
       return response.data;
-      
     }
+  }
+);
+export const deleteProductAsync = createAsyncThunk(
+  'products/deleteProduct',
+  async (id:string, ThunkAPI) => {
+    const response = await productsAPI.deleteProduct(id);
+    ThunkAPI.dispatch(delProduct(id))
+
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
   }
 );
 export const addProductAsync = createAsyncThunk(
   'products/addProduct',
   async (form:FormData, ThunkAPI) => {
-
     const response = await productsAPI.addProduct(form);
     // The value we return becomes the `fulfilled` action payload
     // ThunkAPI.dispatch(updateProducts(Array(response.data)))
     return response.data;
-      
-    
   }
 );
 
@@ -83,6 +91,10 @@ export const productsSlice = createSlice({
       state.productsList = [];
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
+    delProduct: (state, action: PayloadAction<string>) => {
+      let index = state.productsList.findIndex(p => p.id === +action.payload)
+      state.productsList.splice(index,1);
+    },
     addProduct: (state, action: PayloadAction<ProductModel>) => {
       state.productsList.push(action.payload);
     },
@@ -109,7 +121,6 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addCase(get_allAsync.fulfilled, (state, action) => {
-      // console.log('Success')
       state.lastUpdate = new Date().getTime();
       state.productsList = action.payload.filter((product) => product.amount > 0);
       state.productsStatus = 'idle';
@@ -122,7 +133,6 @@ export const productsSlice = createSlice({
       state.productsStatus = 'failed';
     })
     .addCase(addProductAsync.fulfilled, (state, action) => {
-      // console.log('Success')
       state.productsList.push(action.payload)
       state.lastUpdate = new Date().getTime();
       state.productWindow = 'detail'
@@ -136,8 +146,21 @@ export const productsSlice = createSlice({
       console.log(action.error?.message);
       state.productsStatus = 'failed';
     })
-    .addCase(editProductAsync.fulfilled, (state, action) => {
+    .addCase(deleteProductAsync.fulfilled, (state, action) => {
       // console.log('Success')
+      state.lastUpdate = new Date().getTime();
+      state.productWindow = 'detail'
+      state.productsStatus = 'idle';
+
+    })
+    .addCase(deleteProductAsync.pending, (state) => {
+      state.productsStatus = 'loading';
+    })
+    .addCase(deleteProductAsync.rejected, (state,action) => {
+      console.log(action.error?.message);
+      state.productsStatus = 'failed';
+    })
+    .addCase(editProductAsync.fulfilled, (state, action) => {
       state.lastUpdate = new Date().getTime();
       state.productWindow = 'detail'
       state.productsStatus = 'idle';
@@ -167,7 +190,7 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { increment, decrement, addProduct, updateProducts, setProductWindow} = productsSlice.actions;
+export const { increment, decrement, addProduct,delProduct, updateProducts, setProductWindow} = productsSlice.actions;
 
 
 

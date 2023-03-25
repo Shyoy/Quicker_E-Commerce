@@ -30,22 +30,22 @@ const ProductCard = (props:ProductProps):JSX.Element => {
   return (
       <div className="ProductsCard" > 
               <img className="card-img-top" onClick={handleClick} src={config.productImagesUrl+props.product.image} alt={props.product.name +" image"}/>
-              <div className="card-body">
-                <h5 className="card-title text-capitalize fs-4">{props.product.name}</h5>
-                <p className="card-text ">Price - ₪{props.product.price}</p>
+              <div className="item-body">
+                <span className="text-capitalize fs-5">{props.product.name}</span>
+                <span className="card-text ">Price - ₪{props.product.price}</span>
                 <p className="card-text">Amount - {props.product.amount}</p>
                 <div className='cart-control'>
-                {currentItemList.length === 1 ? 
-                <>
-                <button hidden={true} />
-                <button onClick={()=> dispatch(decrement({barcode:props.product.barcode}))} className='text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
-                <div className='amount rounded-pill'>{currentItem.amount}</div>
-                <button onClick={()=> dispatch(increment({barcode:props.product.barcode}))} style={{visibility: visible ? undefined:'hidden'}}  className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
-                </>
-                :
-                <button onClick={()=> dispatch(addItem(props.product))} title="add to cart" style={{visibility:isHidden ? "hidden": "visible"}} className='rounded-pill  px-4 material-symbols-outlined'>add_shopping_cart</button>
-              }
-              </div>
+                  {currentItemList.length === 1 ? 
+                  <>
+                  <button hidden={true} />
+                  <button onClick={()=> dispatch(decrement({barcode:props.product.barcode}))} className='text-danger px-2 rounded-pill material-symbols-outlined'>remove</button>
+                  <div className='amount rounded-pill'>{currentItem.amount}</div>
+                  <button onClick={()=> dispatch(increment({barcode:props.product.barcode}))} style={{visibility: visible ? undefined:'hidden'}}  className='text-primary px-2 rounded-pill material-symbols-outlined'>add</button>
+                  </>
+                  :
+                  <button onClick={()=> dispatch(addItem(props.product))} title="add to cart" style={{visibility:isHidden ? "hidden": "visible"}} className='rounded-pill  px-4 material-symbols-outlined'>add_shopping_cart</button>
+                }
+                </div>
                 
                 {/* <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> */}
               </div>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import ProductModel from '../../../Models/Products'
-import { editProductAsync, selectProductWindow, selectLastUpdate } from '../../../Redux/productsSlice'
+import { editProductAsync, selectProductWindow, selectLastUpdate, deleteProductAsync } from '../../../Redux/productsSlice'
 import config from '../../../Utils/Config'
 import './ProductEdit.css'
 
@@ -20,6 +21,7 @@ const ProductEdit = (props:ProductEditProps) => {
   const [isChanged, setIsChanged] = useState<Boolean>(false);
   const dispatch = useAppDispatch();
   const productWindow = useAppSelector(selectProductWindow);
+  const navigate  = useNavigate()
 
   const lastUpd = useAppSelector(selectLastUpdate);
 
@@ -77,6 +79,17 @@ const ProductEdit = (props:ProductEditProps) => {
       }
     }
   }
+
+  const handleDelete = () => {
+    if (window.confirm('Are you sure you want to delete this product ?')){
+      dispatch(deleteProductAsync(props.prod.id.toString())).then(() => {
+        console.log(`Product deleted ${props.prod.id}`);
+        navigate('/')
+      })
+        
+    }
+  };
+
   const handleSubmit = () =>{
     
     let formData = new FormData();
@@ -154,7 +167,7 @@ const ProductEdit = (props:ProductEditProps) => {
 
       </div>
       <div className='footer'>
-                          
+        <button className='delete-button bi bi-trash3' onClick={handleDelete}/>
       </div>
     </div>
   )

@@ -46,8 +46,8 @@
 .Auth > .pop-window > .window-body{
     box-shadow: -20px 30px 20px 4px rgba(11, 39, 17, 0.301);
     display: flex;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    /* padding-top: 2%; */
+    /* padding-bottom: 2%; */
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
@@ -55,11 +55,11 @@
     background-color: #29292a;
     border-radius: 50px;
     border:#7fb330fd 10px solid;
-    height: 75vh;
-    max-height: 550px;
-    min-height: 480px;
+    height: 73vh;
+    max-height: 500px;
+    min-height: 450px;
     max-width: 360px;
-    width: 20vw;
+    width: 21vw;
     min-width: 300px;
     cursor: default;
 }
