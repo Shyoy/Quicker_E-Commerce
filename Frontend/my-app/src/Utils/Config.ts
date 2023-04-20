@@ -6,6 +6,8 @@ class Config {
  
     public productsUrl = "";
     public productImagesUrl = "";
+    public tokenRefreshUrl = "";
+
 }
 
 
@@ -16,6 +18,7 @@ class DevelopmentConfig extends Config {
     public productImagesUrl = "http://127.0.0.1:8000/";
     public registerUrl = "http://127.0.0.1:8000/api/register";
     public loginUrl = "http://127.0.0.1:8000/api/token";
+    public tokenRefreshUrl = "http://127.0.0.1:8000/api/token/refresh";
 }
 
 // class TestConfig extends Config {
@@ -32,6 +35,7 @@ class ProductionConfig extends Config {
     public productImagesUrl = "https://e-commers-quiker.onrender.com";
     public registerUrl = "https://e-commers-quiker.onrender.com/api/register";
     public loginUrl = "https://e-commers-quiker.onrender.com/api/token";
+    public tokenRefreshUrl = "https://e-commers-quiker.onrender.com/api/token/refresh";
 }
 
 

@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../app/store';
+import { AppThunk, RootState } from '../app/store';
 import authAPI, { AuthForm } from '../API/AuthAPI';
 import { LoginForm } from '../components/AuthArea/Login/Login';
 import { RegisterForm } from '../components/AuthArea/Register/Register';
 import jwt_decode from "jwt-decode";
+import ProductModel from '../Models/Products';
 
 export interface authList {
   tokenAccess: string;
@@ -45,6 +46,29 @@ export const loginAsync = createAsyncThunk(
     return response.data;
   }
 );
+export const tokenRefreshAsync = createAsyncThunk(
+  'auth/tokenRefresh',
+  async (token:string) => {
+    const response = await authAPI.postRefresh(token);
+    console.log('tokenRefresh sent successfully')
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+export const verifyTokenAsync = createAsyncThunk(
+  'auth/verifyToken',
+  async (args:void,ThunkAPI) => {
+    const state:any = ThunkAPI.getState()
+    const tokenAccess:string = state['auth']['tokenAccess']
+    const tokenRefresh:string = state['auth']['tokenRefresh']
+    let exp = jwt_decode<{exp:Date}>(tokenRefresh).exp
+    await ThunkAPI.dispatch(tokenRefreshAsync(tokenRefresh))
+    // const response = await authAPI.postRefresh(tokenRefresh);
+
+    // The value we return becomes the `fulfilled` action payload
+    // return response.data;
+  }
+);
 
 
 export const authSlice = createSlice({
@@ -67,6 +91,10 @@ export const authSlice = createSlice({
 
     },
     closeWindow:(state)=>{
+      state.authWindow= false;
+    },
+    getToken:(state)=>{
+      verifyTokenAsync()
       state.authWindow= false;
     },
     
@@ -127,6 +155,29 @@ export const authSlice = createSlice({
       }
       console.log(state.errMsg);
       state.status = 'failed';
+    })
+    .addCase(tokenRefreshAsync.fulfilled, (state, action) => {
+      state.lastUpdate = new Date().getTime();
+      state.tokenAccess = action.payload.access;
+      state.status = 'idle';
+      state.isLogin = true;
+      state.errMsg = ''
+      
+      state.fullName = jwt_decode<{full_name:string}>(state.tokenAccess).full_name;
+      
+    })
+    .addCase(tokenRefreshAsync.rejected, (state,action) => {
+      if (action.error?.message == 'Rejected'){
+        state.errMsg = 'Sorry there was an error connecting to the server'
+      }
+      else{
+        state.errMsg = action.error?.message?.split('"')[3] || '';
+        logout()
+        console.log(state.isLogin);
+
+      }
+      console.log(state.errMsg);
+      state.status = 'failed';
     });
   },
 });
@@ -144,5 +195,23 @@ export const selectStatus = (state: RootState) => state.auth.status;
 export const selectLastUpdate = (state: RootState) => state.auth.lastUpdate;
 
 
+export const getToken =
+  (): AppThunk =>
+  (dispatch, getState) => {
+    const tokenAccess = getState().auth.tokenAccess
+    const tokenRefresh = getState().auth.tokenRefresh
+    // dispatch(tokenRefreshAsync(tokenRefresh));
+    let exp = jwt_decode<{exp:Date}>(tokenRefresh).exp
+    console.log(exp);
+
+    // if (jwt_decode(tokenRefresh). < Date.now() / 1000) {
+    //   next(action);
+    //   localStorage.clear();
+    // }
+    // const currentValue = selectInCart(getState());
+    // if (currentValue % 2 === 1) {
+    // }
+    return 'new Token' + tokenAccess
+  };
 
 export default authSlice.reducer;

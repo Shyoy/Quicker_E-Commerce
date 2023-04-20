@@ -43,6 +43,15 @@ class AuthAPI{
           
         });
     }
+    public async postRefresh(token: string) {
+        return await new  Promise<{data: {access:string}}>(async (resolve,reject) =>{
+
+            await axios.post<{access:string}>(config.tokenRefreshUrl, {'refresh':token})
+                .then((response) =>  resolve({data: response.data}))
+                .catch((error) => reject(error.request.response))
+          
+        });
+    }
 
 }
 
