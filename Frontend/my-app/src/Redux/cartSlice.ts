@@ -1,8 +1,10 @@
-import {  createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {  AnyAction, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {  RootState} from '../app/store';
 import cartAPI from '../API/CartAPI';
 import ProductModel from '../Models/Products';
 import { updateProducts } from './productsSlice';
+import { verifyTokenAsync } from './authSlice';
+import { useAppDispatch } from '../app/hooks';
 
 
 
@@ -24,19 +26,34 @@ const initialState: cartList = {
 };
 
 
-export const checkOut = createAsyncThunk(
+export const checkOut = createAsyncThunk<
+undefined,
+void,
+{state: RootState }
+>(
   'cart/postCheckOut',
-  async (arg:void ,ThunkAPI) => {
-    const state:any = ThunkAPI.getState()
-    const cart:cartItem[] = state['cart']['inCart']
-    const tokenAccess:string = state['auth']['tokenAccess']
+  async (_,thunkApi) => {
+    // const {tree: {treeData}} = thunkApi.getState()
+    // let state = thunkApi.getState();
+
+    const cart:cartItem[] = thunkApi.getState().cart.inCart;
+    const oldTokenAccess:string = thunkApi.getState().auth.tokenAccess
+    console.log(oldTokenAccess)
+    await thunkApi.dispatch(verifyTokenAsync())
     if (cart.length === 0){
-      return ThunkAPI.rejectWithValue({});
+      return thunkApi.rejectWithValue({});
     }
-    const response = await cartAPI.postCheckOut(cart,tokenAccess);
-    ThunkAPI.dispatch(updateProducts(response.data));
+    const tokenAccess:string = thunkApi.getState().auth.tokenAccess
+    const tokenRefresh:string = thunkApi.getState().auth.tokenRefresh
+    if (tokenAccess == ''){
+      thunkApi.rejectWithValue({});
+    }
+    // console.log(tokenAccess)
+    console.log(tokenRefresh)
+    // const response = await cartAPI.postCheckOut(cart,tokenAccess);
+    // ThunkAPI.dispatch(updateProducts(response.data));
     // The value we return becomes the `fulfilled` action payload
-    return response.data;
+    // return response.data;
   }
 );
 
