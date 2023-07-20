@@ -29,13 +29,13 @@ class DevelopmentConfig extends Config {
 // }
 
 class ProductionConfig extends Config {
-    public categoriesUrl = "https://e-commers-quiker.onrender.com/api/products/categories";
-    public productsUrl = "https://e-commers-quiker.onrender.com/api/products";
-    public checkOutUrl = "https://e-commers-quiker.onrender.com/api/products/check-out";
-    public productImagesUrl = "https://e-commers-quiker.onrender.com";
-    public registerUrl = "https://e-commers-quiker.onrender.com/api/register";
-    public loginUrl = "https://e-commers-quiker.onrender.com/api/token";
-    public tokenRefreshUrl = "https://e-commers-quiker.onrender.com/api/token/refresh";
+    public categoriesUrl = "https://quiker.onrender.com/api/products/categories";
+    public productsUrl = "https://quiker.onrender.com/api/products";
+    public checkOutUrl = "https://quiker.onrender.com/api/products/check-out";
+    public productImagesUrl = "https://quiker.onrender.com";
+    public registerUrl = "https://quiker.onrender.com/api/register";
+    public loginUrl = "https://quiker.onrender.com/api/token";
+    public tokenRefreshUrl = "https://quiker.onrender.com/api/token/refresh";
 }
 
 
