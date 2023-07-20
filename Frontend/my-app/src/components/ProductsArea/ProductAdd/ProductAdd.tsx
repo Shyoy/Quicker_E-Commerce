@@ -167,7 +167,7 @@ const ProductAdd = (props:ProductAddProps) => {
           {previewImage ? 
           <img className="previewImage" src={previewImage} alt={"Preview image"}/>
           :
-          <img className="prod-image" src={'http://127.0.0.1:8000//media/dummy_image.jpg'} alt={"Product image"}/>
+          <img className="prod-image" src={config.dummyImgUrl} alt={"Product image"}/>
           }
           
           <label className="file-upload">

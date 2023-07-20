@@ -39,3 +39,9 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 CORS_ALLOWED_ORIGINS = [
     "https://quiker.netlify.app",
 ]
+
+# Base url to serve media files
+MEDIA_URL = '/mediaTmp/'
+
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediaTmp/')
