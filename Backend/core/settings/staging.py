@@ -10,7 +10,7 @@ env = environ.Env(
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -42,7 +42,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 # Base url to serve media files
-MEDIA_URL = '/media/'
+MEDIA_URL = '/mediaTmp/'
 
 # Path where media is stored
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediaTmp/')

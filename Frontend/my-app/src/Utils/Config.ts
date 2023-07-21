@@ -15,11 +15,11 @@ class DevelopmentConfig extends Config {
     public categoriesUrl = "http://127.0.0.1:8000/api/products/categories";
     public productsUrl = "http://127.0.0.1:8000/api/products";
     public checkOutUrl = "http://127.0.0.1:8000/api/products/check-out";
-    public productImagesUrl = "http://127.0.0.1:8000/";
+    public productImagesUrl = "http://127.0.0.1:8000";
     public registerUrl = "http://127.0.0.1:8000/api/register";
     public loginUrl = "http://127.0.0.1:8000/api/token";
     public tokenRefreshUrl = "http://127.0.0.1:8000/api/token/refresh";
-    public dummyImgUrl = "http://127.0.0.1:8000//media/dummy_image.jpg";
+    public dummyImgUrl = "http://127.0.0.1:8000/media/dummy_image.jpg";
 
 }
 
@@ -38,7 +38,7 @@ class ProductionConfig extends Config {
     public registerUrl = "https://quiker.onrender.com/api/register";
     public loginUrl = "https://quiker.onrender.com/api/token";
     public tokenRefreshUrl = "https://quiker.onrender.com/api/token/refresh";
-    public dummyImgUrl = "http://127.0.0.1:8000//mediaTmp/dummy_image.jpg";
+    public dummyImgUrl = "https://quiker.onrender.com/mediaTmp/dummy_image.jpg";
 }
 
 
