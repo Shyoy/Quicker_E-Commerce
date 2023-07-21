@@ -7,10 +7,15 @@
 
 from apps.products import models as prod_models
 from django.db.models.signals import post_delete, pre_save, post_save
+from django.db.models import signals
 from django.dispatch import receiver
 from apps.products.models import Product
 from .utils import ImageHandler
 from django.core.exceptions import ValidationError
+
+from django.conf import settings
+from os.path import isfile
+
 
 @receiver(post_delete, sender=prod_models.Product)
 def post_delete_image(sender, instance, *args, **kwargs):
@@ -50,6 +55,17 @@ def pre_save_image(sender, instance, *args, **kwargs):
         print(f"After: {instance.image.size/1024/1024}MB")
 
 
+
+# @receiver(signals.post_init, sender=prod_models.Product)
+# def pre_init_product(sender, instance, *args, **kwargs):
+#     if instance.id:
+#         path = settings.MEDIA_URL.split('/')[1] + '/' + str(instance.image)
+#         print(f"{path} models called")
+#         # print(settings.MEDIA_URL)
+#         print()
+#         if isfile(path):
+#             print(instance.name +' exists')
+#     pass
 
 @receiver(pre_save, sender=prod_models.CartItem)
 def pre_save_item(instance, *args, **kwargs):

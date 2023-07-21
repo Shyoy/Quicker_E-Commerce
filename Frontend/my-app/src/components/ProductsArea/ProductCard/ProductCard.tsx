@@ -21,7 +21,6 @@ const ProductCard = (props:ProductProps):JSX.Element => {
   const currentItem = currentItemList[0] || null
   const visible:boolean = currentItem?.amount < currentItem?.product?.amount
   const isHidden = props.product.amount === 0
-  console.log(props.product.image);
 
   const handleClick = () => {
     searchParams.set('product', props.product.barcode)

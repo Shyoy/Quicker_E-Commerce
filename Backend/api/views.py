@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.permissions  import IsAuthenticated
 from rest_framework_simplejwt.views import TokenViewBase, TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
+from apps.products.services.utils import del_broken_products
 
 from apps.accounts.serializers import MyTokenObtainPairSerializer, RegisterSerializer
 from apps.products.models import Product, Cart, Category
@@ -44,6 +45,7 @@ def product_list(request):
     """
     if request.method == 'GET':
         products = Product.objects.all()
+        del_broken_products(products)
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 

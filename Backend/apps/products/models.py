@@ -25,8 +25,8 @@ class Product(models.Model):
     barcode = models.CharField(validators=[MinLengthValidator(6),DigitValidator()], max_length=18,  unique=True)
     price = models.FloatField(validators=[MinValueValidator(0.5)])
     amount = models.IntegerField(default=1)
-    image = models.ImageField(upload_to=ImageHandler.path,validators=[ImageValidator(3),validate_image_file_extension])
-    categories = models.ManyToManyField(Category,related_name='products',blank=True)
+    image = models.ImageField(upload_to=ImageHandler.path, validators=[ImageValidator(3),validate_image_file_extension])
+    categories = models.ManyToManyField(Category, related_name='products',blank=True)
 
     class Meta:
         ordering = ['created']
