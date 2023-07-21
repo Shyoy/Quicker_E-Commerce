@@ -7,6 +7,7 @@ from datetime import datetime
 #image compression method
 from os import listdir
 from django.conf import settings
+from django.db.models import QuerySet
 
 class ImageHandler:
     IMG_FOLDER_NAME = "products/"
@@ -24,7 +25,7 @@ class ImageHandler:
     
     @staticmethod
     def compress(image:object):
-        method= Image.Transform.MESH
+        Image.Transform.MESH
         im = Image.open(image)
         im_io = BytesIO() 
         im = im.transform((640, 480), Image.EXTENT,
@@ -35,12 +36,15 @@ class ImageHandler:
         return new_image
 
 
-def del_broken_products(products):
+## UTIL FUNCTIONS
+
+def del_broken_products(products:QuerySet) -> None:
+    '''
+    If product in a QuerySet is missing an img file, it will be removed from database
+    '''
     path = settings.MEDIA_URL.split('/')[1] + '/' + ImageHandler.IMG_FOLDER_NAME
     images_names = [ImageHandler.IMG_FOLDER_NAME+name for name in listdir(path)]
-    print(images_names)
     broken_products = products.exclude(image__in=images_names)
     if broken_products.count() > 0:
         broken_products.delete()
-    print(broken_products)
    
