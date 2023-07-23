@@ -50,7 +50,6 @@ export const editProductAsync = createAsyncThunk(
       let id:string = form.get('id')?.toString()||'';
       form.delete('id');
       const response = await productsAPI.editProduct(id, form);
-      console.log(response.data)
       // The value we return becomes the `fulfilled` action payload
       ThunkAPI.dispatch(updateProducts(Array(response.data)))
       return response.data;

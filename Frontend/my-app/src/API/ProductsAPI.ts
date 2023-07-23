@@ -44,7 +44,6 @@ class ProductsAPI{
     }
     public async addProduct(form:FormData) {
         return await new  Promise<{data: ProductModel}>(async (resolve,reject) =>{
-            console.log(form);
             await axios.post<ProductModel>(config.productsUrl, form)
                 .then((response) =>  resolve({data: response.data}))
                 .catch((error) => reject(error))

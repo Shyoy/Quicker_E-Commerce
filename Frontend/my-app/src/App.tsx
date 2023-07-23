@@ -38,7 +38,7 @@ function App() {
 
           </Route>
           <Route path='404notfound' element={<NoPage />} />
-          <Route path="*" element={<Navigate to="/404notfound"/>} />
+          <Route path="*" element={<NoPage />} />
         </Route>
         }
       </Routes>

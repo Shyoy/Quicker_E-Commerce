@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector, useQuery } from '../../../app/hooks';
 import ProductModel from '../../../Models/Products';
 import { getCategoriesAsync, get_allAsync, selectProducts } from '../../../Redux/productsSlice';
 import ProductWindow from '../../ProductsArea/ProductWindow/ProductWindow';
+import ProductWindowLike from '../../ProductsArea/ProductWindow/ProductWindowLike';
 import Footer from '../Footer/Footer';
 
 import './Main.css'

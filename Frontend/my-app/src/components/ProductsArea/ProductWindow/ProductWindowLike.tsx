@@ -12,6 +12,7 @@ import ProductDetails from '../ProductDetails/ProductDetails';
 import ProductEdit from '../ProductEdit/ProductEdit';
 
 import "./ProductWindow.css"
+import { Route} from "react-router-dom";
 
 
 const ProductWindow = () => {
@@ -106,16 +107,45 @@ const ProductWindow = () => {
         setSearchParams(searchParams)
     }
     
-    // typeof product == ProductModel||searchParams.get('action')==='add'
+    
+
+    // let routes = (
+    // <Switch>
+    //     <Route exact path="/">
+    //     <Home />
+    //     </Route>
+    //     <Route path="/about">
+    //     <About />
+    //     </Route>
+    //     <Route path="/:user">
+    //     <User />
+    //     </Route>
+    //     <Route>
+    //     <NoMatch />
+    //     </Route>
+    // </Switch>
+    // );
+
+
+
+
+
+
+
+
+
     return (
-    
-    
+        
     <div className='ProductWindow' hidden={isHidden}>
         
         <div className='my-overlay'  onClick={handleClose}/>
         
         <div className='pop-window'>
-            {/* <button onClick={handleClickAdd} className="addButton bi bi-plus-circle-fill " title='Add new product'></button> */}
+            <Route path='detail/:product' element={<>detail</>} />
+            <Route path='edit/:product' element={<>edit</>} />
+            <Route path='add' element={<>add</>} />
+    
+            {/* <button onClick={handleClickAdd} className="addButton bi bi-plus-circle-fill " title='Add new product'></button>
             
             { product &&
             <>
@@ -130,7 +160,7 @@ const ProductWindow = () => {
 
             {productWindow === 'add' && 
             <ProductAdd handleClose={handleClose} handleSwap={handleSwap}/>
-            }
+            } */}
                 
 
         </div>

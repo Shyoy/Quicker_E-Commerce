@@ -37,7 +37,7 @@ const ProductAdd = (props:ProductAddProps) => {
       setIsChanged(false)
 
     }
-  },[image,amount,price])
+  },[name,image,amount,price,barcode])
   // useEffect(()=>{
   //   if (productWindow === 'detail'){
   //     searchParams.set('product',products[0].barcode.toString());
@@ -136,13 +136,14 @@ const ProductAdd = (props:ProductAddProps) => {
 
           <input className='prod-name' value={name} onChange={(e)=>handleNameChange(e)} placeholder='New Product Name'/>
          
-          <button className="swap-content" style={{'visibility':'hidden'}}>{''}</button>
+          <button className="swap-content" onClick={props.handleSwap}>{'Back'}</button>
+
 
       </div>
       <div className='my-body'>
           <div className='button-control '>
               {isChanged ? 
-              
+              // <button className="swap-content" style={{'visibility':'hidden'}}>{''}</button>
               <button onClick={handleSubmit}  title="Submit changes"  className='submit-button rounded-pill  px-3'>Submit</button>
               :
               <button disabled  title="Submit changes"  className='rounded-pill  px-3'>Submit</button>
