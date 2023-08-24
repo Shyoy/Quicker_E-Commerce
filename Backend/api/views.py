@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.permissions  import IsAuthenticated
 from rest_framework_simplejwt.views import TokenViewBase, TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
+from apps.products.services.utils import gcp_img_upl
 from apps.products.services.utils import del_broken_products
 
 from apps.accounts.serializers import MyTokenObtainPairSerializer, RegisterSerializer
@@ -35,6 +36,18 @@ def register(request):
                 print(token_serializer.validated_data)
                 return Response(token_serializer.validated_data, status=status.HTTP_201_CREATED)
             return Response(token_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def test_img_upl(request):
+    if request.method == 'POST':
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            image_url =gcp_img_upl(serializer.validated_data)
+            # product = Product(serializer.validated_data)
+            # print(product['barcode'])
+            
+            return Response(image_url, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

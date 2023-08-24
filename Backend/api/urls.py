@@ -1,5 +1,7 @@
-from api.views import product_list, product_detail, checkout_list,categories_list, register
+from api.views import (product_list, product_detail, 
+checkout_list,categories_list, register,test_img_upl)
 from django.urls import path
+
 
 from .views import MyTokenObtainPairView
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
@@ -10,6 +12,8 @@ urlpatterns = [
     path('products/check-out', checkout_list ),
     path('products/<int:code>',product_detail ),
     path('products/categories',categories_list ),
+
+    path('products/image_upload',test_img_upl ),
 
     ## Accounts
     path('token', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
