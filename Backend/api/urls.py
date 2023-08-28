@@ -13,8 +13,6 @@ urlpatterns = [
     path('products/<int:code>',product_detail ),
     path('products/categories',categories_list ),
 
-    path('products/image_upload',test_img_upl ),
-
     ## Accounts
     path('token', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
