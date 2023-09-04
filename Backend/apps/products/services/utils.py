@@ -10,6 +10,11 @@ from django.conf import settings
 from django.db.models import QuerySet
 from google.cloud import storage
 
+import os
+
+
+env_name = os.getenv()
+
 
 
 class ImageHandler:
@@ -53,15 +58,15 @@ def del_broken_products(products:QuerySet) -> None:
    
 
 def gcp_img_upl(obj):
+    service_account = 'quicker-tester.json' if os.environ.get("ENV_NAME") == 'Local' else 'quicker-user.json'
     time = int(datetime.now().timestamp())
-
     name = obj['name']
     file = obj['image']
     barcode = obj['barcode']
     obj_name = f'{barcode}_{time}_{name}.jpg'
     print(name,file)
     storage_client  = storage.Client.from_service_account_json(
-        'env\quicker-e-commerce-64945c3c6ce4.json')
+        f'{env_name}\service_accounts\{service_account}')
     bucket = storage_client.bucket('quicker-photos')
     blob = bucket.blob(obj_name)
     print(blob)
