@@ -13,8 +13,8 @@ from google.cloud import storage
 import os
 
 
-env_name = os.getenv()
-
+env_name = os.environ.get('VIRTUAL_ENV').split('\\')[-1]
+print(env_name)
 
 
 class ImageHandler:
