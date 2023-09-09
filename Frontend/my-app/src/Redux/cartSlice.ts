@@ -50,8 +50,8 @@ void,
     }
     // console.log(tokenAccess)
     console.log(tokenRefresh)
-    // const response = await cartAPI.postCheckOut(cart,tokenAccess);
-    // ThunkAPI.dispatch(updateProducts(response.data));
+    const response = await cartAPI.postCheckOut(cart,tokenAccess);
+    thunkApi.dispatch(updateProducts(response.data));
     // The value we return becomes the `fulfilled` action payload
     // return response.data;
   }
