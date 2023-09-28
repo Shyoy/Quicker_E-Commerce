@@ -13,8 +13,7 @@ from google.cloud import storage
 import os
 
 
-env_name = os.environ.get('VIRTUAL_ENV').split('\\')[-1]
-print(env_name)
+VIRTUAL_ENV = os.environ.get('VIRTUAL_ENV').split('\\')[-1]
 
 
 class ImageHandler:
@@ -66,7 +65,7 @@ def gcp_img_upl(obj):
     obj_name = f'{barcode}_{time}_{name}.jpg'
     print(name,file)
     storage_client  = storage.Client.from_service_account_json(
-        f'{env_name}\service_accounts\{service_account}')
+        f'{VIRTUAL_ENV}\service_accounts\{service_account}')
     bucket = storage_client.bucket('quicker-photos')
     blob = bucket.blob(obj_name)
     print(blob)
