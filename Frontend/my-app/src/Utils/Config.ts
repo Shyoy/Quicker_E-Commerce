@@ -47,12 +47,12 @@ let config = new DevelopmentConfig();
 
 if (process.env.NODE_ENV === "development") {
     config = new DevelopmentConfig();
-    config.BASE_URL = process.env.API_URL||"404"
 }
 // else if (process.env.NODE_ENV === "test") {
 //     config = new TestConfig();
 // }
 else if(process.env.NODE_ENV === "production") { 
+    config.BASE_URL = process.env.API_URL||"404"
     config = new ProductionConfig();
 }
 
