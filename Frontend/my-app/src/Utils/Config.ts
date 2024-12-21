@@ -7,6 +7,7 @@ class Config {
     public productsUrl = "";
     public productImagesUrl = "";
     public tokenRefreshUrl = "";
+    public BASE_URL =""
 
 }
 
@@ -31,14 +32,14 @@ class DevelopmentConfig extends Config {
 // }
 
 class ProductionConfig extends Config {
-    public categoriesUrl = "https://quiker.onrender.com/api/products/categories";
-    public productsUrl = "https://quiker.onrender.com/api/products";
-    public checkOutUrl = "https://quiker.onrender.com/api/products/check-out";
-    public productImagesUrl = "https://quiker.onrender.com";
-    public registerUrl = "https://quiker.onrender.com/api/register";
-    public loginUrl = "https://quiker.onrender.com/api/token";
-    public tokenRefreshUrl = "https://quiker.onrender.com/api/token/refresh";
-    public dummyImgUrl = "https://quiker.onrender.com/mediaTmp/dummy_image.jpg";
+    public categoriesUrl = `${this.BASE_URL}/api/products/categories`;
+    public productsUrl = `${this.BASE_URL}/api/products`;
+    public checkOutUrl = `${this.BASE_URL}/api/products/check-out`;
+    public productImagesUrl = `${this.BASE_URL}`;
+    public registerUrl = `${this.BASE_URL}/api/register`;
+    public loginUrl = `${this.BASE_URL}/api/token`;
+    public tokenRefreshUrl = `${this.BASE_URL}/api/token/refresh`;
+    public dummyImgUrl = `${this.BASE_URL}/mediaTmp/dummy_image.jpg`;
 }
 
 
@@ -46,6 +47,7 @@ let config = new DevelopmentConfig();
 
 if (process.env.NODE_ENV === "development") {
     config = new DevelopmentConfig();
+    config.BASE_URL = process.env.API_URL||"404"
 }
 // else if (process.env.NODE_ENV === "test") {
 //     config = new TestConfig();
