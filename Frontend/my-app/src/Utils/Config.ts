@@ -7,20 +7,21 @@ class Config {
     public productsUrl = "";
     public productImagesUrl = "";
     public tokenRefreshUrl = "";
-    public BASE_URL =""
+    public BACK_URL = "";
 
 }
 
 
 class DevelopmentConfig extends Config {
-    public categoriesUrl = "http://127.0.0.1:8000/api/products/categories";
-    public productsUrl = "http://127.0.0.1:8000/api/products";
-    public checkOutUrl = "http://127.0.0.1:8000/api/products/check-out";
-    public productImagesUrl = "http://127.0.0.1:8000";
-    public registerUrl = "http://127.0.0.1:8000/api/register";
-    public loginUrl = "http://127.0.0.1:8000/api/token";
-    public tokenRefreshUrl = "http://127.0.0.1:8000/api/token/refresh";
-    public dummyImgUrl = "http://127.0.0.1:8000/media/dummy_image.jpg";
+    BACK_URL ="http://127.0.0.1:8000"
+    public categoriesUrl = `${this.BACK_URL}/api/products/categories`;
+    public productsUrl = `${this.BACK_URL}/api/products`;
+    public checkOutUrl = `${this.BACK_URL}/api/products/check-out`;
+    public productImagesUrl = `${this.BACK_URL}`;
+    public registerUrl = `${this.BACK_URL}/api/register`;
+    public loginUrl = `${this.BACK_URL}/api/token`;
+    public tokenRefreshUrl = `${this.BACK_URL}/api/token/refresh`;
+    public dummyImgUrl = `${this.BACK_URL}/media/dummy_image.jpg`;
 
 }
 
@@ -32,14 +33,16 @@ class DevelopmentConfig extends Config {
 // }
 
 class ProductionConfig extends Config {
-    public categoriesUrl = `${this.BASE_URL}/api/products/categories`;
-    public productsUrl = `${this.BASE_URL}/api/products`;
-    public checkOutUrl = `${this.BASE_URL}/api/products/check-out`;
-    public productImagesUrl = `${this.BASE_URL}`;
-    public registerUrl = `${this.BASE_URL}/api/register`;
-    public loginUrl = `${this.BASE_URL}/api/token`;
-    public tokenRefreshUrl = `${this.BASE_URL}/api/token/refresh`;
-    public dummyImgUrl = `${this.BASE_URL}/mediaTmp/dummy_image.jpg`;
+    BACK_URL = process.env.API_URL||"http://localhost"
+    public categoriesUrl = `${this.BACK_URL}/api/products/categories`;
+    public productsUrl = `${this.BACK_URL}/api/products`;
+    public checkOutUrl = `${this.BACK_URL}/api/products/check-out`;
+    public productImagesUrl = `${this.BACK_URL}`;
+    public registerUrl = `${this.BACK_URL}/api/register`;
+    public loginUrl = `${this.BACK_URL}/api/token`;
+    public tokenRefreshUrl = `${this.BACK_URL}/api/token/refresh`;
+    public dummyImgUrl = `${this.BACK_URL}/mediaTmp/dummy_image.jpg`;
+    
 }
 
 
@@ -49,11 +52,10 @@ if (process.env.NODE_ENV === "development") {
     config = new DevelopmentConfig();
 }
 // else if (process.env.NODE_ENV === "test") {
-//     config = new TestConfig();
-// }
-else if(process.env.NODE_ENV === "production") { 
-    config.BASE_URL = process.env.API_URL||"404"
-    config = new ProductionConfig();
+    //     config = new TestConfig();
+    // }
+    else if(process.env.NODE_ENV === "production") { 
+        config = new ProductionConfig();
 }
 
 export default config;
