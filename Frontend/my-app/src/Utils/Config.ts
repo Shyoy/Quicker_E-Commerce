@@ -33,7 +33,7 @@ class DevelopmentConfig extends Config {
 // }
 
 class ProductionConfig extends Config {
-    BACK_URL = process.env.API_URL||"http://localhost"
+    BACK_URL = process.env.REACT_APP_API_URL||"http://localhost"
     public categoriesUrl = `${this.BACK_URL}/api/products/categories`;
     public productsUrl = `${this.BACK_URL}/api/products`;
     public checkOutUrl = `${this.BACK_URL}/api/products/check-out`;
@@ -48,8 +48,10 @@ class ProductionConfig extends Config {
 
 let config = new DevelopmentConfig();
 
+
 if (process.env.NODE_ENV === "development") {
     config = new DevelopmentConfig();
+    
 }
 // else if (process.env.NODE_ENV === "test") {
     //     config = new TestConfig();
